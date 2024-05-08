@@ -653,7 +653,7 @@ var data = {
     translation12:
       "Studienkolleg va til kurslari bo'yicha ekspert va mentor, <br>integratsiya hamda ta'lim mavzularida bosh maslahatchi, <br>psixologik usullar murabbiyi. <br>Qo'shimcha: Leipzig Studienkolleg dasturi ishtirokchisi, <br>bo’lajak biotexnologiya va tibbiyot eksperti, <br>Leipzig (Germaniya)",
     translation13:
-      " Tibbiyot eksperti va mentor, <br>intervyular va networking bo'yicha maslahatchi, <br>psixologik usullar bosh murabbiyi. <br>Qo'shimcha: Pezeshkpour xususiy stomatologiya <br>klinikasida vrach bo'lib faoliyat yuritmoqda. <br>Aachen (Germani",
+      " Tibbiyot eksperti va mentor, <br>intervyular va networking bo'yicha maslahatchi, <br>psixologik usullar bosh murabbiyi. <br>Qo'shimcha: Pezeshkpour xususiy stomatologiya <br>klinikasida vrach bo'lib faoliyat yuritmoqda. <br>Aachen (Germaniya)",
     translation14: "O'quv markaz",
     translation15: "Bizning xizmatlarimiz",
     translation16: `<br>
