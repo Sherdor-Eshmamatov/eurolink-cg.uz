@@ -307,23 +307,15 @@ link.forEach((el) => {
     translation140.innerHTML = data[attr].translation140;
   });
 });
-document.getElementById("germanyBtn").onclick = function () {
-  let btnOne = document.querySelector(".imgagetwo");
-  btnOne.style.display = "none";
-  let btntwo = document.querySelector(".imgageOne");
-  btntwo.style.display = "block";
-};
 document.getElementById("uzbBtn").onclick = function () {
-  let btnthree = document.querySelector(".imgageOne");
-  btnthree.style.display = "none";
-  let btnfour = document.querySelector(".imgagetwo");
-  btnfour.style.display = "block";
+  document.querySelector(".imgagetwo").style.display = "none";
+  document.querySelector(".imgageOne").style.display = "block";
 };
 
-// document.getElementsByClassName("dtnnn").onclick = function () {
-//   let btn = document.querySelector("imgageOne");
-//   btn.style.display = "none";
-// };
+document.getElementById("germanyBtn").onclick = function () {
+  document.querySelector(".imgageOne").style.display = "none";
+  document.querySelector(".imgagetwo").style.display = "block";
+};
 var data = {
   germany: {
     menu1: "Hauptseite",
