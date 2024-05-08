@@ -1,0 +1,661 @@
+
+/* ---------------------------------- home ---------------------------------- */
+* {
+    box-sizing: border-box;
+    body{
+        padding: 0;
+        margin: 0;
+        /* --------------------------------- navbar --------------------------------- */
+        .navbar{
+            background-color: #fff;
+            box-shadow: 0 0 2px  #000;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            transition: all 0.7s linear;
+            .container-fluid{
+                .navbar-brand{
+                    // padding-left: 2rem;
+                    @media (max-width: 1024px){
+                        padding-left: 0;
+                    }
+                        img{
+                            width: 120px;
+                            outline: none;
+                            padding-left: 0;
+                        }
+                        .text{
+                            font-size: 0.6rem;
+                            font-weight: 600;
+                            transition: all 0.3s linear;
+                            padding: 0 !important;
+                            margin: 0 !important;
+                            color: #06b113;
+                            font-family: 'Lora', serif;
+                        }
+                }
+                .navbar-toggler{
+                    border: none;
+                    outline: none;
+                    width: 6rem;
+                    @media(max-width: 286px) {
+                        width: 5rem;
+                    }
+                }
+                .collapse{
+                    width: 500px;
+                    margin: 0 auto;
+                    .navbar-nav{
+                        .nav-item{
+                            a{
+                                font-size: 0.85rem;
+                                font-family: 'Lora', serif;
+                            }
+                            a:hover{
+                                color: #06b113;
+                            }
+                        }
+                    }
+                    .langue img:nth-child(1){
+                        margin-left: 1rem;
+                        margin-right: 0;
+                        padding-right: 0;
+                        @media (max-width: 1046px){
+                            margin-left: 1rem;
+                        }
+                        @media (max-width: 990px){
+                            margin-left: 1.9rem;
+                        }
+                    }
+                    .langWrap{
+                        .translate{
+                            width: 1.5rem;
+                            cursor: pointer;
+                            @media (max-width: 992px){
+                               width: 2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /* ----------------------------- the and navbar ----------------------------- */
+        /* ---------------------------------- home ---------------------------------- */
+        .video-container {
+            position: relative;
+            height: 103vh;
+            overflow: hidden;
+            background-attachment: fixed;
+            object-fit: cover;
+            @media(max-width: 800px) {
+                height: 99vh;
+                padding-bottom: 0;
+            }
+        }
+        
+        video {
+                object-fit: cover; 
+                position: absolute;
+                height: 97%;
+                width: 100%;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+            }
+        
+        .video-container:after {
+                content: '';
+                display: block;
+                height: 97%;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: rgba(black, .2);
+                z-index: 1;
+            }
+        
+        .callout {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                height: 97%;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                z-index: 10;
+            }
+        h1 {
+                font-family: 'Lora', serif;
+                font-weight: 600;
+                padding: 0;
+                line-height: 1;
+                font-size: 3.5rem;
+                color: #fff;
+                @media (max-width: 400px) {
+                font-size: 22px;
+                }
+            }
+            .arrow{
+                font-family: 'Merriweather', serif;
+                text-decoration: none;
+                color: #fff;
+                border: 2px solid white;
+                padding: 0.2rem 0.7rem;
+                margin-top: 2rem;
+                border-radius: 2px;
+            }
+            .arrow:hover{
+                color: #fff;
+            }
+        
+        /* ------------------------------ the and home ------------------------------ */
+        
+        /* ----------------------------  information --------------------------- */
+        .information{
+            margin: 3rem auto;
+            padding-top: 5rem;
+            h3{
+                text-align: center;
+                margin-top: 2rem;
+                margin-bottom: 4rem;
+                font-family: 'Lora', serif;
+            }
+            .row{
+                border-radius: 3px;
+                transition: all 0.5s linear;
+                padding: 2rem  0.6rem;
+                #information-img{
+                    border-radius: 10px;
+                    object-fit: cover;
+                }
+                #information-text{
+                    p{
+                        font-family: 'Lora', serif;
+                        font-size: 1.3rem;
+                        font-style: italic
+                    };
+                }
+            }
+            .row:hover{
+                box-shadow: 0 0 30px 1px rgb(179, 179, 179);
+                
+            }
+        }
+        /* ------------------------ the and information ----------------------- */
+        /* ----------------------------------- overallResult ---------------------------------- */
+        .overallResult{
+            padding-top: 5rem;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            .row{
+                border-radius: 3px;
+                transition: all 0.5s linear;
+                padding: 2rem  0.6rem;
+                h3{
+                    color: #000;
+                    text-transform:none;
+                    text-align: center;
+                    margin-top: 3rem;
+                    margin-bottom: 3rem;
+                    font-family: 'Lora', serif;
+                }
+                p{
+                    font-size: 1.2rem;
+                    font-family: 'Lora', serif;
+                    span{
+                        font-weight: 700;
+                    }
+                }
+            }
+            .row:hover{
+                box-shadow: 0 0 30px 1px rgb(179, 179, 179);
+                
+            }
+        }
+        /* ---------------------------------- the and overallResult ---------------------------------- */
+        /* ----------------------------------- structure ---------------------------------- */
+        .structure{
+            .row{
+                text-align: center;
+                img{
+                    width: 80%;
+                    margin: 0 auto;
+                    @media (max-width: 1000px) {
+                        width: 100%;
+                        height: 75vh;
+                        }
+                }
+            }
+        }
+        /* ---------------------------------- the and structure ---------------------------------- */
+        /* -------------------------------- employees ------------------------------- */
+        .employees{
+            margin: 2rem auto;
+            // padding-top: 4rem;
+            h3{
+                text-align: center;
+                margin: 3rem 0;
+                letter-spacing: 2px;
+                font-size: 2rem;
+                font-family: 'Lora', serif;
+            }
+            .row{
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .accordion-item{
+                    border: none;
+                    .accordion-header{
+                        background-color: #fff;
+                        text-align: center;
+                         button{
+                            //  outline: none !important;
+                             color: #000;
+                             font-size: 1.2rem;
+                            }
+                            .accordion{
+                                background-color: #fdf5ff;
+                                width: 100%;
+                                padding: 1rem 0 1rem 1rem;
+                                text-align: left;
+                                margin-bottom:1rem ;
+                                border: none;
+                                font-family: 'Lora', serif;
+                            }
+                     }
+                }
+                .card-grou{
+                    display: flex;
+                    @media (max-width:999px) {
+                        width: 100% !important;
+                        display: block;
+                    }
+                }
+                .card{
+                    display:block;
+                    width: 33%;
+                    text-align: center;
+                    margin: 0 auto;
+                    border: none;
+                    @media (max-width:999px) {
+                        width: 100% !important;
+                        display: block;
+                    }
+                    img{
+                        width: 90%;
+                        height: 400px;
+                        object-fit: cover;
+                    }
+                    .card-title{
+                        font-size: 1.5rem;
+                        font-family: 'Lora', serif;
+                    }
+                    p{
+                        font-size: 0.7rem;
+                        font-family: 'Lora', serif;
+                        @media (max-width:999px) {
+                            font-size: 1.3rem;
+                        }
+                        @media (max-width:700px) {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+        /* --------------------------------- the and employees -------------------------------- */
+        /* --------------------------- information-sevices -------------------------- */
+        .information-Services{
+                    margin: 3rem auto;
+                    padding: 4rem 0 0 0;
+                    h3{
+                        font-family: 'Poppins', sans-serif;
+                        text-align: center;
+                        padding: 2rem 0;
+                        font-weight: 800;
+                        font-family: 'Lora', serif;
+                    }
+                    .row{
+                        border-radius: 3px;
+                        transition: all 0.5s linear;
+                        padding: 1.8rem  0.8rem;
+                        max-width: 100%;
+                        margin: 0 auto;
+                        img{
+                            object-fit: cover;
+                            width: 100%;
+                            height: 90vh;
+                            @media (max-width: 1025px){
+                                height: 75vh;
+                                object-fit: cover;
+                                max-width: 100%;
+                            }
+                            @media (max-width: 882px){
+                                height: 35vh;
+                                object-fit: cover;
+                                max-width: 100%;
+                            }
+                            @media (max-width: 530px){
+                                height: 20vh;
+                                object-fit: cover;
+                                max-width: 100%;
+                            }
+                        }
+                        p{
+                            font-family: 'Lora', serif;
+                        }
+                        span{
+                            font-weight: 700;
+                            font-family: 'Lora', serif;
+                        }
+                        .underline{
+                            text-decoration: underline;
+                        }
+                        .italic{
+                            font-weight: 500;
+                            font-style: italic;
+                        }
+                        br{
+                            border: 2px solid red;
+                        }
+                    }
+                    .row:hover{
+                        border-radius: 0px;
+                        box-shadow:  10px 10px 23px #c9c3cd,
+                        -10px -10px 23px #ffffff;
+                    }
+        }
+        /* ----------------------- the and information-sevices ---------------------- */
+        /* -------------------------- Weg nach Deutschland -------------------------- */
+        #germany{
+                margin: 4rem auto;
+                h1{
+                    color: #000;
+                    font-family: 'Lora', serif;
+                    font-size: 2.5rem;
+                    text-align: center;
+                    margin: 8rem 0 2rem 0;
+                    padding-top: 1rem;
+                }
+                .row{
+                    h3{
+                        text-align: center;
+                        padding: 1rem;
+                        font-family: 'Lora', serif;
+                    }
+                    .carouselExampleIndicators2{
+                        object-fit: cover;
+                    }
+                    border-radius: 3px;
+                    transition: all 0.5s linear;
+                    padding: 1.8rem  0.8rem;
+                    margin: 3rem 0 0 0;
+                    img{
+                        width: 100%;
+                        object-fit: cover;
+                        padding: 0.3rem 0;
+                        height: 90vh;
+                        @media (max-width: 1025px){
+                            height: 75vh;
+                            object-fit: cover;
+                            max-width: 100%;
+                        }
+                        @media (max-width: 882px){
+                            height: 35vh;
+                            object-fit: cover;
+                            max-width: 100%;
+                        }
+                        @media (max-width: 530px){
+                            height: 20vh;
+                            object-fit: cover;
+                            max-width: 100%;
+                        }
+                    }
+                        
+                    p{
+                        font-family: 'Lora', serif;
+                        line-height: 1.7rem;
+                        a{
+                            color: #06b113;
+                            font-family: 'Lora', serif;
+                        }
+                        span{
+                            font-weight: 700;
+                        }
+                        .underline{
+                            text-decoration: underline;
+                        }
+                        .italic{
+                            font-weight: 500;
+                            font-style: italic;
+                        }
+                        #italic{
+                            font-weight: 700;
+                            font-style: italic;
+                        }
+                    }
+                }
+                .row:hover{
+                    border-radius: 0px;
+                    box-shadow:  10px 10px 23px #c9c3cd,
+                    -10px -10px 23px #ffffff;
+                }
+        }
+        /* ---------------------- the and Weg nach Deutschland ---------------------- */
+        /* --------------------------------- Ergebnisse --------------------------------- */
+        /* ----------------------------------- xxx ---------------------------------- */
+        #Ergebnisse{
+            margin-top: 5rem;
+            padding-top: 5rem;
+            overflow: hidden;
+            h1{
+                color: #000;
+                text-align: center;
+                padding: 2rem 0;
+                font-family: 'Lora', serif;
+            }
+            
+            .row{
+                .accordion-item{
+                    border: none;
+                    .accordion{
+                        width: 100%;
+                        font-size: 1rem;
+                        padding: 1rem 0 1rem 1rem;
+                        text-align: left;
+                        margin-bottom: 1rem;
+                        border: none;
+                        background-color: #fdf5ff;
+                    }
+                }
+               .card{
+                width: 100%;
+                margin: 0 auto;
+               }
+               .card-body{
+                .card-text{
+                    span{
+                        text-decoration: underline;
+                        
+                    }
+                }
+             }
+            }
+        }
+        /* ---------------------------------- the and Ergebnisse --------------------------------- */
+        /* ---------------------------- contact html css ---------------------------- */
+        #ContactHtml{
+            margin: 2rem auto;
+            padding: 3rem 0;
+            font-family: 'Lora', serif;
+            .row{
+                @media (max-width: 637px) {
+                    margin: 0 auto;
+                }
+                .contactText{
+                    color: #000;
+                    font-family: 'Poppins', sans-serif;
+                    text-align: center;
+                    margin-top: 3rem;
+                    text-transform: none;
+                }
+                p{
+                    margin-top: 5rem;
+                    font-family: 'Lora', serif;
+                    line-height: 1.7rem;
+                    font-size: .9rem;
+                }
+                .translation24{
+                    font-family: 'Lora', serif;
+                    span{
+                        color: #06b113;
+                    }
+                }
+                .links{
+                    padding-left: 3rem;
+                    @media (max-width: 991px) {
+                        padding-left: 1rem !important;
+                    }
+                    .number-frontOffice{
+                        display: block;
+                    }
+                    .number-backOffice{
+                        display: block;
+                    }
+                    .administration-one{
+                        display: block;
+                        // margin-top: 1rem;
+                    }
+                    .EmailbackOffice{
+                        margin-bottom: 0;
+                        display: block;
+                    }
+                    .administrationthree{
+                        display: block;
+                    }
+                   
+                    a{
+                        color: #06b113;
+                    }
+                    .link{
+                        margin-top: 1rem;
+                        font-family: 'Lora', serif;
+                    }
+                }
+                .Arlekino{
+                    padding-top: 2rem;
+                    iframe{
+                        width: 100%;
+                        height: 75vh;
+                    }
+                }
+                .form-contact{
+
+                    form{
+                        font-family: 'Lora', serif;
+                        // position: relative;
+                        label{
+                            cursor: pointer;
+                        }
+                        .thema:hover{
+                            font-weight: 700;
+                        }
+                        .label-input{
+                            font-weight: 600;
+                            font-size: 0.9rem;
+                        }
+                        .input{
+                            display: block;
+                            width: 100%;
+                            padding: 0.5rem 0;
+                            margin:1.5rem 0;
+                            border-radius: 0px;
+                            border: 1px solid black;
+                            outline: none;
+                            font-size: 1.3rem;
+                        }
+                        .input:focus{
+                            border:1px solid #06b113;
+                        }
+                        textarea{
+                            width: 100%;
+                            font-size: 1.3rem;
+                            border: 1px solid black;
+                            outline: none;
+                            margin-top: 1rem;
+                        }
+                        textarea:focus{
+                            border:1px solid #06b113;
+                        }
+                    }
+                    form label:nth-child(6){
+                        margin-top: 3rem;
+                    }
+                    .button{
+                        width: 100%;
+                        border: none;
+                        outline: none;
+                        padding: 0.8rem 5.3rem;
+                        background-color: #06b113;
+                        color: #fff;
+                        transition: all 0.5s linear;
+                        margin-top: 3rem;
+                        text-transform: uppercase;
+                        font-family: 'Lora', serif;
+                    }
+                    .button:hover{
+                        border-radius: 0px;
+                        background: linear-gradient(145deg, #fdf5ff, #d4ced9);
+                        box-shadow:  10px 10px 31px #c9c3cd,
+                            -10px -10px 31px #ffffff;
+                        outline: 1px solid #06b113;
+                        color: #06b113;
+                    }
+                    span{
+                        right: 0;
+                        bottom: 0;
+                        font-family: 'Lora', serif;
+                        display: flex;
+                        @media (max-width:540) {
+                        }
+                        a{
+                            text-decoration: none;
+                            @media (max-width:540px) {
+                                display: flex;
+                                justify-content: space-around;
+                            }
+                            img{
+                                margin: 1rem 1rem 0 0;
+                                @media (max-width:540px) {
+                                    // margin: 1rem 0.5rem 0 0 !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /* ------------------------ the and contact html css ------------------------ */
+        /* --------------------------------- footer --------------------------------- */
+        .footer{
+            background-color: #06b113 !important;
+            font-family: 'Lora', serif;
+            .row{
+                text-align: center;
+                display: flex;
+                align-items: center;
+                p{
+                    color: #fff;
+                    font-family: 'Lora', serif;
+                    padding-top: 1rem;
+                }
+            }
+        }
+        /* --------------------------------- the and footer --------------------------------- */
+    }
+}
+
