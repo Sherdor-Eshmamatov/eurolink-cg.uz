@@ -1,3 +1,5 @@
+//agarda telegram bot ishlamay qolsa telegram_bot_id yokida chat_id da xatolik bo'layotgan bo'ladi yokida telegram botni yaratgan account o'chib ketgan bo'ladi account o'chsa telegram bot ham o'chadi uni to'gilash uchun boshqa bot yasash kerak  buni qanday qilishni bilmasangiz youtube platformasidan ushbu link orqali ko'rsangiz ham bo'ladi 👉 https://www.youtube.com/watch?v=zn5TF8kGXlw 
+
 var telegram_bot_id = "5716560224:AAHMsXXwz_LRSMAd5tHUtNyLpUnjtRbQGUs"; // token'ni o'rniga Siz yaratgan Bot tokenini yozing
 
 var chat_id = -1001834505468;
