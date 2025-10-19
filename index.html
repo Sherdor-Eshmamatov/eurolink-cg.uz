@@ -8,6 +8,7 @@
   <meta name="description" data-i18n="meta.description"
     content="Professionelle Beratung für Bildung, Ausbildung, Karriere und Migration nach Europa. Til kurslari, Au-pair, FSJ/BFD/FÖJ, Ausbildung, oliy ta’lim va mutaxassislar uchun ishga joylashish." />
   <link rel="icon" type="image/x-icon" href="./img/logo/loga-cg.jpg">
+
   <style>
     /* ======= THEME / RESET (unchanged from your last version) ======= */
     * {
@@ -876,63 +877,228 @@
 
     /* Jarayon */
     /* Workflow Section */
-.workflow-section {
-  max-width: 1200px;
-  margin: 4rem auto;
-  padding: 3rem 2.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
-}
+    .workflow-section {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 3rem 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
+    }
 
-[data-theme="light"] .workflow-section {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
-}
+    [data-theme="light"] .workflow-section {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+    }
 
-.workflow-title {
-  text-align: center;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 900;
-  margin-bottom: 2.5rem;
-  color: var(--text-primary);
-  line-height: 1.2;
-}
+    .workflow-title {
+      text-align: center;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900;
+      margin-bottom: 2.5rem;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
 
-.workflow-content p {
-  font-size: 1.05rem;
-  line-height: 1.9;
-  color: var(--text-primary);
-  text-align: justify;
-  margin-bottom: 1.5rem;
-}
+    .workflow-content p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--text-primary);
+      text-align: justify;
+      margin-bottom: 1.5rem;
+    }
 
-.workflow-content p:last-child {
-  margin-bottom: 0;
-}
+    .workflow-content p:last-child {
+      margin-bottom: 0;
+    }
 
-.workflow-content strong {
-  color: var(--accent);
-  font-weight: 800;
-}
+    .workflow-content strong {
+      color: var(--accent);
+      font-weight: 800;
+    }
 
-@media (max-width: 768px) {
-  .workflow-section {
-    padding: 2rem 1.5rem;
-    margin: 3rem auto;
-  }
-  
-  .workflow-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .workflow-content p {
-    font-size: 1rem;
-    line-height: 1.8;
-    text-align: left;
-  }
-}
+    @media (max-width: 768px) {
+      .workflow-section {
+        padding: 2rem 1.5rem;
+        margin: 3rem auto;
+      }
+
+      .workflow-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .workflow-content p {
+        font-size: 1rem;
+        line-height: 1.8;
+        text-align: left;
+      }
+    }
+
+    /* Xizmatlar */
+    /* Service Cards Custom Styles */
+    .service-card-content {
+      padding: 1.5rem;
+    }
+
+    .service-card-content h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+    }
+
+    .service-card-content p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+      min-height: 75px;
+    }
+
+    .service-detail-btn {
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      background: linear-gradient(135deg, #4a90e2 0%, #67b5ff 100%);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .service-detail-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4);
+    }
+
+    /* Service Modal */
+    .service-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      backdrop-filter: blur(5px);
+    }
+
+    .service-modal.active {
+      display: flex;
+    }
+
+    .service-modal-content {
+      background: var(--bg-card);
+      border-radius: 20px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      animation: modalSlideUp 0.4s ease;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .service-modal-header {
+      padding: 2rem 2rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .service-modal-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .service-modal-body {
+      padding: 2rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+    }
+
+    .service-modal-body h4 {
+      color: var(--accent);
+      margin: 1.5rem 0 0.8rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .service-modal-body ul {
+      margin: 0.8rem 0 0.8rem 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    .service-modal-body li {
+      margin-bottom: 0.6rem;
+      line-height: 1.7;
+    }
+
+    .service-modal-body strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .service-modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(74, 144, 226, 0.15);
+      border: none;
+      color: var(--accent);
+      font-size: 2rem;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .service-modal-close:hover {
+      background: var(--accent);
+      color: white;
+      transform: rotate(90deg);
+    }
+
+    @media (max-width: 768px) {
+      .service-modal-content {
+        max-height: 90vh;
+        margin: 10px;
+      }
+
+      .service-modal-header,
+      .service-modal-body {
+        padding: 1.5rem;
+      }
+
+      .service-modal-header h2 {
+        font-size: 1.4rem;
+      }
+    }
   </style>
 </head>
 
@@ -1096,7 +1262,8 @@
             etiladi. Bunda loyiha ko'lamiga qarab, EuroLink tarkibidagi barcha tuzilmalar, xususan o'quv markaz, yuridik
             va marketing bo'limi, ekspertlarimiz, tarjima markazi, bozor analitiklari, kooperatsion va xalqaro aloqalar
             bo'limi, dasturchi va dizaynerlar, bugalteriya va tashqi hamkorlarimiz faol qatnashishadi. Nazorat va
-            arznomalar ta'sischilar va yuridik bo'lim tomonidan ko'rib chiqilib, chora-tadbirlar amalga oshiriladi.">Jeder neue Antrag wird von <strong>Administration</strong> im primären Aufnahmeprozess befragt und
+            arznomalar ta'sischilar va yuridik bo'lim tomonidan ko'rib chiqilib, chora-tadbirlar amalga oshiriladi.">
+            Jeder neue Antrag wird von <strong>Administration</strong> im primären Aufnahmeprozess befragt und
             konsultiert. Aus diesem Teil des <strong>Front-Office</strong> wird es an Status Quo-Analyse gesendet.
             Ausgehend von der Situation werden die aktuellen Möglichkeiten, Pläne, Stärken und bestehenden Risiken des
             Hilfesuchenden von den fachbezogenen Teammitgliedern untersucht. Nachdem die Analyse abgeschlossen sind,
@@ -1116,7 +1283,7 @@
   </section>
   <!-- STRUKTUR -->
   <section class="section" id="structure">
-    <div class="section-header">    
+    <div class="section-header">
       <h2 class="section-title" data-i18n="structure.title">Struktur von EuroLink</h2>
       <p class="section-subtitle" data-i18n="structure.subtitle">Front-Office, Status-Quo-Analyse, Back-Office,
         Strategie, Coworking (Steuerung & Monitoring)</p>
@@ -1154,76 +1321,135 @@
     </div>
 
     <!-- SERVICES -->
+
+    <!-- SERVICES -->
     <section class="section" id="services">
       <div class="section-header">
-        <div class="section-tag" data-i18n="services.tag">UNSERE DIENSTLEISTUNGEN</div>
-        <h2 class="section-title" data-i18n="services.title">Akademische & Beratungs-Leistungen</h2>
-        <p class="section-subtitle" data-i18n="services.subtitle">Sprachzertifikate (IELTS, TestDaF, telc, HSK, TOPIK,
-          TRKI), IT-Kurslar, Au-pair, FSJ/BFD/FÖJ, Ausbildung, Studium, Visa & mehr</p>
+        <div class="section-tag" data-i18n="services.tag">XIZMATLAR</div>
+        <h2 class="section-title" data-i18n="services.title">Akademik va Konsultatsiya Xizmatlari</h2>
+        <p class="section-subtitle" data-i18n="services.subtitle">Til sertifikatlari, IT kurslar, Au-pair, FSJ/BFD,
+          Ausbildung, Studium, Visa va ko'plab boshqa xizmatlar</p>
       </div>
+
       <div class="services-grid">
+        <!-- Card 1 -->
         <div class="service-card reveal">
-          <div class="result-img-wrapper"><img class="result-img" src="./img/service-img/1.jpg"
-              alt="Sprach- & IT-Kurse"></div>
-          <h3 data-i18n="services.c1.title">Sprach- & IT-Kurse</h3>
-          <p data-i18n="services.c1.text">Deutsch/Englisch/Russisch/Chinesisch/Koreanisch, IELTS, TestDaF, telc, HSK,
-            TOPIK, TRKI, Full-Stack, Webdesign, Marketing/SMM.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="result-img-wrapper"><img class="result-img" src="./img/service-img/2.jpg" alt="Au-pair"></div>
-          <h3 data-i18n="services.c2.title">Au-pair</h3>
-          <p data-i18n="services.c2.text">Agentur-Coaching, Familien-Interviews, Botschaft tayyorgarligi.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="result-img-wrapper"><img class="result-img" src="./img/service-img/3.jpg" alt="FSJ/BFD/FÖJ">
+          <div class="result-img-wrapper">
+            <img class="result-img" src="./img/service-img/1.jpg" alt="Til va IT Kurslari">
           </div>
-          <h3 data-i18n="services.c3.title">FSJ/BFD/FÖJ</h3>
-          <p data-i18n="services.c3.text">6–18 oy ijtimoiy/ekologik xizmat, stipendiya, yashash, jamoat transporti.
-          </p>
-        </div>
-        <div class="service-card reveal">
-          <div class="result-img-wrapper"><img class="result-img" src="./img/service-img/4.jpg" alt="Ausbildung">
+          <div class="service-card-content">
+            <h3 data-i18n="services.c1.title">Til va IT Kurslari</h3>
+            <p data-i18n="services.c1.text">Nemis, ingliz, rus, xitoy, koreys tillari. IELTS, TestDaF, telc, HSK, TOPIK.
+              Full-Stack dasturlash, Web dizayn, Marketing.</p>
+            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(1)">Batafsil</button>
           </div>
-          <h3 data-i18n="services.c4.title">Ausbildung</h3>
-          <p data-i18n="services.c4.text">B1–B2 bilan o‘qish+ish, 2–4 yil, oylik to‘lov, keyin ish taklifi.</p>
         </div>
+
+        <!-- Card 2 -->
         <div class="service-card reveal">
-          <div class="result-img-wrapper"><img class="result-img" src="./img/service-img/5.jpg" alt="Studium"></div>
-          <h3 data-i18n="services.c5.title">Studium</h3>
-          <p data-i18n="services.c5.text">Uni-Assist, duales Studium, grantlar: DAAD, Erasmus, KAS,
-            Deutschlandstipendium va b.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="result-img-wrapper"><img class="result-img" src="./img/service-img/6.jpg" alt="Fachkräfte">
+          <div class="result-img-wrapper">
+            <img class="result-img" src="./img/service-img/2.jpg" alt="Au-pair">
           </div>
-          <h3 data-i18n="services.c6.title">Fachkräfte</h3>
-          <p data-i18n="services.c6.text">B2 bilan ish vizasi yoki 6 oylik Job-Seeker, IT/Medizin/Tech/AI.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="result-img-wrapper"><img class="result-img" src="./img/service-img/7.jpg" alt="Visa & Legal">
+          <div class="service-card-content">
+            <h3 data-i18n="services.c2.title">Au-pair Dasturi</h3>
+            <p data-i18n="services.c2.text">Agentlik bilan ishlash, oila bilan intervyu, elchixona tayyorgarligi va
+              to'liq yo'llanma.</p>
+            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(2)">Batafsil</button>
           </div>
-          <h3 data-i18n="services.c7.title">Visa & Legal</h3>
-          <p data-i18n="services.c7.text">Sprachkurs/Study/Business/Medical/Travel vizalar, elchixona suhbati.</p>
         </div>
+
+        <!-- Card 3 -->
         <div class="service-card reveal">
-          <div class="result-img-wrapper"><img class="result-img" src="./img/service-img/8.jpg" alt="Support"></div>
-          <h3 data-i18n="services.c8.title">Support</h3>
-          <p data-i18n="services.c8.text">Sug‘urta, uy-joy, parvoz, transfer, ish topish, community.</p>
+          <div class="result-img-wrapper">
+            <img class="result-img" src="./img/service-img/3.jpg" alt="FSJ/BFD/FÖJ">
+          </div>
+          <div class="service-card-content">
+            <h3 data-i18n="services.c3.title">FSJ/BFD/FÖJ</h3>
+            <p data-i18n="services.c3.text">6-18 oylik ijtimoiy yoki ekologik ko'ngillilik. Stipendiya, uy-joy,
+              transport bepul.</p>
+            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(3)">Batafsil</button>
+          </div>
         </div>
+
+        <!-- Card 4 -->
         <div class="service-card reveal">
-          <div class="result-img-wrapper"><img class="result-img" src="./img/service-img/9.jpg" alt="B2B/B2C"></div>
-          <h3 data-i18n="services.c9.title">B2B/B2C</h3>
-          <p data-i18n="services.c9.text">LKW & logistika, ko‘chmas mulk (TR/DE), med-turizm marketingi, eksport.</p>
+          <div class="result-img-wrapper">
+            <img class="result-img" src="./img/service-img/4.jpg" alt="Ausbildung">
+          </div>
+          <div class="service-card-content">
+            <h3 data-i18n="services.c4.title">Ausbildung</h3>
+            <p data-i18n="services.c4.text">B1-B2 bilan kasbiy ta'lim + ish. 2-4 yil davomida oylik to'lov. Keyin doimiy
+              ish taklifi.</p>
+            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(4)">Batafsil</button>
+          </div>
         </div>
+
+        <!-- Card 5 -->
         <div class="service-card reveal">
-          <div class="result-img-wrapper"><img class="result-img" src="./img/service-img/10.jpg"
-              alt="Praktikum & Research"></div>
-          <h3 data-i18n="services.c10.title">Praktikum & Research</h3>
-          <p data-i18n="services.c10.text">18+ uchun pullik stajirovkalar, grantlar va ilmiy loyihalar.</p>
+          <div class="result-img-wrapper">
+            <img class="result-img" src="./img/service-img/5.jpg" alt="Studium">
+          </div>
+          <div class="service-card-content">
+            <h3 data-i18n="services.c5.title">Oliy Ta'lim</h3>
+            <p data-i18n="services.c5.text">Uni-Assist, duales Studium. DAAD, Erasmus, KAS grantlari. Stipendiyalar va
+              to'liq yo'llanma.</p>
+            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(5)">Batafsil</button>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="service-card reveal">
+          <div class="result-img-wrapper">
+            <img class="result-img" src="./img/service-img/6.jpg" alt="Fachkräfte">
+          </div>
+          <div class="service-card-content">
+            <h3 data-i18n="services.c6.title">Malakali Kadrlar</h3>
+            <p data-i18n="services.c6.text">B2 bilan ish vizasi. 6 oylik Job-Seeker dasturi. IT, tibbiyot, texnika,
+              sun'iy intellekt sohalari.</p>
+            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(6)">Batafsil</button>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="service-card reveal">
+          <div class="result-img-wrapper">
+            <img class="result-img" src="./img/service-img/7.jpg" alt="Visa">
+          </div>
+          <div class="service-card-content">
+            <h3 data-i18n="services.c7.title">Visa va Yuridik</h3>
+            <p data-i18n="services.c7.text">Til kursi, ta'lim, biznes, davolanish, sayohat vizalari. Elchixona suhbatiga
+              tayyorgarlik.</p>
+            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(7)">Batafsil</button>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="service-card reveal">
+          <div class="result-img-wrapper">
+            <img class="result-img" src="./img/service-img/8.jpg" alt="Support">
+          </div>
+          <div class="service-card-content">
+            <h3 data-i18n="services.c8.title">Qo'shimcha Xizmatlar</h3>
+            <p data-i18n="services.c8.text">Sug'urta, uy-joy, aviachiptalar, transfer, ish topish, community. To'liq
+              qo'llab-quvvatlash.</p>
+            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(8)">Batafsil</button>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Modal -->
+    <div class="service-modal" id="serviceModal" onclick="closeServiceModal(event)">
+      <div class="service-modal-content" onclick="event.stopPropagation()">
+        <button class="service-modal-close" onclick="closeServiceModal()">&times;</button>
+        <div class="service-modal-header">
+          <h2 id="modalTitle">Xizmat nomi</h2>
+        </div>
+        <div class="service-modal-body" id="modalBody">
+          <p>Ma'lumot yuklanmoqda...</p>
+        </div>
+      </div>
+    </div>
     <!-- WEG NACH EUROPA -->
     <section class="section" id="germany">
       <div class="section-header">
@@ -1467,7 +1693,7 @@
           'team.t1.text': 'Deutschlehrer & Mentor, Lehrplanungsberater, C1; Erfahrungen in Würzburg, Bremen, Stuttgart. Student der Weltsprachenuni, Taschkent.',
           'team.t2.text': 'Lehrerin DE/EN/RU, 3y Erfahrung, C1, Koordinatorin Übersetzungstheorie & Stilistik. Studentin der Weltsprachenuni, Taschkent.',
           'services.tag': 'UNSERE DIENSTLEISTUNGEN', 'services.title': 'Akademische & Beratungs-Leistungen', 'services.subtitle': 'Sprachzertifikate (IELTS, TestDaF, telc, HSK, TOPIK, TRKI), IT-Kurslar, Au-pair, FSJ/BFD/FÖJ, Ausbildung, Studium, Visa & mehr',
-          'services.c1.title': 'Sprach- & IT-Kurse', 'services.c1.text': 'Deutsch/Englisch/Russisch/Chinesisch/Koreanisch, IELTS, TestDaF, telc, HSK, TOPIK, TRKI, Full-Stack, Webdesign, Marketing/SMM.',
+          'services.c1.title': 'Sprach- & IT-Kurse', 'services.c1.text': 'Deutsch/Englisch/Russisch/Chinesisch\n/Koreanisch, IELTS, TestDaF, telc, HSK, TOPIK, TRKI, Full-Stack, Webdesign, Marketing/SMM.',
           'services.c2.title': 'Au-pair', 'services.c2.text': 'Agentur-Coaching, Familien-Interviews, Botschaftsvorbereitung.',
           'services.c3.title': 'FSJ/BFD/FÖJ', 'services.c3.text': '6–18 Monate Einsatz, Stipendium, Unterkunft, ÖPNV je nach Träger.',
           'services.c4.title': 'Ausbildung', 'services.c4.text': 'Mit B1–B2 Studium+Arbeit (2–4 Jahre), Vergütung, Übernahmechancen.',
@@ -1553,6 +1779,290 @@
       const browser = (navigator.language || 'de').slice(0, 2);
       const fallback = 'de';
       const initialLang = ['de', 'uz'].includes(qs.get('lang')) ? qs.get('lang') : (['de', 'uz'].includes(saved) ? saved : (browser === 'uz' ? 'uz' : fallback));
+
+      // Service Modal Data
+      const serviceDetailsData = {
+        uz: {
+          1: {
+            title: 'Til va IT Kurslari',
+            content: `
+        <h4>Til Kurslari:</h4>
+        <ul>
+          <li><strong>Nemis tili:</strong> Goethe Zertifikat, TestDaF, telc Deutsch, DSH tayyorgarlik</li>
+          <li><strong>Ingliz tili:</strong> IELTS, SAT, GMAT, GRE tayyorgarlik</li>
+          <li><strong>Xitoy tili:</strong> HSK sertifikati tayyorgarlik</li>
+          <li><strong>Koreys tili:</strong> TOPIK sertifikati tayyorgarlik</li>
+          <li><strong>Rus tili:</strong> TRKI sertifikati tayyorgarlik</li>
+        </ul>
+        <h4>IT Kurslari:</h4>
+        <ul>
+          <li>Full-Stack dasturlash (Frontend va Backend)</li>
+          <li>Web dizayn va UI/UX</li>
+          <li>Digital marketing va SMM</li>
+          <li>Nemis va yapon standartlariga mos ta'lim</li>
+        </ul>
+      `
+          },
+          2: {
+            title: 'Au-pair Dasturi',
+            content: `
+        <h4>Xizmatlarimiz:</h4>
+        <ul>
+          <li>Au-pair agentliklar bilan professional ishlash</li>
+          <li>Nemis oilalari bilan intervyuga tayyorgarlik</li>
+          <li>Elchixonaga hujjatlar tayyorlash</li>
+          <li>Vizaga tayyorgarlik va suhbat mashqlari</li>
+          <li>Germaniyada adaptatsiya bo'yicha maslahatlar</li>
+          <li>Nemis tili va madaniyatiga kirish</li>
+        </ul>
+      `
+          },
+          3: {
+            title: 'FSJ/BFD/FÖJ Dasturlari',
+            content: `
+        <h4>Dastur haqida:</h4>
+        <ul>
+          <li><strong>Davomiyligi:</strong> 6-18 oy</li>
+          <li><strong>Yo'nalishlar:</strong> Ijtimoiy xizmat, ekologiya, sport</li>
+          <li><strong>Imkoniyatlar:</strong> Oylik stipendiya (300-450 euro), bepul uy-joy, bepul jamoat transporti, nemis tilini o'rganish, professional tajriba</li>
+          <li>To'liq yuridik yordam va qo'llab-quvvatlash</li>
+        </ul>
+      `
+          },
+          4: {
+            title: 'Ausbildung - Kasbiy Ta\'lim',
+            content: `
+        <h4>Dastur haqida:</h4>
+        <ul>
+          <li><strong>Til darajasi:</strong> B1-B2 nemis tili</li>
+          <li><strong>Davomiyligi:</strong> 2-4 yil</li>
+          <li><strong>Oylik to'lov:</strong> 800-1200 euro</li>
+          <li><strong>Mashhur yo'nalishlar:</strong> Tibbiyot, texnika va mexanika, IT va dasturlash, mehmonxona biznesi, moliya va buxgalteriya</li>
+          <li>Diplom Yevropa davlatlarida tan olinadi</li>
+          <li>Ta'limdan keyin doimiy ish kafolati</li>
+        </ul>
+      `
+          },
+          5: {
+            title: 'Oliy Ta\'lim (Studium)',
+            content: `
+        <h4>Xizmatlarimiz:</h4>
+        <ul>
+          <li><strong>Universitet tanlash:</strong> Uni-Assist orqali ariza topshirish</li>
+          <li><strong>Ta'lim turlari:</strong> Normales Studium, Duales Studium, Fernstudium</li>
+          <li><strong>Grantlar:</strong> DAAD, Erasmus+, Deutschlandstipendium, KAS</li>
+          <li>Sperrkonto ochishda yordam</li>
+          <li>To'liq hujjat tayyorlash xizmati</li>
+        </ul>
+      `
+          },
+          6: {
+            title: 'Malakali Kadrlar',
+            content: `
+        <h4>Kimlar uchun:</h4>
+        <ul>
+          <li>Oliy ma'lumotli mutaxassislar</li>
+          <li>2+ yil ish tajribasi</li>
+          <li>B2 nemis tili (ba'zi holatlarda ingliz)</li>
+        </ul>
+        <h4>Yo'nalishlar:</h4>
+        <ul>
+          <li>IT va dasturlash</li>
+          <li>Tibbiyot va farmatsevtika</li>
+          <li>Injeneriya va texnika</li>
+          <li>Sun'iy intellekt va data science</li>
+        </ul>
+      `
+          },
+          7: {
+            title: 'Visa va Yuridik Xizmatlar',
+            content: `
+        <h4>Visa turlari:</h4>
+        <ul>
+          <li><strong>Til kursi vizasi:</strong> Nemis tilini o'rganish uchun</li>
+          <li><strong>Ta'lim vizasi:</strong> Universitet va Ausbildung</li>
+          <li><strong>Ish vizasi:</strong> Malakali kadrlar uchun</li>
+          <li><strong>Biznes vizasi:</strong> Tadbirkorlar uchun</li>
+        </ul>
+        <h4>Xizmatlar:</h4>
+        <ul>
+          <li>To'liq hujjat tayyorlash</li>
+          <li>Elchixona suhbatiga professional tayyorgarlik</li>
+          <li>Yuridik maslahatlar</li>
+        </ul>
+      `
+          },
+          8: {
+            title: 'Qo\'shimcha Xizmatlar',
+            content: `
+        <h4>To'liq qo'llab-quvvatlash:</h4>
+        <ul>
+          <li>Tibbiy va sayohat sug'urtasi</li>
+          <li>Uy-joy qidirish va ijara shartnomasi</li>
+          <li>Arzon aviachiptalar xarid qilish</li>
+          <li>Aeroportdan kutib olish va transfer</li>
+          <li>Germaniyada ish topish</li>
+          <li>O'zbek community'ga qo'shilish</li>
+        </ul>
+      `
+          }
+        },
+        de: {
+          1: {
+            title: 'Sprach- & IT-Kurse',
+            content: `
+        <h4>Sprachkurse:</h4>
+        <ul>
+          <li><strong>Deutsch:</strong> Goethe Zertifikat, TestDaF, telc Deutsch, DSH Vorbereitung</li>
+          <li><strong>Englisch:</strong> IELTS, SAT, GMAT, GRE Vorbereitung</li>
+          <li><strong>Chinesisch:</strong> HSK Zertifikat Vorbereitung</li>
+          <li><strong>Koreanisch:</strong> TOPIK Zertifikat Vorbereitung</li>
+          <li><strong>Russisch:</strong> TRKI Zertifikat Vorbereitung</li>
+        </ul>
+        <h4>IT-Kurse:</h4>
+        <ul>
+          <li>Full-Stack Programmierung (Frontend & Backend)</li>
+          <li>Webdesign und UI/UX</li>
+          <li>Digital Marketing und SMM</li>
+          <li>Nach deutschen und japanischen Standards</li>
+        </ul>
+      `
+          },
+          2: {
+            title: 'Au-pair Programm',
+            content: `
+        <h4>Unsere Dienstleistungen:</h4>
+        <ul>
+          <li>Professionelle Zusammenarbeit mit Au-pair Agenturen</li>
+          <li>Vorbereitung auf Interviews mit deutschen Familien</li>
+          <li>Dokumentenvorbereitung für Botschaft</li>
+          <li>Visa-Vorbereitung und Gesprächstraining</li>
+          <li>Beratung zur Integration in Deutschland</li>
+          <li>Einführung in deutsche Sprache und Kultur</li>
+        </ul>
+      `
+          },
+          3: {
+            title: 'FSJ/BFD/FÖJ Programme',
+            content: `
+        <h4>Über das Programm:</h4>
+        <ul>
+          <li><strong>Dauer:</strong> 6-18 Monate</li>
+          <li><strong>Bereiche:</strong> Sozialdienst, Ökologie, Sport</li>
+          <li><strong>Leistungen:</strong> Monatliches Stipendium (300-450 Euro), kostenlose Unterkunft, kostenloses ÖPNV-Ticket, Deutschlernen, Berufserfahrung</li>
+          <li>Vollständige rechtliche Unterstützung</li>
+        </ul>
+      `
+          },
+          4: {
+            title: 'Ausbildung - Berufsausbildung',
+            content: `
+        <h4>Über das Programm:</h4>
+        <ul>
+          <li><strong>Sprachniveau:</strong> B1-B2 Deutsch</li>
+          <li><strong>Dauer:</strong> 2-4 Jahre</li>
+          <li><strong>Vergütung:</strong> 800-1200 Euro monatlich</li>
+          <li><strong>Beliebte Bereiche:</strong> Medizin, Technik und Mechanik, IT und Programmierung, Hotellerie, Finanzen und Buchhaltung</li>
+          <li>Diplom wird in ganz Europa anerkannt</li>
+          <li>Jobangebot nach Abschluss garantiert</li>
+        </ul>
+      `
+          },
+          5: {
+            title: 'Studium (Hochschulbildung)',
+            content: `
+        <h4>Unsere Dienstleistungen:</h4>
+        <ul>
+          <li><strong>Universitätswahl:</strong> Bewerbung über Uni-Assist</li>
+          <li><strong>Studienformen:</strong> Normales Studium, Duales Studium, Fernstudium</li>
+          <li><strong>Stipendien:</strong> DAAD, Erasmus+, Deutschlandstipendium, KAS</li>
+          <li>Hilfe bei Sperrkonto-Eröffnung</li>
+          <li>Vollständige Dokumentenvorbereitung</li>
+        </ul>
+      `
+          },
+          6: {
+            title: 'Fachkräfte',
+            content: `
+        <h4>Für wen:</h4>
+        <ul>
+          <li>Fachkräfte mit Hochschulabschluss</li>
+          <li>2+ Jahre Berufserfahrung</li>
+          <li>B2 Deutsch (teilweise Englisch)</li>
+        </ul>
+        <h4>Bereiche:</h4>
+        <ul>
+          <li>IT und Programmierung</li>
+          <li>Medizin und Pharmazie</li>
+          <li>Ingenieurwesen und Technik</li>
+          <li>KI und Data Science</li>
+        </ul>
+      `
+          },
+          7: {
+            title: 'Visa & Rechtsdienste',
+            content: `
+        <h4>Visa-Arten:</h4>
+        <ul>
+          <li><strong>Sprachkursvisum:</strong> Zum Deutschlernen</li>
+          <li><strong>Studienvisum:</strong> Für Universität und Ausbildung</li>
+          <li><strong>Arbeitsvisum:</strong> Für Fachkräfte</li>
+          <li><strong>Geschäftsvisum:</strong> Für Unternehmer</li>
+        </ul>
+        <h4>Dienstleistungen:</h4>
+        <ul>
+          <li>Vollständige Dokumentenvorbereitung</li>
+          <li>Professionelle Vorbereitung auf Botschaftsgespräch</li>
+          <li>Rechtsberatung</li>
+        </ul>
+      `
+          },
+          8: {
+            title: 'Zusätzliche Services',
+            content: `
+        <h4>Vollständige Unterstützung:</h4>
+        <ul>
+          <li>Kranken- und Reiseversicherung</li>
+          <li>Wohnungssuche und Mietvertrag</li>
+          <li>Günstige Flugtickets</li>
+          <li>Abholung vom Flughafen und Transfer</li>
+          <li>Jobsuche in Deutschland</li>
+          <li>Integration in usbekische Community</li>
+        </ul>
+      `
+          }
+        }
+      };
+
+      // Modal Functions
+      function openServiceModal(serviceId) {
+        const modal = document.getElementById('serviceModal');
+        const currentLang = localStorage.getItem('language') || 'de';
+        const service = serviceDetailsData[currentLang][serviceId];
+
+        if (service) {
+          document.getElementById('modalTitle').textContent = service.title;
+          document.getElementById('modalBody').innerHTML = service.content;
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeServiceModal(event) {
+        if (!event || event.target === event.currentTarget) {
+          const modal = document.getElementById('serviceModal');
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      }
+
+      // ESC tugmasi bilan yopish
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeServiceModal();
+        }
+      });
+
 
       function setOrgLang(lang) { document.getElementById('orgStructure').setAttribute('data-lang', lang === 'de' ? 'de' : 'uz'); }
       // Organization Structure Data
