@@ -1062,10 +1062,13 @@
     </div>
   </section>
 
-  <!-- Jarayon -->
+  <!-- STRUKTUR (Merged Jarayon and Struktur to avoid duplicate ID) -->
   <section class="section" id="structure">
     <div class="section-header">
       <div class="section-tag" data-i18n="structure.tag">STRUKTUR</div>
+      <h2 class="section-title" data-i18n="structure.title">Struktur von EuroLink</h2>
+      <p class="section-subtitle" data-i18n="structure.subtitle">Front-Office, Status-Quo-Analyse, Back-Office,
+        Strategie, Coworking (Steuerung & Monitoring)</p>
     </div>
     <div class="services-grid">
       <div class="workflow-section" id="workflow">
@@ -1112,16 +1115,6 @@
             und der Rechtsabteilung überprüft und Maßnahmen ergriffen.</p>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- STRUKTUR -->
-  <section class="section" id="structure">
-    <div class="section-header">    
-      <h2 class="section-title" data-i18n="structure.title">Struktur von EuroLink</h2>
-      <p class="section-subtitle" data-i18n="structure.subtitle">Front-Office, Status-Quo-Analyse, Back-Office,
-        Strategie, Coworking (Steuerung & Monitoring)</p>
-    </div>
-    <div class="services-grid">
       <div id="orgStructure" data-lang="uz">
         <div class="company-header">
           <div class="company-box">EuroLink CG</div>
@@ -1632,9 +1625,6 @@
       window.setOrgLang = function (lang) {
         renderOrgStructure(lang === 'de' ? 'de' : 'uz');
       };
-
-      // Initialize on page load
-      renderOrgStructure('uz');
 
       function applyLang(lang) {
         const dict = I18N[lang] || I18N[fallback];
