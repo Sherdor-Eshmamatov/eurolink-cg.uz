@@ -8,1425 +8,7 @@
   <meta name="description" data-i18n="meta.description"
     content="Professionelle Beratung für Bildung, Ausbildung, Karriere und Migration nach Europa. Til kurslari, Au-pair, FSJ/BFD/FÖJ, Ausbildung, oliy ta’lim va mutaxassislar uchun ishga joylashish." />
   <link rel="icon" type="image/x-icon" href="./img/logo/loga-cg.jpg">
-
-  <style>
-    /* ======= THEME / RESET (unchanged from your last version) ======= */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg-primary: #0a0a0a;
-      --bg-secondary: #151515;
-      --bg-card: #1a1a1a;
-      --text-primary: #fff;
-      --text-secondary: #a0a0a0;
-      --accent: #4a90e2;
-      --accent-glow: rgba(74, 144, 226, .3);
-      --border: #2a2a2a;
-      --gradient-start: rgba(74, 144, 226, .15);
-      --gradient-end: rgba(103, 181, 255, .1)
-    }
-
-    [data-theme="light"] {
-      --bg-primary: #fff;
-      --bg-secondary: #f5f7fa;
-      --bg-card: #fff;
-      --text-primary: #1a1a1a;
-      --text-secondary: #666;
-      --accent: #4a90e2;
-      --accent-glow: rgba(74, 144, 226, .2);
-      --border: #e0e0e0;
-      --gradient-start: rgba(74, 144, 226, .08);
-      --gradient-end: rgba(103, 181, 255, .05)
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      overflow-x: hidden;
-      line-height: 1.6;
-      transition: background .3s, color .3s
-    }
-
-    .nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1.2rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 10, 10, .8);
-      backdrop-filter: blur(20px);
-      z-index: 1000;
-      border-bottom: 1px solid var(--border);
-      transition: all .3s
-    }
-
-    [data-theme="light"] .nav {
-      background: rgba(255, 255, 255, .9)
-    }
-
-    .nav.scrolled {
-      padding: .8rem 5%;
-      box-shadow: 0 10px 50px rgba(0, 0, 0, .1)
-    }
-
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: -.5px;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #4a90e2, #67b5ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      flex-wrap: wrap
-    }
-
-    .nav-link {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: .95rem;
-      position: relative;
-      padding: .4rem .2rem;
-      transition: color .25s
-    }
-
-    .nav-link:hover {
-      color: var(--text-primary)
-    }
-
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width .25s
-    }
-
-    .nav-link:hover::after {
-      width: 100%
-    }
-
-    .nav-controls {
-      display: flex;
-      gap: .75rem;
-      align-items: center
-    }
-
-    .theme-toggle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all .3s;
-      font-size: 1.1rem
-    }
-
-    .theme-toggle:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      transform: rotate(180deg);
-      box-shadow: 0 5px 15px var(--accent-glow)
-    }
-
-    .lang-toggle {
-      display: flex;
-      gap: 0;
-      background: var(--bg-card);
-      border-radius: 50px;
-      padding: .25rem;
-      border: 1px solid var(--border)
-    }
-
-    .lang-btn {
-      padding: .45rem .9rem;
-      border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      cursor: pointer;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: .85rem;
-      transition: all .25s
-    }
-
-    .lang-btn.active {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 5px 15px var(--accent-glow)
-    }
-
-    .menu-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      color: var(--text-primary)
-    }
-
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 50%, var(--gradient-start), transparent 50%), radial-gradient(circle at 70% 50%, var(--gradient-end), transparent 50%);
-      animation: gradientShift 15s ease infinite
-    }
-
-    @keyframes gradientShift {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1)
-      }
-
-      50% {
-        transform: translate(-50px, 30px) scale(1.1)
-      }
-    }
-
-    .grid-bg {
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(74, 144, 226, .03) 1px, transparent 1px), linear-gradient(90deg, rgba(74, 144, 226, .03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: gridMove 20s linear infinite
-    }
-
-    @keyframes gridMove {
-      0% {
-        transform: translate(0, 0)
-      }
-
-      100% {
-        transform: translate(50px, 50px)
-      }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      max-width: 1100px;
-      padding: 0 1.5rem
-    }
-
-    .hero-tag {
-      display: inline-block;
-      padding: .5rem 1.25rem;
-      background: rgba(74, 144, 226, .12);
-      border: 1px solid var(--accent);
-      border-radius: 999px;
-      color: var(--accent);
-      font-size: .85rem;
-      font-weight: 800;
-      margin-bottom: 1.2rem
-    }
-
-    .hero h1 {
-      font-size: clamp(2.2rem, 6.5vw, 4.6rem);
-      font-weight: 900;
-      line-height: 1.08;
-      margin-bottom: 1rem
-    }
-
-    .hero p {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      line-height: 1.8
-    }
-
-    .cta-group {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap
-    }
-
-    .btn {
-      padding: 1rem 2rem;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all .25s;
-      cursor: pointer;
-      border: none;
-      display: inline-block
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 10px 30px var(--accent-glow)
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px var(--accent-glow)
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-primary);
-      border: 2px solid var(--border)
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      background: rgba(74, 144, 226, .1)
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: bounce 2s infinite
-    }
-
-    @keyframes bounce {
-
-      0%,
-      100% {
-        transform: translateX(-50%) translateY(0)
-      }
-
-      50% {
-        transform: translateX(-50%) translateY(10px)
-      }
-    }
-
-    .scroll-indicator span {
-      display: block;
-      width: 28px;
-      height: 46px;
-      border: 2px solid var(--accent);
-      border-radius: 50px;
-      position: relative
-    }
-
-    .scroll-indicator span::before {
-      content: "";
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: scrollDown 2s infinite
-    }
-
-    @keyframes scrollDown {
-      0% {
-        top: 8px;
-        opacity: 1
-      }
-
-      100% {
-        top: 26px;
-        opacity: 0
-      }
-    }
-
-    .section {
-      padding: 6rem 5%;
-      max-width: 1400px;
-      margin: 0 auto
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem
-    }
-
-    .section-tag {
-      color: var(--accent);
-      font: 700 .9rem/1.2 system-ui;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: .6rem
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
-      font-weight: 900;
-      margin-bottom: 1rem;
-      line-height: 1.2
-    }
-
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 820px;
-      margin: 0 auto
-    }
-
-    .about-grid,
-    .results-grid,
-    .services-grid {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
-    }
-
-    .feature-card,
-    .result-card,
-    .service-card {
-      background: var(--bg-card);
-      padding: 1.6rem;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      transition: all .35s;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, .05)
-    }
-
-    [data-theme="light"] .feature-card,
-    [data-theme="light"] .result-card,
-    [data-theme="light"] .service-card {
-      box-shadow: 0 5px 15px rgba(0, 0, 0, .08)
-    }
-
-    .feature-card:hover,
-    .result-card:hover,
-    .service-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, .18)
-    }
-
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: .8rem;
-      display: block
-    }
-
-    .result-img-wrapper {
-      position: relative;
-      overflow: hidden;
-      height: 260px;
-      border-radius: 14px;
-      margin-bottom: 1rem
-    }
-
-    .result-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .6s
-    }
-
-    .result-card:hover .result-img {
-      transform: scale(1.06)
-    }
-
-    .result-badge {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      padding: .35rem .7rem;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 999px;
-      font-size: .75rem;
-      font-weight: 800
-    }
-
-    .team-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      overflow: hidden;
-      max-width: 1000px;
-      margin: 0 auto;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
-      transition: all .35s
-    }
-
-    .team-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, .2)
-    }
-
-    .team-header {
-      background: linear-gradient(135deg, rgba(74, 144, 226, .2), rgba(103, 181, 255, .1));
-      padding: 2.2rem;
-      text-align: center
-    }
-
-    .team-img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--accent);
-      box-shadow: 0 15px 40px var(--accent-glow);
-      margin-bottom: 1rem
-    }
-
-    .team-body {
-      padding: 1.8rem;
-      text-align: center
-    }
-
-    .team-body .role {
-      color: var(--accent);
-      font-weight: 800;
-      margin: .3rem 0 1rem;
-      font-size: .95rem
-    }
-
-
-
-
-
-    @media (max-width:1100px) {
-      .nav-menu {
-        display: none
-      }
-
-      .menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center
-      }
-    }
-
-    @media (max-width:968px) {
-      .section {
-        padding: 4rem 5%
-      }
-
-      .contact-container {
-        grid-template-columns: 1fr
-      }
-
-      .results-grid {
-        grid-template-columns: 1fr
-      }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .6s, transform .6s
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0)
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .stat-card {
-      text-align: center;
-      padding: 2rem;
-      background: var(--bg-card);
-      border-radius: 15px;
-      border: 1px solid var(--border);
-    }
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-
-    /* Shu yer */
-
-    /* Organization Structure */
-    .company-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .company-box {
-      display: inline-block;
-      background: linear-gradient(135deg, #85c363 0%, #5fa03c 100%);
-      color: white;
-      padding: 2rem 4rem;
-      border-radius: 18px;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 900;
-      box-shadow: 0 20px 60px rgba(133, 195, 99, 0.3);
-      letter-spacing: 1px;
-    }
-
-    .company-connector {
-      width: 3px;
-      height: 60px;
-      background: linear-gradient(to bottom, #85c363, transparent);
-      margin: 1rem auto 0;
-    }
-
-    .departments-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .department-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      overflow: hidden;
-      transition: all .35s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, .05);
-    }
-
-    [data-theme="light"] .department-card {
-      box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
-    }
-
-    .department-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, .18);
-    }
-
-    .dept-header {
-      background: linear-gradient(135deg, #a8b8c7 0%, #8a9ba8 100%);
-      padding: 1.8rem;
-      text-align: center;
-      position: relative;
-    }
-
-    .dept-header::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 3px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--border), #a8b8c7);
-    }
-
-    .dept-title {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: #e53e3e;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .dept-body {
-      padding: 2rem 1.5rem;
-    }
-
-    .dept-label {
-      color: #f97316;
-      font-size: 1rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 1.2rem;
-      padding-left: 1rem;
-      border-left: 3px solid #f97316;
-    }
-
-    .dept-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .dept-list li {
-      padding: 0.9rem 1rem;
-      background: rgba(74, 144, 226, 0.05);
-      border-left: 3px solid var(--accent);
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    [data-theme="light"] .dept-list li {
-      background: rgba(74, 144, 226, 0.08);
-    }
-
-    .dept-list li:hover {
-      background: var(--accent);
-      color: white;
-      transform: translateX(8px);
-      box-shadow: 0 5px 15px var(--accent-glow);
-    }
-
-    [data-lang="de"] [data-uz] {
-      display: none;
-    }
-
-    [data-lang="uz"] [data-de] {
-      display: none;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .department-card {
-      animation: fadeInUp 0.6s ease-out backwards;
-    }
-
-    .department-card:nth-child(1) {
-      animation-delay: 0.1s;
-    }
-
-    .department-card:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .department-card:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-
-    @media (max-width: 968px) {
-      .departments-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .company-box {
-        padding: 1.5rem 3rem;
-      }
-
-      .dept-header::before {
-        display: none;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .company-box {
-        padding: 1.2rem 2rem;
-        font-size: 1.8rem;
-      }
-
-      .dept-title {
-        font-size: 1.3rem;
-      }
-
-      .dept-body {
-        padding: 1.5rem 1rem;
-      }
-    }
-
-    /* Jarayon */
-    /* Workflow Section */
-    .workflow-section {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 3rem 2.5rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
-    }
-
-    [data-theme="light"] .workflow-section {
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
-    }
-
-    .workflow-title {
-      text-align: center;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 900;
-      margin-bottom: 2.5rem;
-      color: var(--text-primary);
-      line-height: 1.2;
-    }
-
-    .workflow-content p {
-      font-size: 1.05rem;
-      line-height: 1.9;
-      color: var(--text-primary);
-      text-align: justify;
-      margin-bottom: 1.5rem;
-    }
-
-    .workflow-content p:last-child {
-      margin-bottom: 0;
-    }
-
-    .workflow-content strong {
-      color: var(--accent);
-      font-weight: 800;
-    }
-
-    @media (max-width: 768px) {
-      .workflow-section {
-        padding: 2rem 1.5rem;
-        margin: 3rem auto;
-      }
-
-      .workflow-title {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .workflow-content p {
-        font-size: 1rem;
-        line-height: 1.8;
-        text-align: left;
-      }
-    }
-
-    /* Xizmatlar */
-    /* Service Cards Custom Styles */
-    .service-card-content {
-      padding: 1.5rem;
-    }
-
-    .service-card-content h3 {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 0.8rem;
-      color: var(--accent);
-    }
-
-    .service-card-content p {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 1.2rem;
-      min-height: 75px;
-    }
-
-    .service-detail-btn {
-      width: 100%;
-      padding: 0.9rem 1.5rem;
-      background: linear-gradient(135deg, #4a90e2 0%, #67b5ff 100%);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .service-detail-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4);
-    }
-
-    /* Service Modal */
-    .service-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.75);
-      z-index: 3000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      backdrop-filter: blur(5px);
-    }
-
-    .service-modal.active {
-      display: flex;
-    }
-
-    .service-modal-content {
-      background: var(--bg-card);
-      border-radius: 20px;
-      max-width: 700px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      position: relative;
-      animation: modalSlideUp 0.4s ease;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    }
-
-    @keyframes modalSlideUp {
-      from {
-        transform: translateY(50px);
-        opacity: 0;
-      }
-
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .service-modal-header {
-      padding: 2rem 2rem 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .service-modal-header h2 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--accent);
-    }
-
-    .service-modal-body {
-      padding: 2rem;
-      line-height: 1.8;
-      color: var(--text-primary);
-    }
-
-    .service-modal-body h4 {
-      color: var(--accent);
-      margin: 1.5rem 0 0.8rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
-
-    .service-modal-body ul {
-      margin: 0.8rem 0 0.8rem 1.5rem;
-      color: var(--text-secondary);
-    }
-
-    .service-modal-body li {
-      margin-bottom: 0.6rem;
-      line-height: 1.7;
-    }
-
-    .service-modal-body strong {
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .service-modal-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      background: rgba(74, 144, 226, 0.15);
-      border: none;
-      color: var(--accent);
-      font-size: 2rem;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-      font-weight: 300;
-      line-height: 1;
-    }
-
-    .service-modal-close:hover {
-      background: var(--accent);
-      color: white;
-      transform: rotate(90deg);
-    }
-
-    @media (max-width: 768px) {
-      .service-modal-content {
-        max-height: 90vh;
-        margin: 10px;
-      }
-
-      .service-modal-header,
-      .service-modal-body {
-        padding: 1.5rem;
-      }
-
-      .service-modal-header h2 {
-        font-size: 1.4rem;
-      }
-    }
-
-    .germany-tabs {
-      display: flex;
-      gap: 0.8rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .germany-tab-btn {
-      padding: 1rem 1.8rem;
-      background: var(--bg-card);
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .germany-tab-btn:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .germany-tab-btn.active {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-      box-shadow: 0 5px 20px var(--accent-glow);
-    }
-
-    .germany-tab-icon {
-      font-size: 1.3rem;
-    }
-
-    /* Tab Content */
-    .germany-tab-content {
-      display: none;
-      animation: fadeInTab 0.4s ease;
-    }
-
-    .germany-tab-content.active {
-      display: block;
-    }
-
-    @keyframes fadeInTab {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .germany-content-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 2rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    }
-
-    .germany-content-box h3 {
-      color: var(--accent);
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .germany-content-box p {
-      line-height: 1.9;
-      color: var(--text-primary);
-      margin-bottom: 1.2rem;
-      font-size: 1.05rem;
-    }
-
-    .germany-content-box strong {
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .germany-content-box ul {
-      margin: 1rem 0 1rem 1.5rem;
-      line-height: 1.8;
-    }
-
-    .germany-content-box li {
-      margin-bottom: 0.6rem;
-      color: var(--text-primary);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .more-button-container {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .more-button {
-      padding: 10px 20px;
-      font-size: 1em;
-      color: #fff;
-      background-color: #67b5ff;
-      border: none;
-      border-radius: 35px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .more-button:hover {
-      background-color: #67b5ff;
-    }
-
-    @media (max-width: 768px) {
-      .germany-tabs {
-        gap: 0.5rem;
-      }
-
-      .germany-tab-btn {
-        padding: 0.8rem 1.2rem;
-        font-size: 0.85rem;
-      }
-
-      .germany-content-box {
-        padding: 1.5rem;
-      }
-
-      .germany-content-box h3 {
-        font-size: 1.4rem;
-      }
-    }
-
-    /* ==================== MODERN DARK FOOTER ==================== */
-    .modern-footer {
-      background: linear-gradient(135deg, #1a1d29 0%, #0f1419 100%);
-      color: #a8b2d1;
-      padding: 4rem 5% 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .modern-footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.3), transparent);
-    }
-
-    .footer-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 4rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(168, 178, 209, 0.1);
-    }
-
-    /* Column Styles */
-    .footer-col h4 {
-      color: #e6f1ff;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.5px;
-    }
-
-    /* Logo Section */
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-logo-icon {
-      flex-shrink: 0;
-    }
-
-    .footer-logo h3 {
-      color: #e6f1ff;
-      font-size: 1.8rem;
-      font-weight: 900;
-      margin: 0;
-      line-height: 1;
-    }
-
-    .footer-logo p {
-      color: #8892b0;
-      font-size: 0.9rem;
-      margin: 0.3rem 0 0;
-      line-height: 1;
-    }
-
-    .footer-description {
-      color: #8892b0;
-      line-height: 1.8;
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
-    }
-
-    /* Social Buttons */
-    .footer-social {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .footer-social-btn {
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(74, 144, 226, 0.1);
-      border: 1px solid rgba(74, 144, 226, 0.2);
-      border-radius: 10px;
-      color: #4a90e2;
-      transition: all 0.3s ease;
-    }
-
-    .footer-social-btn:hover {
-      background: #4a90e2;
-      border-color: #4a90e2;
-      color: white;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 20px rgba(74, 144, 226, 0.4);
-    }
-
-    /* Contact Links */
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .footer-links li {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .footer-links svg {
-      color: #4a90e2;
-      flex-shrink: 0;
-      margin-top: 0.2rem;
-    }
-
-    .footer-links div {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .footer-links a,
-    .footer-links span {
-      color: #8892b0;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 0.95rem;
-    }
-
-    .footer-links a:hover {
-      color: #4a90e2;
-      padding-left: 0.5rem;
-    }
-
-    /* Navigation Links */
-    .footer-nav {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .footer-nav a {
-      color: #8892b0;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 0.95rem;
-      display: inline-block;
-      position: relative;
-      padding-left: 1rem;
-    }
-
-    .footer-nav a::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: #4a90e2;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    .footer-nav a:hover {
-      color: #4a90e2;
-      padding-left: 1.5rem;
-    }
-
-    .footer-nav a:hover::before {
-      opacity: 1;
-    }
-
-    /* Footer Bottom */
-    .footer-bottom {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 2rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-bottom p {
-      color: #8892b0;
-      font-size: 0.9rem;
-      margin: 0;
-    }
-
-    .footer-credits {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 0.9rem;
-      color: #8892b0;
-    }
-
-    .footer-dev-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: rgba(74, 144, 226, 0.1);
-      border: 1px solid rgba(74, 144, 226, 0.2);
-      border-radius: 8px;
-      color: #4a90e2;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-weight: 600;
-    }
-
-    .footer-dev-link:hover {
-      background: #4a90e2;
-      border-color: #4a90e2;
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    .footer-dev-icon {
-      font-size: 1.1rem;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.5;
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .footer-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-      }
-
-      .footer-about {
-        grid-column: 1 / -1;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .modern-footer {
-        padding: 3rem 5% 0;
-      }
-
-      .footer-container {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem 0;
-      }
-
-      .footer-logo {
-        justify-content: center;
-      }
-
-      .footer-social {
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .footer-logo h3 {
-        font-size: 1.5rem;
-      }
-
-      .footer-col h4 {
-        font-size: 1rem;
-      }
-
-      .footer-description {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
@@ -1439,7 +21,7 @@
     <div class="nav-menu" id="menu">
       <a href="#home" class="nav-link" data-i18n="nav.home">Home</a>
       <a href="#about" class="nav-link" data-i18n="nav.about">Über uns</a>
-      <a href="#structure" class="nav-link" data-i18n="nav.structure">Struktur</a>
+      <a href="#workflow" class="nav-link" data-i18n="nav.structure">Struktur</a>
       <a href="#team" class="nav-link" data-i18n="nav.team">Team</a>
       <a href="#services" class="nav-link" data-i18n="nav.services">Unsere Dienstleistungen</a>
       <a href="#germany" class="nav-link" data-i18n="nav.germany">Weg nach Europa</a>
@@ -1456,116 +38,120 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-bg"></div>
-    <div class="grid-bg"></div>
-    <div class="hero-content">
-      <div class="hero-tag" data-i18n="hero.tag">Premium Consulting</div>
-      <h1 data-i18n="hero.title">EuroLink Consulting Group (ECG)</h1>
-      <p data-i18n="hero.lead">Professionelle Beratung für Bildung, Ausbildung, Karriere und Migration nach Europa.
-        Sprachkurse, Au-pair, FSJ/BFD/FÖJ, Ausbildung, Studium und Direkteinstieg für Fachkräfte.</p>
-      <div class="cta-group">
-        <a href="#contact" class="btn btn-primary" data-i18n="cta.start">Beratung starten</a>
-        <a href="#about" class="btn btn-secondary" data-i18n="cta.learn">Mehr erfahren</a>
-      </div>
-    </div>
-    <div class="scroll-indicator" aria-hidden="true"><span></span></div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section" id="about">
-    <div class="section-header">
-      <div class="section-tag" data-de="ÜBER UNS" data-uz="BIZ HAQIMIZDA">ÜBER UNS</div>
-      <h2 class="section-title" data-de="EuroLink Consulting Group" data-uz="EuroLink Consulting Group">EuroLink
-        Consulting Group</h2>
-      <p class="section-subtitle" data-de="Seit 2022 begleiten wir ambitionierte Menschen auf ihrem Weg nach Europa"
-        data-uz="2022-yildan beri biz maqsadli insonlarni Evropaga yo'llarida kuzatib boramiz">Seit 2022 begleiten wir
-        ambitionierte Menschen auf ihrem Weg nach Europa</p>
-    </div>
-
-    <div class="about-grid">
-      <div class="feature-card">
-        <span class="feature-icon">🎓</span>
-        <h3 data-de="Bildungsprogramme" data-uz="Ta'lim dasturlari">Bildungsprogramme</h3>
-        <p data-de="Sprachkurse, Studienkolleg, Bachelor, Master und PhD-Programme in Deutschland und Europa"
-          data-uz="Til kurslari, Studienkolleg, Bakalavr, Magistratura va PhD dasturlari Germaniya va Evropada">
-          Sprachkurse, Studienkolleg, Bachelor, Master und PhD-Programme in Deutschland und Europa</p>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-icon">💼</span>
-        <h3 data-de="Karriereberatung" data-uz="Martaba maslahati">Karriereberatung</h3>
-        <p data-de="Ausbildung, FSJ/BFD, Au-pair und Direkteinstieg für Fachkräfte in Deutschland"
-          data-uz="Germaniyada o'qish, FSJ/BFD, Au-pair va mutaxassislar uchun to'g'ridan-to'g'ri kirish">Ausbildung,
-          FSJ/BFD, Au-pair und Direkteinstieg für Fachkräfte in Deutschland</p>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-icon">🌍</span>
-        <h3 data-de="Internationale Netzwerke" data-uz="Xalqaro tarmoqlar">Internationale Netzwerke</h3>
-        <p data-de="Zugang zu Stipendienprogrammen und Partnerschaften mit führenden europäischen Institutionen"
-          data-uz="Stipendiya dasturlari va yetakchi Yevropa muassasalari bilan hamkorlikka kirish">Zugang zu
-          Stipendienprogrammen und Partnerschaften mit führenden europäischen Institutionen</p>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-icon">⚡</span>
-        <h3 data-de="Schnelle Prozesse" data-uz="Tez jarayonlar">Schnelle Prozesse</h3>
-        <p data-de="Effiziente Dokumentenvorbereitung und professionelle Unterstützung bei Botschaftsterminen"
-          data-uz="Samarali hujjatlarni tayyorlash va elchixona uchrashuvlarida professional yordam">Effiziente
-          Dokumentenvorbereitung und professionelle Unterstützung bei Botschaftsterminen</p>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-icon">🏥</span>
-        <h3 data-de="Medizinische Berufe" data-uz="Tibbiy kasblar">Medizinische Berufe</h3>
-        <p data-de="Spezialisierte Programme für Ärzte und medizinisches Fachpersonal (FSP, KP)"
-          data-uz="Shifokorlar va tibbiy mutaxassislar uchun maxsus dasturlar (FSP, KP)">Spezialisierte Programme für
-          Ärzte und medizinisches Fachpersonal (FSP, KP)</p>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-icon">🤝</span>
-        <h3 data-de="Full-Service" data-uz="To'liq xizmat">Full-Service</h3>
-        <p data-de="Von der ersten Beratung bis zur Ankunft und Integration in Deutschland"
-          data-uz="Birinchi maslahatdan boshlab Germaniyaga kelish va integratsiyagacha">Von der ersten Beratung bis zur
-          Ankunft und Integration in Deutschland</p>
-      </div>
-    </div>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">500+</div>
-        <div class="stat-label" data-de="Erfolgreiche Vermittlungen" data-uz="Muvaffaqiyatli joylashishlar">Erfolgreiche
-          Vermittlungen</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">95%</div>
-        <div class="stat-label" data-de="Visa-Erfolgsquote" data-uz="Viza muvaffaqiyat ko'rsatkichi">Visa-Erfolgsquote
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-bg"></div>
+      <div class="grid-bg"></div>
+      <div class="hero-content">
+        <div class="hero-tag" data-i18n="hero.tag">Premium Consulting</div>
+        <h1 data-i18n="hero.title">EuroLink Consulting Group (ECG)</h1>
+        <p data-i18n="hero.lead">Professionelle Beratung für Bildung, Ausbildung, Karriere und Migration nach Europa.
+          Sprachkurse, Au-pair, FSJ/BFD/FÖJ, Ausbildung, Studium und Direkteinstieg für Fachkräfte.</p>
+        <div class="cta-group">
+          <a href="#contact" class="btn btn-primary" data-i18n="cta.start">Beratung starten</a>
+          <a href="#about" class="btn btn-secondary" data-i18n="cta.learn">Mehr erfahren</a>
         </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number">2+</div>
-        <div class="stat-label" data-de="Jahre Erfahrung" data-uz="Yillik tajriba">Jahre Erfahrung</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">24/7</div>
-        <div class="stat-label" data-de="Support verfügbar" data-uz="Qo'llab-quvvatlash mavjud">Support verfügbar</div>
-      </div>
-    </div>
-  </section>
+      <div class="scroll-indicator" aria-hidden="true"><span></span></div>
+    </section>
 
-  <!-- Jarayon -->
-  <section class="section" id="structure">
-    <div class="section-header">
-      <div class="section-tag" data-i18n="structure.tag">STRUKTUR</div>
-    </div>
-    <div class="services-grid">
-      <div class="workflow-section" id="workflow">
-        <h2 class="workflow-title" data-de="Allgemeiner Ablauf" data-uz="Umumiy ish jarayoni">Allgemeiner Ablauf</h2>
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-header">
+        <div class="section-tag" data-de="ÜBER UNS" data-uz="BIZ HAQIMIZDA">ÜBER UNS</div>
+        <h2 class="section-title" data-de="EuroLink Consulting Group" data-uz="EuroLink Consulting Group">EuroLink
+          Consulting Group</h2>
+        <p class="section-subtitle" data-de="Seit 2022 begleiten wir ambitionierte Menschen auf ihrem Weg nach Europa"
+          data-uz="2022-yildan beri biz maqsadli insonlarni Evropaga yo'llarida kuzatib boramiz">Seit 2022 begleiten wir
+          ambitionierte Menschen auf ihrem Weg nach Europa</p>
+      </div>
 
-        <div class="workflow-content">
-          <p data-de="Jeder neue Antrag wird von Administration im primären Aufnahmeprozess befragt und
+      <div class="about-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🎓</span>
+          <h3 data-de="Bildungsprogramme" data-uz="Ta'lim dasturlari">Bildungsprogramme</h3>
+          <p data-de="Sprachkurse, Studienkolleg, Bachelor, Master und PhD-Programme in Deutschland und Europa"
+            data-uz="Til kurslari, Studienkolleg, Bakalavr, Magistratura va PhD dasturlari Germaniya va Evropada">
+            Sprachkurse, Studienkolleg, Bachelor, Master und PhD-Programme in Deutschland und Europa</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">💼</span>
+          <h3 data-de="Karriereberatung" data-uz="Martaba maslahati">Karriereberatung</h3>
+          <p data-de="Ausbildung, FSJ/BFD, Au-pair und Direkteinstieg für Fachkräfte in Deutschland"
+            data-uz="Germaniyada o'qish, FSJ/BFD, Au-pair va mutaxassislar uchun to'g'ridan-to'g'ri kirish">Ausbildung,
+            FSJ/BFD, Au-pair und Direkteinstieg für Fachkräfte in Deutschland</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🌍</span>
+          <h3 data-de="Internationale Netzwerke" data-uz="Xalqaro tarmoqlar">Internationale Netzwerke</h3>
+          <p data-de="Zugang zu Stipendienprogrammen und Partnerschaften mit führenden europäischen Institutionen"
+            data-uz="Stipendiya dasturlari va yetakchi Yevropa muassasalari bilan hamkorlikka kirish">Zugang zu
+            Stipendienprogrammen und Partnerschaften mit führenden europäischen Institutionen</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3 data-de="Schnelle Prozesse" data-uz="Tez jarayonlar">Schnelle Prozesse</h3>
+          <p data-de="Effiziente Dokumentenvorbereitung und professionelle Unterstützung bei Botschaftsterminen"
+            data-uz="Samarali hujjatlarni tayyorlash va elchixona uchrashuvlarida professional yordam">Effiziente
+            Dokumentenvorbereitung und professionelle Unterstützung bei Botschaftsterminen</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🏥</span>
+          <h3 data-de="Medizinische Berufe" data-uz="Tibbiy kasblar">Medizinische Berufe</h3>
+          <p data-de="Spezialisierte Programme für Ärzte und medizinisches Fachpersonal (FSP, KP)"
+            data-uz="Shifokorlar va tibbiy mutaxassislar uchun maxsus dasturlar (FSP, KP)">Spezialisierte Programme für
+            Ärzte und medizinisches Fachpersonal (FSP, KP)</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🤝</span>
+          <h3 data-de="Full-Service" data-uz="To'liq xizmat">Full-Service</h3>
+          <p data-de="Von der ersten Beratung bis zur Ankunft und Integration in Deutschland"
+            data-uz="Birinchi maslahatdan boshlab Germaniyaga kelish va integratsiyagacha">Von der ersten Beratung bis
+            zur
+            Ankunft und Integration in Deutschland</p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">500+</div>
+          <div class="stat-label" data-de="Erfolgreiche Vermittlungen" data-uz="Muvaffaqiyatli joylashishlar">
+            Erfolgreiche
+            Vermittlungen</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">95%</div>
+          <div class="stat-label" data-de="Visa-Erfolgsquote" data-uz="Viza muvaffaqiyat ko'rsatkichi">Visa-Erfolgsquote
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2+</div>
+          <div class="stat-label" data-de="Jahre Erfahrung" data-uz="Yillik tajriba">Jahre Erfahrung</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label" data-de="Support verfügbar" data-uz="Qo'llab-quvvatlash mavjud">Support verfügbar
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Jarayon -->
+    <section class="section" id="workflow">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="structure.tag">STRUKTUR</div>
+      </div>
+      <div class="services-grid">
+        <div class="workflow-section" id="workflow">
+          <h2 class="workflow-title" data-de="Allgemeiner Ablauf" data-uz="Umumiy ish jarayoni">Allgemeiner Ablauf</h2>
+
+          <div class="workflow-content">
+            <p data-de="Jeder neue Antrag wird von Administration im primären Aufnahmeprozess befragt und
             konsultiert. Aus diesem Teil des Front-Office wird es an Status Quo-Analyse gesendet.
             Ausgehend von der Situation werden die aktuellen Möglichkeiten, Pläne, Stärken und bestehenden Risiken des
             Hilfesuchenden von den fachbezogenen Teammitgliedern untersucht. Nachdem die Analyse abgeschlossen sind,
@@ -1590,1644 +176,1054 @@
             va marketing bo'limi, ekspertlarimiz, tarjima markazi, bozor analitiklari, kooperatsion va xalqaro aloqalar
             bo'limi, dasturchi va dizaynerlar, bugalteriya va tashqi hamkorlarimiz faol qatnashishadi. Nazorat va
             arznomalar ta'sischilar va yuridik bo'lim tomonidan ko'rib chiqilib, chora-tadbirlar amalga oshiriladi.">
-            Jeder neue Antrag wird von <strong>Administration</strong> im primären Aufnahmeprozess befragt und
-            konsultiert. Aus diesem Teil des <strong>Front-Office</strong> wird es an Status Quo-Analyse gesendet.
-            Ausgehend von der Situation werden die aktuellen Möglichkeiten, Pläne, Stärken und bestehenden Risiken des
-            Hilfesuchenden von den fachbezogenen Teammitgliedern untersucht. Nachdem die Analyse abgeschlossen sind,
-            werden die in den <strong>Back-Office</strong> übertragen. Basierend auf der aktuellen
-            politisch-gesellschaftlichen und internationalen Situation und den Ergebnissen der Status Quo-Analyse
-            erstellt das Strategieteam einen speziellen Algorithmus. Entsprechend der Reihenfolge dieser Aufgaben wird
-            mit der Arbeit begonnen. Im <strong>Coworking</strong> (Steuerung- und Monitoring) Center wird ein Projekt
-            auf Basis des oben genannten Algorithmus erstellt und dessen Umsetzung organisiert. Je nach Umfang des
-            Projekts werden sich alle Strukturen innerhalb von EuroLink daran teilnehmen, insbesondere das
-            Bildungszentrum, die Rechts- und Marketingabteilung, unsere Experten, das Übersetzungszentrum, die
-            Marktanalysten, die Abteilung für Zusammenarbeit und internationale Beziehungen, die Programmierer und
-            Designer, die Buchhaltung und externe Partner tätig sind. Kontrollen und Berichte werden von den Gründern
-            und der Rechtsabteilung überprüft und Maßnahmen ergriffen.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- STRUKTUR -->
-  <section class="section" id="structure">
-    <div class="section-header">
-      <h2 class="section-title" data-i18n="structure.title">Struktur von EuroLink</h2>
-      <p class="section-subtitle" data-i18n="structure.subtitle">Front-Office, Status-Quo-Analyse, Back-Office,
-        Strategie, Coworking (Steuerung & Monitoring)</p>
-    </div>
-    <div class="services-grid">
-      <div id="orgStructure" data-lang="uz">
-        <div class="company-header">
-          <div class="company-box">EuroLink CG</div>
-          <div class="company-connector"></div>
-        </div>
-
-        <div class="departments-grid" id="departments"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section class="section" id="team">
-    <div class="section-header">
-      <div class="section-tag" data-i18n="team.tag">UNSER TEAM</div>
-      <h2 class="section-title" data-i18n="team.title">Führung & Expertise</h2>
-      <p class="section-subtitle" data-i18n="team.subtitle">Erfahrene Experten mit internationaler Perspektive</p>
-    </div>
-
-    <div class="team-card reveal" style="margin-bottom:2rem">
-      <div class="team-header">
-        <img src="./img/man1.jpg" alt="Sherdor Eshmamatov" class="team-img">
-        <h3>Sherdor Eshmamatov</h3>
-        <p class="role" data-i18n="team.ceo.role">Gründer & CEO</p>
-      </div>
-      <div class="team-body">
-        <p data-i18n="team.ceo.text">Qualitäts- und Strategiemanager, Controller von Automatisierung und Marktanalyse.
-          IT System Manager bei addOn Solution GmbH.</p>
-      </div>
-    </div>
-
-    <!-- SERVICES -->
-
-    <!-- SERVICES -->
-    <section class="section" id="services">
-      <div class="section-header">
-        <div class="section-tag" data-i18n="services.tag">XIZMATLAR</div>
-        <h2 class="section-title" data-i18n="services.title">Akademik va Konsultatsiya Xizmatlari</h2>
-        <p class="section-subtitle" data-i18n="services.subtitle">Til sertifikatlari, IT kurslar, Au-pair, FSJ/BFD,
-          Ausbildung, Studium, Visa va ko'plab boshqa xizmatlar</p>
-      </div>
-
-      <div class="services-grid">
-        <!-- Card 1 -->
-        <div class="service-card reveal">
-          <div class="result-img-wrapper">
-            <img class="result-img" src="./img/service-img/s-1.jpeg" alt="Til va IT Kurslari">
-          </div>
-          <div class="service-card-content">
-            <h3 data-i18n="services.c1.title">Til va IT Kurslari</h3>
-            <p data-i18n="services.c1.text">Nemis, ingliz, rus, xitoy, koreys tillari. IELTS, TestDaF, telc, HSK, TOPIK.
-              Full-Stack dasturlash, Web dizayn, Marketing.</p>
-            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(1)">Batafsil</button>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="service-card reveal">
-          <div class="result-img-wrapper">
-            <img class="result-img" src="./img/service-img/s-2.jpeg" alt="Au-pair">
-          </div>
-          <div class="service-card-content">
-            <h3 data-i18n="services.c2.title">Au-pair Dasturi</h3>
-            <p data-i18n="services.c2.text">Agentlik bilan ishlash, oila bilan intervyu, elchixona tayyorgarligi va
-              to'liq yo'llanma.</p>
-            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(2)">Batafsil</button>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="service-card reveal">
-          <div class="result-img-wrapper">
-            <img class="result-img" src="./img/service-img/s-3-3.jpeg" alt="FSJ/BFD/FÖJ">
-          </div>
-          <div class="service-card-content">
-            <h3 data-i18n="services.c3.title">FSJ/BFD/FÖJ</h3>
-            <p data-i18n="services.c3.text">6-18 oylik ijtimoiy yoki ekologik ko'ngillilik. Stipendiya, uy-joy,
-              transport bepul.</p>
-            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(3)">Batafsil</button>
-          </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="service-card reveal">
-          <div class="result-img-wrapper">
-            <img class="result-img" src="./img/service-img/s-4.jpeg" alt="Ausbildung">
-          </div>
-          <div class="service-card-content">
-            <h3 data-i18n="services.c4.title">Ausbildung</h3>
-            <p data-i18n="services.c4.text">B1-B2 bilan kasbiy ta'lim + ish. 2-4 yil davomida oylik to'lov. Keyin doimiy
-              ish taklifi.</p>
-            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(4)">Batafsil</button>
-          </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="service-card reveal">
-          <div class="result-img-wrapper">
-            <img class="result-img" src="./img/service-img/s-5.jpeg" alt="Studium">
-          </div>
-          <div class="service-card-content">
-            <h3 data-i18n="services.c5.title">Oliy Ta'lim</h3>
-            <p data-i18n="services.c5.text">Uni-Assist, duales Studium. DAAD, Erasmus, KAS grantlari. Stipendiyalar va
-              to'liq yo'llanma.</p>
-            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(5)">Batafsil</button>
-          </div>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="service-card reveal">
-          <div class="result-img-wrapper">
-            <img class="result-img" src="./img/service-img/s-6.jpeg" alt="Fachkräfte">
-          </div>
-          <div class="service-card-content">
-            <h3 data-i18n="services.c6.title">Malakali Kadrlar</h3>
-            <p data-i18n="services.c6.text">B2 bilan ish vizasi. 6 oylik Job-Seeker dasturi. IT, tibbiyot, texnika,
-              sun'iy intellekt sohalari.</p>
-            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(6)">Batafsil</button>
-          </div>
-        </div>
-
-        <!-- Card 7 -->
-        <div class="service-card reveal">
-          <div class="result-img-wrapper">
-            <img class="result-img" src="./img/service-img/s-7.jpeg" alt="Visa">
-          </div>
-          <div class="service-card-content">
-            <h3 data-i18n="services.c7.title">Visa va Yuridik</h3>
-            <p data-i18n="services.c7.text">Til kursi, ta'lim, biznes, davolanish, sayohat vizalari. Elchixona suhbatiga
-              tayyorgarlik.</p>
-            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(7)">Batafsil</button>
-          </div>
-        </div>
-
-        <!-- Card 8 -->
-        <div class="service-card reveal">
-          <div class="result-img-wrapper">
-            <img class="result-img" src="./img/service-img/s-8.jpeg" alt="Support">
-          </div>
-          <div class="service-card-content">
-            <h3 data-i18n="services.c8.title">Qo'shimcha Xizmatlar</h3>
-            <p data-i18n="services.c8.text">Sug'urta, uy-joy, aviachiptalar, transfer, ish topish, community. To'liq
-              qo'llab-quvvatlash.</p>
-            <button class="service-detail-btn" data-i18n="services.btn" onclick="openServiceModal(8)">Batafsil</button>
+              Jeder neue Antrag wird von <strong>Administration</strong> im primären Aufnahmeprozess befragt und
+              konsultiert. Aus diesem Teil des <strong>Front-Office</strong> wird es an Status Quo-Analyse gesendet.
+              Ausgehend von der Situation werden die aktuellen Möglichkeiten, Pläne, Stärken und bestehenden Risiken des
+              Hilfesuchenden von den fachbezogenen Teammitgliedern untersucht. Nachdem die Analyse abgeschlossen sind,
+              werden die in den <strong>Back-Office</strong> übertragen. Basierend auf der aktuellen
+              politisch-gesellschaftlichen und internationalen Situation und den Ergebnissen der Status Quo-Analyse
+              erstellt das Strategieteam einen speziellen Algorithmus. Entsprechend der Reihenfolge dieser Aufgaben wird
+              mit der Arbeit begonnen. Im <strong>Coworking</strong> (Steuerung- und Monitoring) Center wird ein Projekt
+              auf Basis des oben genannten Algorithmus erstellt und dessen Umsetzung organisiert. Je nach Umfang des
+              Projekts werden sich alle Strukturen innerhalb von EuroLink daran teilnehmen, insbesondere das
+              Bildungszentrum, die Rechts- und Marketingabteilung, unsere Experten, das Übersetzungszentrum, die
+              Marktanalysten, die Abteilung für Zusammenarbeit und internationale Beziehungen, die Programmierer und
+              Designer, die Buchhaltung und externe Partner tätig sind. Kontrollen und Berichte werden von den Gründern
+              und der Rechtsabteilung überprüft und Maßnahmen ergriffen.</p>
           </div>
         </div>
       </div>
     </section>
+    <!-- STRUKTUR -->
+    <section class="section" id="structure">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="structure.title">Struktur von EuroLink</h2>
+        <p class="section-subtitle" data-i18n="structure.subtitle">Front-Office, Status-Quo-Analyse, Back-Office,
+          Strategie, Coworking (Steuerung & Monitoring)</p>
+      </div>
+      <div class="services-grid">
+        <div id="orgStructure" data-lang="uz">
+          <div class="company-header">
+            <div class="company-box">EuroLink CG</div>
+            <div class="company-connector"></div>
+          </div>
 
-    <!-- Modal -->
-    <div class="service-modal" id="serviceModal" onclick="closeServiceModal(event)">
-      <div class="service-modal-content" onclick="event.stopPropagation()">
-        <button class="service-modal-close" onclick="closeServiceModal()">&times;</button>
-        <div class="service-modal-header">
-          <h2 id="modalTitle">Xizmat nomi</h2>
-        </div>
-        <div class="service-modal-body" id="modalBody">
-          <p>Ma'lumot yuklanmoqda...</p>
+          <div class="departments-grid" id="departments"></div>
         </div>
       </div>
-    </div>
-    <!-- WEG NACH EUROPA -->
-    <!-- CSS qo'shish (style tegiga qo'ying) -->
-    <style>
-      /* Tab Navigation */
-      .germany-tabs {
-        display: flex;
-        gap: 0.8rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+    </section>
 
-      .germany-tab-btn {
-        padding: 1rem 1.8rem;
-        background: var(--bg-card);
-        border: 2px solid var(--border);
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 0.95rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        color: var(--text-secondary);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
+    <!-- TEAM -->
+    <section class="section" id="team">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="team.tag">UNSER TEAM</div>
+        <h2 class="section-title" data-i18n="team.title">Führung & Expertise</h2>
+        <p class="section-subtitle" data-i18n="team.subtitle">Erfahrene Experten mit internationaler Perspektive</p>
+      </div>
 
-      .germany-tab-btn:hover {
-        border-color: var(--accent);
-        transform: translateY(-2px);
-      }
+      <div class="team-card reveal" style="margin-bottom:2rem">
+        <div class="team-header">
+          <img src="./img/man1.jpg" alt="Sherdor Eshmamatov" class="team-img">
+          <h3>Sherdor Eshmamatov</h3>
+          <p class="role" data-i18n="team.ceo.role">Gründer & CEO</p>
+        </div>
+        <div class="team-body">
+          <p data-i18n="team.ceo.text">Qualitäts- und Strategiemanager, Controller von Automatisierung und Marktanalyse.
+            IT System Manager bei addOn Solution GmbH.</p>
+        </div>
+      </div>
 
-      .germany-tab-btn.active {
-        background: var(--accent);
-        color: white;
-        border-color: var(--accent);
-        box-shadow: 0 5px 20px var(--accent-glow);
-      }
+      <!-- SERVICES -->
 
-      .germany-tab-icon {
-        font-size: 1.3rem;
-      }
+      <!-- SERVICES -->
+      <section class="section" id="services">
+        <div class="section-header">
+          <div class="section-tag" data-i18n="services.tag">XIZMATLAR</div>
+          <h2 class="section-title" data-i18n="services.title">Akademik va Konsultatsiya Xizmatlari</h2>
+          <p class="section-subtitle" data-i18n="services.subtitle">Til sertifikatlari, IT kurslar, Au-pair, FSJ/BFD,
+            Ausbildung, Studium, Visa va ko'plab boshqa xizmatlar</p>
+        </div>
 
-      /* Tab Content */
-      .germany-tab-content {
-        display: none;
-        animation: fadeInTab 0.4s ease;
-      }
+        <div class="services-grid">
+          <!-- Card 1 -->
+          <div class="service-card reveal">
+            <div class="result-img-wrapper">
+              <img class="result-img" src="./img/service-img/s-1.jpeg" alt="Til va IT Kurslari">
+            </div>
+            <div class="service-card-content">
+              <h3 data-i18n="services.c1.title">Til va IT Kurslari</h3>
+              <p data-i18n="services.c1.text">Nemis, ingliz, rus, xitoy, koreys tillari. IELTS, TestDaF, telc, HSK,
+                TOPIK.
+                Full-Stack dasturlash, Web dizayn, Marketing.</p>
+              <button class="service-detail-btn" data-i18n="services.btn"
+                onclick="openServiceModal(1)">Batafsil</button>
+            </div>
+          </div>
 
-      .germany-tab-content.active {
-        display: block;
-      }
+          <!-- Card 2 -->
+          <div class="service-card reveal">
+            <div class="result-img-wrapper">
+              <img class="result-img" src="./img/service-img/s-2.jpeg" alt="Au-pair">
+            </div>
+            <div class="service-card-content">
+              <h3 data-i18n="services.c2.title">Au-pair Dasturi</h3>
+              <p data-i18n="services.c2.text">Agentlik bilan ishlash, oila bilan intervyu, elchixona tayyorgarligi va
+                to'liq yo'llanma.</p>
+              <button class="service-detail-btn" data-i18n="services.btn"
+                onclick="openServiceModal(2)">Batafsil</button>
+            </div>
+          </div>
 
-      @keyframes fadeInTab {
-        from {
-          opacity: 0;
-          transform: translateY(15px);
-        }
+          <!-- Card 3 -->
+          <div class="service-card reveal">
+            <div class="result-img-wrapper">
+              <img class="result-img" src="./img/service-img/s-3-3.jpeg" alt="FSJ/BFD/FÖJ">
+            </div>
+            <div class="service-card-content">
+              <h3 data-i18n="services.c3.title">FSJ/BFD/FÖJ</h3>
+              <p data-i18n="services.c3.text">6-18 oylik ijtimoiy yoki ekologik ko'ngillilik. Stipendiya, uy-joy,
+                transport bepul.</p>
+              <button class="service-detail-btn" data-i18n="services.btn"
+                onclick="openServiceModal(3)">Batafsil</button>
+            </div>
+          </div>
 
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+          <!-- Card 4 -->
+          <div class="service-card reveal">
+            <div class="result-img-wrapper">
+              <img class="result-img" src="./img/service-img/s-4.jpeg" alt="Ausbildung">
+            </div>
+            <div class="service-card-content">
+              <h3 data-i18n="services.c4.title">Ausbildung</h3>
+              <p data-i18n="services.c4.text">B1-B2 bilan kasbiy ta'lim + ish. 2-4 yil davomida oylik to'lov. Keyin
+                doimiy
+                ish taklifi.</p>
+              <button class="service-detail-btn" data-i18n="services.btn"
+                onclick="openServiceModal(4)">Batafsil</button>
+            </div>
+          </div>
 
-      .germany-content-box {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 2rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-      }
+          <!-- Card 5 -->
+          <div class="service-card reveal">
+            <div class="result-img-wrapper">
+              <img class="result-img" src="./img/service-img/s-5.jpeg" alt="Studium">
+            </div>
+            <div class="service-card-content">
+              <h3 data-i18n="services.c5.title">Oliy Ta'lim</h3>
+              <p data-i18n="services.c5.text">Uni-Assist, duales Studium. DAAD, Erasmus, KAS grantlari. Stipendiyalar va
+                to'liq yo'llanma.</p>
+              <button class="service-detail-btn" data-i18n="services.btn"
+                onclick="openServiceModal(5)">Batafsil</button>
+            </div>
+          </div>
 
-      .germany-content-box h3 {
-        color: var(--accent);
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-      }
+          <!-- Card 6 -->
+          <div class="service-card reveal">
+            <div class="result-img-wrapper">
+              <img class="result-img" src="./img/service-img/s-6.jpeg" alt="Fachkräfte">
+            </div>
+            <div class="service-card-content">
+              <h3 data-i18n="services.c6.title">Malakali Kadrlar</h3>
+              <p data-i18n="services.c6.text">B2 bilan ish vizasi. 6 oylik Job-Seeker dasturi. IT, tibbiyot, texnika,
+                sun'iy intellekt sohalari.</p>
+              <button class="service-detail-btn" data-i18n="services.btn"
+                onclick="openServiceModal(6)">Batafsil</button>
+            </div>
+          </div>
 
-      .germany-content-box p {
-        line-height: 1.9;
-        color: var(--text-primary);
-        margin-bottom: 1.2rem;
-        font-size: 1.05rem;
-      }
+          <!-- Card 7 -->
+          <div class="service-card reveal">
+            <div class="result-img-wrapper">
+              <img class="result-img" src="./img/service-img/s-7.jpeg" alt="Visa">
+            </div>
+            <div class="service-card-content">
+              <h3 data-i18n="services.c7.title">Visa va Yuridik</h3>
+              <p data-i18n="services.c7.text">Til kursi, ta'lim, biznes, davolanish, sayohat vizalari. Elchixona
+                suhbatiga
+                tayyorgarlik.</p>
+              <button class="service-detail-btn" data-i18n="services.btn"
+                onclick="openServiceModal(7)">Batafsil</button>
+            </div>
+          </div>
 
-      .germany-content-box strong {
-        color: var(--accent);
-        font-weight: 700;
-      }
+          <!-- Card 8 -->
+          <div class="service-card reveal">
+            <div class="result-img-wrapper">
+              <img class="result-img" src="./img/service-img/s-8.jpeg" alt="Support">
+            </div>
+            <div class="service-card-content">
+              <h3 data-i18n="services.c8.title">Qo'shimcha Xizmatlar</h3>
+              <p data-i18n="services.c8.text">Sug'urta, uy-joy, aviachiptalar, transfer, ish topish, community. To'liq
+                qo'llab-quvvatlash.</p>
+              <button class="service-detail-btn" data-i18n="services.btn"
+                onclick="openServiceModal(8)">Batafsil</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      .germany-content-box ul {
-        margin: 1rem 0 1rem 1.5rem;
-        line-height: 1.8;
-      }
-
-      .germany-content-box li {
-        margin-bottom: 0.6rem;
-        color: var(--text-primary);
-      }
-
-      @media (max-width: 768px) {
+      <!-- Modal -->
+      <div class="service-modal" id="serviceModal" onclick="closeServiceModal(event)">
+        <div class="service-modal-content" onclick="event.stopPropagation()">
+          <button class="service-modal-close" onclick="closeServiceModal()">&times;</button>
+          <div class="service-modal-header">
+            <h2 id="modalTitle">Xizmat nomi</h2>
+          </div>
+          <div class="service-modal-body" id="modalBody">
+            <p>Ma'lumot yuklanmoqda...</p>
+          </div>
+        </div>
+      </div>
+      <!-- WEG NACH EUROPA -->
+      <!-- CSS qo'shish (style tegiga qo'ying) -->
+      <style>
+        /* Tab Navigation */
         .germany-tabs {
-          gap: 0.5rem;
+          display: flex;
+          gap: 0.8rem;
+          margin-bottom: 2rem;
+          flex-wrap: wrap;
+          justify-content: center;
         }
 
         .germany-tab-btn {
-          padding: 0.8rem 1.2rem;
-          font-size: 0.85rem;
+          padding: 1rem 1.8rem;
+          background: var(--bg-card);
+          border: 2px solid var(--border);
+          border-radius: 12px;
+          font-weight: 700;
+          font-size: 0.95rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          color: var(--text-secondary);
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .germany-tab-btn:hover {
+          border-color: var(--accent);
+          transform: translateY(-2px);
+        }
+
+        .germany-tab-btn.active {
+          background: var(--accent);
+          color: white;
+          border-color: var(--accent);
+          box-shadow: 0 5px 20px var(--accent-glow);
+        }
+
+        .germany-tab-icon {
+          font-size: 1.3rem;
+        }
+
+        /* Tab Content */
+        .germany-tab-content {
+          display: none;
+          animation: fadeInTab 0.4s ease;
+        }
+
+        .germany-tab-content.active {
+          display: block;
+        }
+
+        @keyframes fadeInTab {
+          from {
+            opacity: 0;
+            transform: translateY(15px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         .germany-content-box {
-          padding: 1.5rem;
+          background: var(--bg-card);
+          border: 1px solid var(--border);
+          border-radius: 18px;
+          padding: 2rem;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
         .germany-content-box h3 {
-          font-size: 1.4rem;
+          color: var(--accent);
+          font-size: 1.8rem;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
         }
-      }
 
-      /* Footer */
-    </style>
+        .germany-content-box p {
+          line-height: 1.9;
+          color: var(--text-primary);
+          margin-bottom: 1.2rem;
+          font-size: 1.05rem;
+        }
 
-    <!-- HTML qismi (germany sektsiyasiga qo'ying) -->
-    <section class="section" id="germany">
-      <div class="section-header">
-        <div class="section-tag" data-i18n="germany.tag">WEG NACH EUROPA</div>
-        <h2 class="section-title" data-i18n="germany.title">Weg nach Europa</h2>
-        <p class="section-subtitle" data-i18n="germany.subtitle">Ausbildung | Au-pair | FSJ/BFD/FÖJ | Sprachkurs |
-          Studium | Direkteinstieg</p>
-      </div>
+        .germany-content-box strong {
+          color: var(--accent);
+          font-weight: 700;
+        }
 
-      <!-- Tab Buttons -->
-      <div class="germany-tabs">
-        <button class="germany-tab-btn active" onclick="showGermanyTab(1)">
-          <span class="germany-tab-icon">📘</span>
-          <span data-de="Ausbildung" data-uz="Ausbildung">Ausbildung</span>
-        </button>
-        <button class="germany-tab-btn" onclick="showGermanyTab(2)">
-          <span class="germany-tab-icon">👨‍👩‍👧</span>
-          <span data-de="Au-pair" data-uz="Au-pair">Au-pair</span>
-        </button>
-        <button class="germany-tab-btn" onclick="showGermanyTab(3)">
-          <span class="germany-tab-icon">🤝</span>
-          <span data-de="FSJ/BFD/FÖJ" data-uz="FSJ/BFD/FÖJ">FSJ/BFD/FÖJ</span>
-        </button>
-        <button class="germany-tab-btn" onclick="showGermanyTab(4)">
-          <span class="germany-tab-icon">🗣️</span>
-          <span data-de="Sprachkurs" data-uz="Til kursi">Sprachkurs</span>
-        </button>
-        <button class="germany-tab-btn" onclick="showGermanyTab(5)">
-          <span class="germany-tab-icon">🎓</span>
-          <span data-de="Studium" data-uz="Oliy ta'lim">Studium</span>
-        </button>
-        <button class="germany-tab-btn" onclick="showGermanyTab(6)">
-          <span class="germany-tab-icon">🧑‍⚕️</span>
-          <span data-de="Fachkraft" data-uz="Mutaxassis">Fachkraft</span>
-        </button>
-      </div>
+        .germany-content-box ul {
+          margin: 1rem 0 1rem 1.5rem;
+          line-height: 1.8;
+        }
 
-      <!-- Tab Contents -->
-      <div id="germanyTab1" class="germany-tab-content active">
-        <div class="germany-content-box">
-          <h3><span class="germany-tab-icon">📘</span> <span data-de="Was ist Ausbildung?"
-              data-uz="Ausbildung nima?">Was ist Ausbildung?</span></h3>
-          <p><strong data-de="Dualer Weg:" data-uz="Dual yo'l:">Dualer Weg:</strong> <span
-              data-de="2–3 Tage Betrieb + 1–2 Tage Schule pro Woche. Oder 1-2 Monate Schule, dann 1-2 Monate Betrieb."
-              data-uz="Haftasiga 2–3 kun korxonada + 1–2 kun maktabda. Yoki 1-2 oy maktab, keyin 1-2 oy korxona.">2–3
-              Tage Betrieb + 1–2 Tage Schule pro Woche. Oder 1-2 Monate Schule, dann 1-2 Monate Betrieb.</span></p>
+        .germany-content-box li {
+          margin-bottom: 0.6rem;
+          color: var(--text-primary);
+        }
 
-          <p><strong data-de="Vorteile:" data-uz="Afzalliklar:">Vorteile:</strong></p>
-          <ul>
-            <li>💰 <strong data-de="Vergütung während der Ausbildung:" data-uz="O'qish davomida oylik:">Vergütung
-                während der Ausbildung:</strong> <span
-                data-de="1. Jahr ~750€, 2. Jahr ~850€, 3. Jahr ~1000€ (je nach Branche bis 1350€)"
-                data-uz="1-yil ~750€, 2-yil ~850€, 3-yil ~1000€ (sohaga qarab 1350€ gacha)">1. Jahr ~750€, 2. Jahr
-                ~850€, 3. Jahr ~1000€ (je nach Branche bis 1350€)</span></li>
-            <li>✅ <strong data-de="Übernahmechancen:" data-uz="Ishga qabul imkoniyati:">Übernahmechancen:</strong> <span
-                data-de="Nach Abschluss oft Jobangebot im gleichen Betrieb"
-                data-uz="Tugatgandan keyin ko'pincha o'sha korxonada ish taklifi">Nach Abschluss oft Jobangebot im
-                gleichen Betrieb</span></li>
-            <li>🗣️ <strong data-de="B1–B2 Deutsch genügt" data-uz="B1–B2 nemis tili yetarli">B1–B2 Deutsch
-                genügt</strong> <span data-de="(kein C1 erforderlich)" data-uz="(C1 talab qilinmaydi)">(kein C1
-                erforderlich)</span></li>
-            <li>🎓 <strong data-de="11-Klassen-Abschluss" data-uz="11-sinf diplomi">11-Klassen-Abschluss</strong> <span
-                data-de="oder Fachhochschulreife möglich" data-uz="yoki kollej diplomi bilan mumkin">oder
-                Fachhochschulreife möglich</span></li>
-            <li>📅 <strong data-de="Start meist August/September" data-uz="Boshlash odatda avgust/sentabr">Start meist
-                August/September</strong> – <span data-de="5-6 Monate vorher bewerben!"
-                data-uz="5-6 oy oldin ariza bering!">5-6 Monate vorher bewerben!</span></li>
-          </ul>
+        @media (max-width: 768px) {
+          .germany-tabs {
+            gap: 0.5rem;
+          }
 
-          <p><strong>BAB (Berufsausbildungsbeihilfe):</strong> <span
-              data-de="Wenn Gehalt unter Minimum (aktuell 934€), kann man staatliche Unterstützung vom Jobcenter beantragen."
-              data-uz="Agar oylik minimal miqdordan (hozirda 934€) kam bo'lsa, Jobcenterdan davlat yordami so'rash mumkin.">Wenn
-              Gehalt unter Minimum (aktuell 934€), kann man staatliche Unterstützung vom Jobcenter beantragen.</span>
-          </p>
+          .germany-tab-btn {
+            padding: 0.8rem 1.2rem;
+            font-size: 0.85rem;
+          }
 
-          <p><strong data-de="Visa:" data-uz="Viza:">Visa:</strong> <span
-              data-de="Ja, die Botschaft stellt Visa für Ausbildung aus – mit guter Dokumentation und Vorbereitung."
-              data-uz="Ha, elchixona Ausbildung uchun viza beradi – yaxshi hujjatlar va tayyorgarlik bilan.">Ja, die
-              Botschaft stellt Visa für Ausbildung aus – mit guter Dokumentation und Vorbereitung.</span></p>
+          .germany-content-box {
+            padding: 1.5rem;
+          }
+
+          .germany-content-box h3 {
+            font-size: 1.4rem;
+          }
+        }
+
+        /* Footer */
+      </style>
+
+      <!-- HTML qismi (germany sektsiyasiga qo'ying) -->
+      <section class="section" id="germany">
+        <div class="section-header">
+          <div class="section-tag" data-i18n="germany.tag">WEG NACH EUROPA</div>
+          <h2 class="section-title" data-i18n="germany.title">Weg nach Europa</h2>
+          <p class="section-subtitle" data-i18n="germany.subtitle">Ausbildung | Au-pair | FSJ/BFD/FÖJ | Sprachkurs |
+            Studium | Direkteinstieg</p>
         </div>
-      </div>
 
-      <div id="germanyTab2" class="germany-tab-content">
-        <div class="germany-content-box">
-          <h3><span class="germany-tab-icon">👨‍👩‍👧</span> <span data-de="Au-pair Programm"
-              data-uz="Au-pair dasturi">Au-pair Programm</span></h3>
-          <p><strong data-de="Alter:" data-uz="Yosh:">Alter:</strong> <span data-de="18–26 Jahre"
-              data-uz="18–26 yosh">18–26 Jahre</span><br>
-            <strong data-de="Sprachniveau:" data-uz="Til darajasi:">Sprachniveau:</strong> <span
-              data-de="Grundkenntnisse Deutsch (A1-A2)"
-              data-uz="Nemis tilini boshlang'ich darajada bilish (A1-A2)">Grundkenntnisse Deutsch (A1-A2)</span>
-          </p>
-
-          <p><strong data-de="Leistungen der Gastfamilie:" data-uz="Mezbon oilaning ta'minoti:">Leistungen der
-              Gastfamilie:</strong></p>
-          <ul>
-            <li>🏠 <span data-de="Eigenes Zimmer" data-uz="Alohida xona">Eigenes Zimmer</span></li>
-            <li>🍽️ <span data-de="Vollverpflegung" data-uz="To'liq ovqatlanish">Vollverpflegung</span></li>
-            <li>💶 <span data-de="Taschengeld (~260€/Monat)" data-uz="Cho'ntak puli (~260€/oy)">Taschengeld
-                (~260€/Monat)</span></li>
-            <li>📚 <span data-de="Oft Unterstützung bei Deutschkurs" data-uz="Ko'pincha nemis tili kursida yordam">Oft
-                Unterstützung bei Deutschkurs</span></li>
-            <li>🚍 <span data-de="Öffentliche Verkehrsmittel (Monatskarte) oder Nutzung des Familienautos"
-                data-uz="Jamoat transporti (oylik chipta) yoki oila mashinasidan foydalanish">Öffentliche Verkehrsmittel
-                (Monatskarte) oder Nutzung des Familienautos</span></li>
-          </ul>
-
-          <p><strong data-de="Arbeitszeit:" data-uz="Ish vaqti:">Arbeitszeit:</strong> <span
-              data-de="30–35 Std/Woche + 2-3x/Woche Abendbetreuung"
-              data-uz="30–35 soat/hafta + hafta ichida 2-3 marta kechqurun qarash">30–35 Std/Woche + 2-3x/Woche
-              Abendbetreuung</span><br>
-            <strong data-de="Aufgaben:" data-uz="Vazifalar:">Aufgaben:</strong> <span
-              data-de="Kinderbetreuung (spielen, vorlesen, anziehen, füttern), leichte Hausarbeit (max. 50% der Arbeitszeit)"
-              data-uz="Bolalarga qarash (o'ynash, kitob o'qish, kiyintirish, ovqatlantirish), engil uy ishlar (maks. 50% ish vaqti)">Kinderbetreuung
-              (spielen, vorlesen, anziehen, füttern), leichte Hausarbeit (max. 50% der Arbeitszeit)</span>
-          </p>
-
-          <p><strong data-de="Freizeit:" data-uz="Bo'sh vaqt:">Freizeit:</strong> <span
-              data-de="Mind. 1,5 freie Tage/Monat" data-uz="Oyiga kamida 1,5 bo'sh kun">Mind. 1,5 freie
-              Tage/Monat</span><br>
-            <strong data-de="Urlaub:" data-uz="Ta'til:">Urlaub:</strong> <span
-              data-de="2 Wochen bei 10 Monaten, 4 Wochen bei 12 Monaten (bezahlt)"
-              data-uz="10 oyda 2 hafta, 12 oyda 4 hafta (haq to'lanadi)">2 Wochen bei 10 Monaten, 4 Wochen bei 12
-              Monaten (bezahlt)</span>
-          </p>
-
-          <p><strong data-de="Dauer:" data-uz="Davomiyligi:">Dauer:</strong> <span data-de="6–18 Monate"
-              data-uz="6–18 oy">6–18 Monate</span></p>
+        <!-- Tab Buttons -->
+        <div class="germany-tabs">
+          <button class="germany-tab-btn active" onclick="showGermanyTab(1)">
+            <span class="germany-tab-icon">📘</span>
+            <span data-de="Ausbildung" data-uz="Ausbildung">Ausbildung</span>
+          </button>
+          <button class="germany-tab-btn" onclick="showGermanyTab(2)">
+            <span class="germany-tab-icon">👨‍👩‍👧</span>
+            <span data-de="Au-pair" data-uz="Au-pair">Au-pair</span>
+          </button>
+          <button class="germany-tab-btn" onclick="showGermanyTab(3)">
+            <span class="germany-tab-icon">🤝</span>
+            <span data-de="FSJ/BFD/FÖJ" data-uz="FSJ/BFD/FÖJ">FSJ/BFD/FÖJ</span>
+          </button>
+          <button class="germany-tab-btn" onclick="showGermanyTab(4)">
+            <span class="germany-tab-icon">🗣️</span>
+            <span data-de="Sprachkurs" data-uz="Til kursi">Sprachkurs</span>
+          </button>
+          <button class="germany-tab-btn" onclick="showGermanyTab(5)">
+            <span class="germany-tab-icon">🎓</span>
+            <span data-de="Studium" data-uz="Oliy ta'lim">Studium</span>
+          </button>
+          <button class="germany-tab-btn" onclick="showGermanyTab(6)">
+            <span class="germany-tab-icon">🧑‍⚕️</span>
+            <span data-de="Fachkraft" data-uz="Mutaxassis">Fachkraft</span>
+          </button>
         </div>
-      </div>
 
-      <div id="germanyTab3" class="germany-tab-content">
-        <div class="germany-content-box">
-          <h3><span class="germany-tab-icon">🤝</span> <span data-de="Freiwilligendienste (FSJ/FÖJ/BFD)"
-              data-uz="Volontyorlik amaliyoti (FSJ/FÖJ/BFD)">Freiwilligendienste (FSJ/FÖJ/BFD)</span></h3>
-          <p><strong data-de="Dauer:" data-uz="Davomiyligi:">Dauer:</strong> <span data-de="6–18 Monate"
-              data-uz="6–18 oy">6–18 Monate</span><br>
-            <strong data-de="Bereiche:" data-uz="So'rovlar:">Bereiche:</strong> <span
-              data-de="Sozial (Altenheim, Kindergarten, Krankenhaus), Ökologie (Naturschutz, Forstwirtschaft), Sport"
-              data-uz="Ijtimoiy (qariyalar uyi, bog'cha, kasalxona), ekologiya (tabiatni qo'riqlash, o'rmon xo'jaligi), sport">Sozial
-              (Altenheim, Kindergarten, Krankenhaus), Ökologie (Naturschutz, Forstwirtschaft), Sport</span>
-          </p>
+        <!-- Tab Contents -->
+        <div id="germanyTab1" class="germany-tab-content active">
+          <div class="germany-content-box">
+            <h3><span class="germany-tab-icon">📘</span> <span data-de="Was ist Ausbildung?"
+                data-uz="Ausbildung nima?">Was ist Ausbildung?</span></h3>
+            <p><strong data-de="Dualer Weg:" data-uz="Dual yo'l:">Dualer Weg:</strong> <span
+                data-de="2–3 Tage Betrieb + 1–2 Tage Schule pro Woche. Oder 1-2 Monate Schule, dann 1-2 Monate Betrieb."
+                data-uz="Haftasiga 2–3 kun korxonada + 1–2 kun maktabda. Yoki 1-2 oy maktab, keyin 1-2 oy korxona.">2–3
+                Tage Betrieb + 1–2 Tage Schule pro Woche. Oder 1-2 Monate Schule, dann 1-2 Monate Betrieb.</span></p>
 
-          <p><strong data-de="Leistungen:" data-uz="Ta'minlanishi:">Leistungen:</strong></p>
-          <ul>
-            <li>💰 <span data-de="Taschengeld: 300–560€/Monat" data-uz="Cho'ntak puli: 300–560€/oy">Taschengeld:
-                300–560€/Monat</span></li>
-            <li>🏠 <span data-de="Oft kostenlose Unterkunft" data-uz="Ko'pincha bepul yotoqxona">Oft kostenlose
-                Unterkunft</span></li>
-            <li>🚇 <span data-de="Teils kostenlose Monatskarte ÖPNV"
-                data-uz="Ba'zan bepul jamoat transporti oylik chiptasi">Teils kostenlose Monatskarte ÖPNV</span></li>
-            <li>🏖️ <span data-de="~26 Tage Jahresurlaub" data-uz="~26 kun yillik ta'til">~26 Tage Jahresurlaub</span>
-            </li>
-          </ul>
+            <p><strong data-de="Vorteile:" data-uz="Afzalliklar:">Vorteile:</strong></p>
+            <ul>
+              <li>💰 <strong data-de="Vergütung während der Ausbildung:" data-uz="O'qish davomida oylik:">Vergütung
+                  während der Ausbildung:</strong> <span
+                  data-de="1. Jahr ~750€, 2. Jahr ~850€, 3. Jahr ~1000€ (je nach Branche bis 1350€)"
+                  data-uz="1-yil ~750€, 2-yil ~850€, 3-yil ~1000€ (sohaga qarab 1350€ gacha)">1. Jahr ~750€, 2. Jahr
+                  ~850€, 3. Jahr ~1000€ (je nach Branche bis 1350€)</span></li>
+              <li>✅ <strong data-de="Übernahmechancen:" data-uz="Ishga qabul imkoniyati:">Übernahmechancen:</strong>
+                <span data-de="Nach Abschluss oft Jobangebot im gleichen Betrieb"
+                  data-uz="Tugatgandan keyin ko'pincha o'sha korxonada ish taklifi">Nach Abschluss oft Jobangebot im
+                  gleichen Betrieb</span></li>
+              <li>🗣️ <strong data-de="B1–B2 Deutsch genügt" data-uz="B1–B2 nemis tili yetarli">B1–B2 Deutsch
+                  genügt</strong> <span data-de="(kein C1 erforderlich)" data-uz="(C1 talab qilinmaydi)">(kein C1
+                  erforderlich)</span></li>
+              <li>🎓 <strong data-de="11-Klassen-Abschluss" data-uz="11-sinf diplomi">11-Klassen-Abschluss</strong>
+                <span data-de="oder Fachhochschulreife möglich" data-uz="yoki kollej diplomi bilan mumkin">oder
+                  Fachhochschulreife möglich</span></li>
+              <li>📅 <strong data-de="Start meist August/September" data-uz="Boshlash odatda avgust/sentabr">Start meist
+                  August/September</strong> – <span data-de="5-6 Monate vorher bewerben!"
+                  data-uz="5-6 oy oldin ariza bering!">5-6 Monate vorher bewerben!</span></li>
+            </ul>
 
-          <p><strong data-de="Arbeitszeit:" data-uz="Ish vaqti:">Arbeitszeit:</strong> <span data-de="40 Std/Woche"
-              data-uz="40 soat/hafta">40 Std/Woche</span><br>
-            <strong data-de="Wichtig:" data-uz="Muhim:">Wichtig:</strong> <span
-              data-de="Während des Dienstes ist bezahlte Arbeit verboten."
-              data-uz="Amaliyot davrida haq to'lanadigan ish qilish taqiqlangan">Während des Dienstes ist bezahlte
-              Arbeit verboten.</span>
-          </p>
+            <p><strong>BAB (Berufsausbildungsbeihilfe):</strong> <span
+                data-de="Wenn Gehalt unter Minimum (aktuell 934€), kann man staatliche Unterstützung vom Jobcenter beantragen."
+                data-uz="Agar oylik minimal miqdordan (hozirda 934€) kam bo'lsa, Jobcenterdan davlat yordami so'rash mumkin.">Wenn
+                Gehalt unter Minimum (aktuell 934€), kann man staatliche Unterstützung vom Jobcenter beantragen.</span>
+            </p>
 
-          <p><strong data-de="Anforderungen:" data-uz="Talablar:">Anforderungen:</strong></p>
-          <ul>
-            <li>🗣️ <strong data-de="Deutsch:" data-uz="Nemis tili:">Deutsch:</strong> <span
-                data-de="Mindestens B1 empfohlen (rechtlich A1 möglich, aber schwierig)"
-                data-uz="Kamida B1 tavsiya etiladi (qonunan A1 bilan mumkin, lekin qiyin)">Mindestens B1 empfohlen
-                (rechtlich A1 möglich, aber schwierig)</span></li>
-            <li>🎂 <strong data-de="FSJ/FÖJ:" data-uz="FSJ/FÖJ:">FSJ/FÖJ:</strong> <span data-de="Unter 27 Jahre"
-                data-uz="27 yoshdan kichik">Unter 27 Jahre</span></li>
-            <li>🎂 <strong data-de="BFD:" data-uz="BFD:">BFD:</strong> <span data-de="Keine Altersgrenze"
-                data-uz="Yosh chegarasi yo'q">Keine Altersgrenze</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div id="germanyTab4" class="germany-tab-content">
-        <div class="germany-content-box">
-          <h3><span class="germany-tab-icon">🗣️</span> <span data-de="Sprachkurs in Deutschland"
-              data-uz="Germaniyada til kursi">Sprachkurs in Deutschland</span></h3>
-          <p><span
-              data-de="Direkter Sprachkurs in Deutschland – optimal, um Zeit zu sparen, schneller zu integrieren und Chancen zu erkennen."
-              data-uz="Germaniyada to'g'ridan-to'g'ri til kursi – vaqtni tejash, tezroq moslashish va imkoniyatlarni payqash uchun optimal">Direkter
-              Sprachkurs in Deutschland – optimal, um Zeit zu sparen, schneller zu integrieren und Chancen zu
-              erkennen.</span></p>
-
-          <p><strong data-de="Benötigte Unterlagen:" data-uz="Kerakli hujjatlar:">Benötigte Unterlagen:</strong></p>
-          <ul>
-            <li>📄 <strong data-de="Sprachkursvertrag:" data-uz="Til kursi shartnomasi:">Sprachkursvertrag:</strong>
-              <span data-de="Mind. 6 Monate, offline (präsenz), intensiv ≥18 Std/Woche"
-                data-uz="Kamida 6 oy, offline (jonli), intensiv ≥18 soat/hafta">Mind. 6 Monate, offline (präsenz),
-                intensiv ≥18 Std/Woche</span>
-            </li>
-            <li>🎓 <strong data-de="Bildungsnachweise:" data-uz="Ta'lim hujjatlari:">Bildungsnachweise:</strong> <span
-                data-de="Abschlusszeugnisse, Diplome (notariell auf Deutsch übersetzt)"
-                data-uz="Shahodatnomalar, diplomlar (notarial nemischa tarjimasi bilan)">Abschlusszeugnisse, Diplome
-                (notariell auf Deutsch übersetzt)</span></li>
-            <li>💶 <strong data-de="Sperrkonto:" data-uz="Sperrkonto:">Sperrkonto:</strong> <span
-                data-de="Mind. für 6 Monate (aktuell 934€/Monat = 11.208€/Jahr ab 01.01.2023)"
-                data-uz="Kamida 6 oy uchun (hozirda 934€/oy = 11.208€/yil, 2023-yil 1-yanvardan)">Mind. für 6 Monate
-                (aktuell 934€/Monat = 11.208€/Jahr ab 01.01.2023)</span></li>
-            <li>🏥 <strong data-de="Krankenversicherung" data-uz="Tibbiy sug'urta">Krankenversicherung</strong> <span
-                data-de="(nach Visum für Botschaft)" data-uz="(viza chiqqandan keyin elchixonaga)"> (nach Visum für
-                Botschaft)</span></li>
-            <li>📝 <strong data-de="Lebenslauf (CV)" data-uz="Tarjimai hol (CV)">Lebenslauf (CV)</strong></li>
-            <li>✍️ <strong data-de="Motivationsschreiben" data-uz="Motivatsiya xati">Motivationsschreiben</strong></li>
-            <li>🛂 <strong data-de="Reisepass" data-uz="Pass">Reisepass</strong></li>
-            <li>🗣️ <strong data-de="Deutschzertifikat" data-uz="Nemis tili sertifikati">Deutschzertifikat</strong>
-              <span data-de="(falls vorhanden – wichtig für Visa!)"
-                data-uz="(agar mavjud bo'lsa – viza uchun muhim!)">(falls vorhanden – wichtig für Visa!)</span>
-            </li>
-            <li>📸 <strong data-de="Biometrische Fotos" data-uz="Biometrik suratlar">Biometrische Fotos</strong> <span
-                data-de="(3×5 & 4×5, 3 Stück)" data-uz="(3×5 & 4×5, 3 dona)">(3×5 & 4×5, 3 Stück)</span></li>
-          </ul>
-
-          <p><strong data-de="Wichtig:" data-uz="Muhim:">Wichtig:</strong></p>
-          <ul>
-            <li>❌ <span data-de="Während des Sprachkurses darf man nicht arbeiten!"
-                data-uz="Til kursi davomida ishlash mumkin emas!">Während des Sprachkurses darf man nicht
-                arbeiten!</span></li>
-            <li>🎯 <span data-de="Nach dem Kurs: Begründung für Weiterstay (z.B. Ausbildung, Studienkolleg, Studium)"
-                data-uz="Kursdan keyin: qolish sababi (masalan, Ausbildung, Studienkolleg, oliy ta'lim)">Nach dem Kurs:
-                Begründung für Weiterstay (z.B. Ausbildung, Studienkolleg, Studium)</span></li>
-            <li>🗣️ <span data-de="Interview in der Botschaft ist einfacher als bei anderen Visa"
-                data-uz="Elchixonadagi suhbat boshqa vizalarga qaraganda osonroq">Interview in der Botschaft ist
-                einfacher als bei anderen Visa</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div id="germanyTab5" class="germany-tab-content">
-        <div class="germany-content-box">
-          <h3><span class="germany-tab-icon">🎓</span> <span data-de="Studium (Bachelor/Master/PhD)"
-              data-uz="Oliy ta'lim (Bakalavr/Magistr/PhD)">Studium (Bachelor/Master/PhD)</span></h3>
-          <p><strong data-de="Plattform:" data-uz="Platforma:">Plattform:</strong> <span
-              data-de="<a href='https://www.uni-assist.de' target='_blank' style='color:var(--accent)'>www.uni-assist.de</a> – Infos und Services zur Bewerbung an deutschen Hochschulen (kostenpflichtig)"
-              data-uz="<a href='https://www.uni-assist.de' target='_blank' style='color:var(--accent)'>www.uni-assist.de</a> – Germaniya oliygohlariga hujjat topshirish uchun ma'lumot va xizmatlar (pullik)">
-              <a href="https://www.uni-assist.de" target="_blank" style="color:var(--accent)">www.uni-assist.de</a> –
-              Infos und Services zur Bewerbung an deutschen Hochschulen (kostenpflichtig)</span></p>
-
-          <p><strong data-de="Sprachanforderungen:" data-uz="Til talablari:">Sprachanforderungen:</strong></p>
-          <ul>
-            <li>🇩🇪 <strong data-de="Deutschsprachige Programme:" data-uz="Nemis tilidagi dasturlar:">Deutschsprachige
-                Programme:</strong> <span data-de="Meist C1 (manche B2)" data-uz="Odatda C1 (ba'zilari B2)">Meist C1
-                (manche B2)</span></li>
-            <li>🇬🇧 <strong data-de="Englischsprachige Programme:"
-                data-uz="Ingliz tilidagi dasturlar:">Englischsprachige Programme:</strong> <span data-de="IELTS 6.0–6.5"
-                data-uz="IELTS 6.0–6.5">IELTS 6.0–6.5</span></li>
-            <li>📚 <span data-de="Auch bei englischem Studium: Deutsch lernen ist Pflicht (Amtssprache!)"
-                data-uz="Ingliz tilida o'qishda ham: nemis tilini o'rganish majburiy (davlat tili!)">Auch bei englischem
-                Studium: Deutsch lernen ist Pflicht (Amtssprache!)</span></li>
-          </ul>
-
-          <p><strong data-de="Duales Studium:" data-uz="Dual ta'lim:">Duales Studium:</strong> <span
-              data-de="Wie Ausbildung, aber mit Hochschulabschluss. Viel Praxis + Theorie → schneller Jobeinstieg nach Abschluss."
-              data-uz="Ausbildungga o'xshaydi, lekin oliy ta'lim diplomisi bilan. Ko'p amaliyot + nazariya → tugatgandan keyin tezroq ish topish">Wie
-              Ausbildung, aber mit Hochschulabschluss. Viel Praxis + Theorie → schneller Jobeinstieg nach
-              Abschluss.</span></p>
-
-          <p><strong data-de="Stipendien (Auswahl):" data-uz="Grantlar (tanlov):">Stipendien (Auswahl):</strong></p>
-          <ul>
-            <li>🏆 <span data-de="DAAD, Heinrich Seidel, Konrad Adenauer, Erasmus+, Copernicus"
-                data-uz="DAAD, Heinrich Seidel, Konrad Adenauer, Erasmus+, Copernicus">DAAD, Heinrich Seidel, Konrad
-                Adenauer, Erasmus+, Copernicus</span></li>
-            <li>🏆 <span data-de="Deutschlandstipendium, Heinrich Böll, Fulbright, Friedrich-Naumann-Stiftung"
-                data-uz="Deutschlandstipendium, Heinrich Böll, Fulbright, Friedrich-Naumann-Stiftung">Deutschlandstipendium,
-                Heinrich Böll, Fulbright, Friedrich-Naumann-Stiftung</span></li>
-            <li>🏆 <span data-de="Avicenna, Cusanuswerk, Studienstiftung des Deutschen Volkes, Hans Böckler u.a."
-                data-uz="Avicenna, Cusanuswerk, Studienstiftung des Deutschen Volkes, Hans Böckler va boshqalar">Avicenna,
-                Cusanuswerk, Studienstiftung des Deutschen Volkes, Hans Böckler u.a.</span></li>
-            <li>💰 <strong data-de="Förderung:" data-uz="Ko'mak:">Förderung:</strong> <span
-                data-de="1000–1200€/Monat für Bachelor/Master"
-                data-uz="Bakalavr/Magistr uchun 1000–1200€/oy">1000–1200€/Monat für Bachelor/Master</span></li>
-            <li>💰 <strong data-de="PhD:" data-uz="PhD:">PhD:</strong> <span data-de="1000–2500€/Monat"
-                data-uz="1000–2500€/oy">1000–2500€/Monat</span></li>
-          </ul>
-
-          <p><strong data-de="Gebühren:" data-uz="To'lovlar:">Gebühren:</strong> <span
-              data-de="Staatliche Unis oft gebührenfrei (nur Semesterbeitrag ~300€)"
-              data-uz="Davlat oliygohlari ko'pincha bepul (faqat semester to'lovi ~300€)">Staatliche Unis oft
-              gebührenfrei (nur Semesterbeitrag ~300€)</span></p>
-        </div>
-      </div>
-
-      <div id="germanyTab6" class="germany-tab-content">
-        <div class="germany-content-box">
-          <h3><span class="germany-tab-icon">🧑‍⚕️</span> <span data-de="Direkteinstieg als Fachkraft"
-              data-uz="Mutaxassis sifatida to'g'ridan-to'g'ri kirish">Direkteinstieg als Fachkraft</span></h3>
-          <p><strong data-de="Voraussetzungen:" data-uz="Talablar:">Voraussetzungen:</strong></p>
-          <ul>
-            <li>🎓 <span data-de="Hochschulabschluss" data-uz="Oliy ta'lim diplomisi">Hochschulabschluss</span></li>
-            <li>💼 <span data-de="Berufserfahrung & Qualifikationen" data-uz="Ish tajribasi & malakalar">Berufserfahrung
-                & Qualifikationen</span></li>
-            <li>🗣️ <span data-de="Deutsch B2-Niveau" data-uz="Nemis tili B2 darajasi">Deutsch B2-Niveau</span></li>
-          </ul>
-
-          <p><strong data-de="Visum-Optionen:" data-uz="Viza variantlari:">Visum-Optionen:</strong></p>
-          <ul>
-            <li>✅ <strong data-de="Mit Arbeitsvertrag:" data-uz="Ish shartnomasi bilan:">Mit Arbeitsvertrag:</strong>
-              <span data-de="Direktes Arbeitsvisum" data-uz="To'g'ridan-to'g'ri ish viza">Direktes Arbeitsvisum</span>
-            </li>
-            <li>🔍 <strong data-de="Ohne Vertrag:" data-uz="Shartnomasiz:">Ohne Vertrag:</strong> <span
-                data-de="Job-Seeker-Visum (6 Monate Jobsuche)"
-                data-uz="Ish izlash viza (6 oy davomida ish qidirish)">Job-Seeker-Visum (6 Monate Jobsuche)</span></li>
-          </ul>
-
-          <p><strong data-de="Gefragte Bereiche (hoher Bedarf):" data-uz="Talab yuqori bo'lgan so'rovlar:">Gefragte
-              Bereiche (hoher Bedarf):</strong></p>
-          <ul>
-            <li>💻 <span data-de="IT & Softwareentwicklung" data-uz="IT & dasturiy ta'minot ishlab chiqish">IT &
-                Softwareentwicklung</span></li>
-            <li>🏥 <span data-de="Medizin & Pflege" data-uz="Tibbiyot & parvarish">Medizin & Pflege</span></li>
-            <li>⚙️ <span data-de="Ingenieurwesen & Technik" data-uz="Injenerlik & texnologiya">Ingenieurwesen &
-                Technik</span></li>
-            <li>🤖 <span data-de="KI & Data Science" data-uz="Sun'iy intellekt & ma'lumotlar fanlari">KI & Data
-                Science</span></li>
-          </ul>
-
-          <p><strong data-de="Wichtig:" data-uz="Muhim:">Wichtig:</strong> <span
-              data-de="Systematisch arbeiten, Anforderungen erfüllen, auf dem aktuellen Stand bleiben!"
-              data-uz="Tizimli ishlaydigan, talablarga mos keladigan va dolzarb bo'lib qoling!">Systematisch arbeiten,
-              Anforderungen erfüllen, auf dem aktuellen Stand bleiben!</span></p>
-        </div>
-      </div>
-
-
-      </div>
-    </section>
-    <!-- RESULTS -->
-    <section class="section" id="results">
-      <div class="section-header">
-        <div class="section-tag" data-i18n="results.tag">ERFOLGSGESCHICHTEN</div>
-        <h2 class="section-title" data-i18n="results.title">Unsere Resultate</h2>
-        <p class="section-subtitle" data-i18n="results.subtitle">Au-pair, Ausbildung, Medizinische Fachangestellte,
-          Studium, Praktikum — real natijalar</p>
-      </div>
-
-      <div class="results-grid" id="resultsGrid">
-        <!-- Boshida 9 ta kartalar -->
-        <div class="result-card">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Sevinchoy.jpg" alt="Yusupova Sevinchoy" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Au-pair" data-uz="Au-pair">Au-pair</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Yusupova Sevinchoy</h3>
-            <p data-de="Visum für Au-pair Programm im Mai 2022 erhalten. Erfolgreiche Vermittlung nach Dresden, Sachsen."
-              data-uz="2022-yil may oyida Au-pair dasturi uchun viza oldi. Saksoniya, Drezdenga muvaffaqiyatli joylashtirildi.">
-              Visum für Au-pair Programm im Mai 2022 erhalten. Erfolgreiche Vermittlung nach Dresden, Sachsen.</p>
+            <p><strong data-de="Visa:" data-uz="Viza:">Visa:</strong> <span
+                data-de="Ja, die Botschaft stellt Visa für Ausbildung aus – mit guter Dokumentation und Vorbereitung."
+                data-uz="Ha, elchixona Ausbildung uchun viza beradi – yaxshi hujjatlar va tayyorgarlik bilan.">Ja, die
+                Botschaft stellt Visa für Ausbildung aus – mit guter Dokumentation und Vorbereitung.</span></p>
           </div>
         </div>
 
-        <div class="result-card">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Thi.jpg" alt="Bui Thi Phuong" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Au-pair" data-uz="Au-pair">Au-pair</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Bui Thi Phuong</h3>
-            <p data-de="Au-pair Visum im August 2022 bekommen. Erfolgreiche Integration in München, Bayern."
-              data-uz="2022-yil avgustda Au-pair vizasi oldi. Bavariya, Myunxenda muvaffaqiyatli integratsiya qilindi.">
-              Au-pair Visum im August 2022 bekommen. Erfolgreiche Integration in München, Bayern.</p>
+        <div id="germanyTab2" class="germany-tab-content">
+          <div class="germany-content-box">
+            <h3><span class="germany-tab-icon">👨‍👩‍👧</span> <span data-de="Au-pair Programm"
+                data-uz="Au-pair dasturi">Au-pair Programm</span></h3>
+            <p><strong data-de="Alter:" data-uz="Yosh:">Alter:</strong> <span data-de="18–26 Jahre"
+                data-uz="18–26 yosh">18–26 Jahre</span><br>
+              <strong data-de="Sprachniveau:" data-uz="Til darajasi:">Sprachniveau:</strong> <span
+                data-de="Grundkenntnisse Deutsch (A1-A2)"
+                data-uz="Nemis tilini boshlang'ich darajada bilish (A1-A2)">Grundkenntnisse Deutsch (A1-A2)</span>
+            </p>
+
+            <p><strong data-de="Leistungen der Gastfamilie:" data-uz="Mezbon oilaning ta'minoti:">Leistungen der
+                Gastfamilie:</strong></p>
+            <ul>
+              <li>🏠 <span data-de="Eigenes Zimmer" data-uz="Alohida xona">Eigenes Zimmer</span></li>
+              <li>🍽️ <span data-de="Vollverpflegung" data-uz="To'liq ovqatlanish">Vollverpflegung</span></li>
+              <li>💶 <span data-de="Taschengeld (~260€/Monat)" data-uz="Cho'ntak puli (~260€/oy)">Taschengeld
+                  (~260€/Monat)</span></li>
+              <li>📚 <span data-de="Oft Unterstützung bei Deutschkurs" data-uz="Ko'pincha nemis tili kursida yordam">Oft
+                  Unterstützung bei Deutschkurs</span></li>
+              <li>🚍 <span data-de="Öffentliche Verkehrsmittel (Monatskarte) oder Nutzung des Familienautos"
+                  data-uz="Jamoat transporti (oylik chipta) yoki oila mashinasidan foydalanish">Öffentliche
+                  Verkehrsmittel
+                  (Monatskarte) oder Nutzung des Familienautos</span></li>
+            </ul>
+
+            <p><strong data-de="Arbeitszeit:" data-uz="Ish vaqti:">Arbeitszeit:</strong> <span
+                data-de="30–35 Std/Woche + 2-3x/Woche Abendbetreuung"
+                data-uz="30–35 soat/hafta + hafta ichida 2-3 marta kechqurun qarash">30–35 Std/Woche + 2-3x/Woche
+                Abendbetreuung</span><br>
+              <strong data-de="Aufgaben:" data-uz="Vazifalar:">Aufgaben:</strong> <span
+                data-de="Kinderbetreuung (spielen, vorlesen, anziehen, füttern), leichte Hausarbeit (max. 50% der Arbeitszeit)"
+                data-uz="Bolalarga qarash (o'ynash, kitob o'qish, kiyintirish, ovqatlantirish), engil uy ishlar (maks. 50% ish vaqti)">Kinderbetreuung
+                (spielen, vorlesen, anziehen, füttern), leichte Hausarbeit (max. 50% der Arbeitszeit)</span>
+            </p>
+
+            <p><strong data-de="Freizeit:" data-uz="Bo'sh vaqt:">Freizeit:</strong> <span
+                data-de="Mind. 1,5 freie Tage/Monat" data-uz="Oyiga kamida 1,5 bo'sh kun">Mind. 1,5 freie
+                Tage/Monat</span><br>
+              <strong data-de="Urlaub:" data-uz="Ta'til:">Urlaub:</strong> <span
+                data-de="2 Wochen bei 10 Monaten, 4 Wochen bei 12 Monaten (bezahlt)"
+                data-uz="10 oyda 2 hafta, 12 oyda 4 hafta (haq to'lanadi)">2 Wochen bei 10 Monaten, 4 Wochen bei 12
+                Monaten (bezahlt)</span>
+            </p>
+
+            <p><strong data-de="Dauer:" data-uz="Davomiyligi:">Dauer:</strong> <span data-de="6–18 Monate"
+                data-uz="6–18 oy">6–18 Monate</span></p>
           </div>
         </div>
 
-        <div class="result-card">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Abdullokh.jpg" alt="Akhmadjonov Abdullokh" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Ausbildung" data-uz="O'qish">Ausbildung</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Akhmadjonov Abdullokh</h3>
-            <p data-de="Visum für Ausbildung als Hotelfachmann im September 2022. Ausbildung in Bayern bei München."
-              data-uz="2022-yil sentyabrda mehmonxona mutaxassisi sifatida o'qish uchun viza oldi. Bavariyada, Myunxen yaqinida o'qimoqda.">
-              Visum für Ausbildung als Hotelfachmann im September 2022. Ausbildung in Bayern bei München.</p>
+        <div id="germanyTab3" class="germany-tab-content">
+          <div class="germany-content-box">
+            <h3><span class="germany-tab-icon">🤝</span> <span data-de="Freiwilligendienste (FSJ/FÖJ/BFD)"
+                data-uz="Volontyorlik amaliyoti (FSJ/FÖJ/BFD)">Freiwilligendienste (FSJ/FÖJ/BFD)</span></h3>
+            <p><strong data-de="Dauer:" data-uz="Davomiyligi:">Dauer:</strong> <span data-de="6–18 Monate"
+                data-uz="6–18 oy">6–18 Monate</span><br>
+              <strong data-de="Bereiche:" data-uz="So'rovlar:">Bereiche:</strong> <span
+                data-de="Sozial (Altenheim, Kindergarten, Krankenhaus), Ökologie (Naturschutz, Forstwirtschaft), Sport"
+                data-uz="Ijtimoiy (qariyalar uyi, bog'cha, kasalxona), ekologiya (tabiatni qo'riqlash, o'rmon xo'jaligi), sport">Sozial
+                (Altenheim, Kindergarten, Krankenhaus), Ökologie (Naturschutz, Forstwirtschaft), Sport</span>
+            </p>
+
+            <p><strong data-de="Leistungen:" data-uz="Ta'minlanishi:">Leistungen:</strong></p>
+            <ul>
+              <li>💰 <span data-de="Taschengeld: 300–560€/Monat" data-uz="Cho'ntak puli: 300–560€/oy">Taschengeld:
+                  300–560€/Monat</span></li>
+              <li>🏠 <span data-de="Oft kostenlose Unterkunft" data-uz="Ko'pincha bepul yotoqxona">Oft kostenlose
+                  Unterkunft</span></li>
+              <li>🚇 <span data-de="Teils kostenlose Monatskarte ÖPNV"
+                  data-uz="Ba'zan bepul jamoat transporti oylik chiptasi">Teils kostenlose Monatskarte ÖPNV</span></li>
+              <li>🏖️ <span data-de="~26 Tage Jahresurlaub" data-uz="~26 kun yillik ta'til">~26 Tage Jahresurlaub</span>
+              </li>
+            </ul>
+
+            <p><strong data-de="Arbeitszeit:" data-uz="Ish vaqti:">Arbeitszeit:</strong> <span data-de="40 Std/Woche"
+                data-uz="40 soat/hafta">40 Std/Woche</span><br>
+              <strong data-de="Wichtig:" data-uz="Muhim:">Wichtig:</strong> <span
+                data-de="Während des Dienstes ist bezahlte Arbeit verboten."
+                data-uz="Amaliyot davrida haq to'lanadigan ish qilish taqiqlangan">Während des Dienstes ist bezahlte
+                Arbeit verboten.</span>
+            </p>
+
+            <p><strong data-de="Anforderungen:" data-uz="Talablar:">Anforderungen:</strong></p>
+            <ul>
+              <li>🗣️ <strong data-de="Deutsch:" data-uz="Nemis tili:">Deutsch:</strong> <span
+                  data-de="Mindestens B1 empfohlen (rechtlich A1 möglich, aber schwierig)"
+                  data-uz="Kamida B1 tavsiya etiladi (qonunan A1 bilan mumkin, lekin qiyin)">Mindestens B1 empfohlen
+                  (rechtlich A1 möglich, aber schwierig)</span></li>
+              <li>🎂 <strong data-de="FSJ/FÖJ:" data-uz="FSJ/FÖJ:">FSJ/FÖJ:</strong> <span data-de="Unter 27 Jahre"
+                  data-uz="27 yoshdan kichik">Unter 27 Jahre</span></li>
+              <li>🎂 <strong data-de="BFD:" data-uz="BFD:">BFD:</strong> <span data-de="Keine Altersgrenze"
+                  data-uz="Yosh chegarasi yo'q">Keine Altersgrenze</span></li>
+            </ul>
           </div>
         </div>
 
-        <div class="result-card">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Charos.jpg" alt="Charos Boltaeva" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Au-pair" data-uz="Au-pair">Au-pair</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Charos Boltaeva</h3>
-            <p data-de="Au-pair Visum im September 2022. Erfolgreiche Platzierung in Bayern."
-              data-uz="2022-yil sentyabrda Au-pair vizasi oldi. Bavariyada muvaffaqiyatli joylashdi.">Au-pair Visum im
-              September 2022. Erfolgreiche Platzierung in Bayern.</p>
+        <div id="germanyTab4" class="germany-tab-content">
+          <div class="germany-content-box">
+            <h3><span class="germany-tab-icon">🗣️</span> <span data-de="Sprachkurs in Deutschland"
+                data-uz="Germaniyada til kursi">Sprachkurs in Deutschland</span></h3>
+            <p><span
+                data-de="Direkter Sprachkurs in Deutschland – optimal, um Zeit zu sparen, schneller zu integrieren und Chancen zu erkennen."
+                data-uz="Germaniyada to'g'ridan-to'g'ri til kursi – vaqtni tejash, tezroq moslashish va imkoniyatlarni payqash uchun optimal">Direkter
+                Sprachkurs in Deutschland – optimal, um Zeit zu sparen, schneller zu integrieren und Chancen zu
+                erkennen.</span></p>
+
+            <p><strong data-de="Benötigte Unterlagen:" data-uz="Kerakli hujjatlar:">Benötigte Unterlagen:</strong></p>
+            <ul>
+              <li>📄 <strong data-de="Sprachkursvertrag:" data-uz="Til kursi shartnomasi:">Sprachkursvertrag:</strong>
+                <span data-de="Mind. 6 Monate, offline (präsenz), intensiv ≥18 Std/Woche"
+                  data-uz="Kamida 6 oy, offline (jonli), intensiv ≥18 soat/hafta">Mind. 6 Monate, offline (präsenz),
+                  intensiv ≥18 Std/Woche</span>
+              </li>
+              <li>🎓 <strong data-de="Bildungsnachweise:" data-uz="Ta'lim hujjatlari:">Bildungsnachweise:</strong> <span
+                  data-de="Abschlusszeugnisse, Diplome (notariell auf Deutsch übersetzt)"
+                  data-uz="Shahodatnomalar, diplomlar (notarial nemischa tarjimasi bilan)">Abschlusszeugnisse, Diplome
+                  (notariell auf Deutsch übersetzt)</span></li>
+              <li>💶 <strong data-de="Sperrkonto:" data-uz="Sperrkonto:">Sperrkonto:</strong> <span
+                  data-de="Mind. für 6 Monate (aktuell 934€/Monat = 11.208€/Jahr ab 01.01.2023)"
+                  data-uz="Kamida 6 oy uchun (hozirda 934€/oy = 11.208€/yil, 2023-yil 1-yanvardan)">Mind. für 6 Monate
+                  (aktuell 934€/Monat = 11.208€/Jahr ab 01.01.2023)</span></li>
+              <li>🏥 <strong data-de="Krankenversicherung" data-uz="Tibbiy sug'urta">Krankenversicherung</strong> <span
+                  data-de="(nach Visum für Botschaft)" data-uz="(viza chiqqandan keyin elchixonaga)"> (nach Visum für
+                  Botschaft)</span></li>
+              <li>📝 <strong data-de="Lebenslauf (CV)" data-uz="Tarjimai hol (CV)">Lebenslauf (CV)</strong></li>
+              <li>✍️ <strong data-de="Motivationsschreiben" data-uz="Motivatsiya xati">Motivationsschreiben</strong>
+              </li>
+              <li>🛂 <strong data-de="Reisepass" data-uz="Pass">Reisepass</strong></li>
+              <li>🗣️ <strong data-de="Deutschzertifikat" data-uz="Nemis tili sertifikati">Deutschzertifikat</strong>
+                <span data-de="(falls vorhanden – wichtig für Visa!)"
+                  data-uz="(agar mavjud bo'lsa – viza uchun muhim!)">(falls vorhanden – wichtig für Visa!)</span>
+              </li>
+              <li>📸 <strong data-de="Biometrische Fotos" data-uz="Biometrik suratlar">Biometrische Fotos</strong> <span
+                  data-de="(3×5 & 4×5, 3 Stück)" data-uz="(3×5 & 4×5, 3 dona)">(3×5 & 4×5, 3 Stück)</span></li>
+            </ul>
+
+            <p><strong data-de="Wichtig:" data-uz="Muhim:">Wichtig:</strong></p>
+            <ul>
+              <li>❌ <span data-de="Während des Sprachkurses darf man nicht arbeiten!"
+                  data-uz="Til kursi davomida ishlash mumkin emas!">Während des Sprachkurses darf man nicht
+                  arbeiten!</span></li>
+              <li>🎯 <span data-de="Nach dem Kurs: Begründung für Weiterstay (z.B. Ausbildung, Studienkolleg, Studium)"
+                  data-uz="Kursdan keyin: qolish sababi (masalan, Ausbildung, Studienkolleg, oliy ta'lim)">Nach dem
+                  Kurs:
+                  Begründung für Weiterstay (z.B. Ausbildung, Studienkolleg, Studium)</span></li>
+              <li>🗣️ <span data-de="Interview in der Botschaft ist einfacher als bei anderen Visa"
+                  data-uz="Elchixonadagi suhbat boshqa vizalarga qaraganda osonroq">Interview in der Botschaft ist
+                  einfacher als bei anderen Visa</span></li>
+            </ul>
           </div>
         </div>
 
-        <div class="result-card">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Ezoza.jpg" alt="Inomjonova E'zozakhon" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Au-pair" data-uz="Au-pair">Au-pair</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Inomjonova E'zozakhon</h3>
-            <p data-de="Au-pair Visum im August 2022. Tätig in Baden-Württemberg."
-              data-uz="2022-yil avgustda Au-pair vizasi oldi. Baden-Vyurttembergda faoliyat yuritmoqda.">Au-pair Visum
-              im August 2022. Tätig in Baden-Württemberg.</p>
+        <div id="germanyTab5" class="germany-tab-content">
+          <div class="germany-content-box">
+            <h3><span class="germany-tab-icon">🎓</span> <span data-de="Studium (Bachelor/Master/PhD)"
+                data-uz="Oliy ta'lim (Bakalavr/Magistr/PhD)">Studium (Bachelor/Master/PhD)</span></h3>
+            <p><strong data-de="Plattform:" data-uz="Platforma:">Plattform:</strong> <span
+                data-de="<a href='https://www.uni-assist.de' target='_blank' style='color:var(--accent)'>www.uni-assist.de</a> – Infos und Services zur Bewerbung an deutschen Hochschulen (kostenpflichtig)"
+                data-uz="<a href='https://www.uni-assist.de' target='_blank' style='color:var(--accent)'>www.uni-assist.de</a> – Germaniya oliygohlariga hujjat topshirish uchun ma'lumot va xizmatlar (pullik)">
+                <a href="https://www.uni-assist.de" target="_blank" style="color:var(--accent)">www.uni-assist.de</a> –
+                Infos und Services zur Bewerbung an deutschen Hochschulen (kostenpflichtig)</span></p>
+
+            <p><strong data-de="Sprachanforderungen:" data-uz="Til talablari:">Sprachanforderungen:</strong></p>
+            <ul>
+              <li>🇩🇪 <strong data-de="Deutschsprachige Programme:"
+                  data-uz="Nemis tilidagi dasturlar:">Deutschsprachige
+                  Programme:</strong> <span data-de="Meist C1 (manche B2)" data-uz="Odatda C1 (ba'zilari B2)">Meist C1
+                  (manche B2)</span></li>
+              <li>🇬🇧 <strong data-de="Englischsprachige Programme:"
+                  data-uz="Ingliz tilidagi dasturlar:">Englischsprachige Programme:</strong> <span
+                  data-de="IELTS 6.0–6.5" data-uz="IELTS 6.0–6.5">IELTS 6.0–6.5</span></li>
+              <li>📚 <span data-de="Auch bei englischem Studium: Deutsch lernen ist Pflicht (Amtssprache!)"
+                  data-uz="Ingliz tilida o'qishda ham: nemis tilini o'rganish majburiy (davlat tili!)">Auch bei
+                  englischem
+                  Studium: Deutsch lernen ist Pflicht (Amtssprache!)</span></li>
+            </ul>
+
+            <p><strong data-de="Duales Studium:" data-uz="Dual ta'lim:">Duales Studium:</strong> <span
+                data-de="Wie Ausbildung, aber mit Hochschulabschluss. Viel Praxis + Theorie → schneller Jobeinstieg nach Abschluss."
+                data-uz="Ausbildungga o'xshaydi, lekin oliy ta'lim diplomisi bilan. Ko'p amaliyot + nazariya → tugatgandan keyin tezroq ish topish">Wie
+                Ausbildung, aber mit Hochschulabschluss. Viel Praxis + Theorie → schneller Jobeinstieg nach
+                Abschluss.</span></p>
+
+            <p><strong data-de="Stipendien (Auswahl):" data-uz="Grantlar (tanlov):">Stipendien (Auswahl):</strong></p>
+            <ul>
+              <li>🏆 <span data-de="DAAD, Heinrich Seidel, Konrad Adenauer, Erasmus+, Copernicus"
+                  data-uz="DAAD, Heinrich Seidel, Konrad Adenauer, Erasmus+, Copernicus">DAAD, Heinrich Seidel, Konrad
+                  Adenauer, Erasmus+, Copernicus</span></li>
+              <li>🏆 <span data-de="Deutschlandstipendium, Heinrich Böll, Fulbright, Friedrich-Naumann-Stiftung"
+                  data-uz="Deutschlandstipendium, Heinrich Böll, Fulbright, Friedrich-Naumann-Stiftung">Deutschlandstipendium,
+                  Heinrich Böll, Fulbright, Friedrich-Naumann-Stiftung</span></li>
+              <li>🏆 <span data-de="Avicenna, Cusanuswerk, Studienstiftung des Deutschen Volkes, Hans Böckler u.a."
+                  data-uz="Avicenna, Cusanuswerk, Studienstiftung des Deutschen Volkes, Hans Böckler va boshqalar">Avicenna,
+                  Cusanuswerk, Studienstiftung des Deutschen Volkes, Hans Böckler u.a.</span></li>
+              <li>💰 <strong data-de="Förderung:" data-uz="Ko'mak:">Förderung:</strong> <span
+                  data-de="1000–1200€/Monat für Bachelor/Master"
+                  data-uz="Bakalavr/Magistr uchun 1000–1200€/oy">1000–1200€/Monat für Bachelor/Master</span></li>
+              <li>💰 <strong data-de="PhD:" data-uz="PhD:">PhD:</strong> <span data-de="1000–2500€/Monat"
+                  data-uz="1000–2500€/oy">1000–2500€/Monat</span></li>
+            </ul>
+
+            <p><strong data-de="Gebühren:" data-uz="To'lovlar:">Gebühren:</strong> <span
+                data-de="Staatliche Unis oft gebührenfrei (nur Semesterbeitrag ~300€)"
+                data-uz="Davlat oliygohlari ko'pincha bepul (faqat semester to'lovi ~300€)">Staatliche Unis oft
+                gebührenfrei (nur Semesterbeitrag ~300€)</span></p>
           </div>
         </div>
 
-        <div class="result-card">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Gulinargiz.jpg" alt="Gulinargiz Khurramova" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Ausbildung" data-uz="O'qish">Ausbildung</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Gulinargiz Khurramova</h3>
-            <p data-de="Ausbildungsvisum als Zahnmedizinische Fachangestellte im August 2022. Arbeitet in Jena, Thüringen."
-              data-uz="2022-yil avgustda stomatologiya bo'yicha mutaxassis sifatida o'qish vizasi oldi. Tyuringiya, Yenada ishlamoqda.">
-              Ausbildungsvisum als Zahnmedizinische Fachangestellte im August 2022. Arbeitet in Jena, Thüringen.</p>
+        <div id="germanyTab6" class="germany-tab-content">
+          <div class="germany-content-box">
+            <h3><span class="germany-tab-icon">🧑‍⚕️</span> <span data-de="Direkteinstieg als Fachkraft"
+                data-uz="Mutaxassis sifatida to'g'ridan-to'g'ri kirish">Direkteinstieg als Fachkraft</span></h3>
+            <p><strong data-de="Voraussetzungen:" data-uz="Talablar:">Voraussetzungen:</strong></p>
+            <ul>
+              <li>🎓 <span data-de="Hochschulabschluss" data-uz="Oliy ta'lim diplomisi">Hochschulabschluss</span></li>
+              <li>💼 <span data-de="Berufserfahrung & Qualifikationen"
+                  data-uz="Ish tajribasi & malakalar">Berufserfahrung
+                  & Qualifikationen</span></li>
+              <li>🗣️ <span data-de="Deutsch B2-Niveau" data-uz="Nemis tili B2 darajasi">Deutsch B2-Niveau</span></li>
+            </ul>
+
+            <p><strong data-de="Visum-Optionen:" data-uz="Viza variantlari:">Visum-Optionen:</strong></p>
+            <ul>
+              <li>✅ <strong data-de="Mit Arbeitsvertrag:" data-uz="Ish shartnomasi bilan:">Mit Arbeitsvertrag:</strong>
+                <span data-de="Direktes Arbeitsvisum" data-uz="To'g'ridan-to'g'ri ish viza">Direktes Arbeitsvisum</span>
+              </li>
+              <li>🔍 <strong data-de="Ohne Vertrag:" data-uz="Shartnomasiz:">Ohne Vertrag:</strong> <span
+                  data-de="Job-Seeker-Visum (6 Monate Jobsuche)"
+                  data-uz="Ish izlash viza (6 oy davomida ish qidirish)">Job-Seeker-Visum (6 Monate Jobsuche)</span>
+              </li>
+            </ul>
+
+            <p><strong data-de="Gefragte Bereiche (hoher Bedarf):" data-uz="Talab yuqori bo'lgan so'rovlar:">Gefragte
+                Bereiche (hoher Bedarf):</strong></p>
+            <ul>
+              <li>💻 <span data-de="IT & Softwareentwicklung" data-uz="IT & dasturiy ta'minot ishlab chiqish">IT &
+                  Softwareentwicklung</span></li>
+              <li>🏥 <span data-de="Medizin & Pflege" data-uz="Tibbiyot & parvarish">Medizin & Pflege</span></li>
+              <li>⚙️ <span data-de="Ingenieurwesen & Technik" data-uz="Injenerlik & texnologiya">Ingenieurwesen &
+                  Technik</span></li>
+              <li>🤖 <span data-de="KI & Data Science" data-uz="Sun'iy intellekt & ma'lumotlar fanlari">KI & Data
+                  Science</span></li>
+            </ul>
+
+            <p><strong data-de="Wichtig:" data-uz="Muhim:">Wichtig:</strong> <span
+                data-de="Systematisch arbeiten, Anforderungen erfüllen, auf dem aktuellen Stand bleiben!"
+                data-uz="Tizimli ishlaydigan, talablarga mos keladigan va dolzarb bo'lib qoling!">Systematisch arbeiten,
+                Anforderungen erfüllen, auf dem aktuellen Stand bleiben!</span></p>
           </div>
         </div>
 
-        <div class="result-card">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Orzigul.jpg" alt="Orzugul Murodova" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Ausbildung" data-uz="O'qish">Ausbildung</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Orzugul Murodova</h3>
-            <p data-de="Ausbildungsvisum als Steuerfachangestellte im August 2022. Tätig in Duisburg, NRW."
-              data-uz="2022-yil avgustda soliq bo'yicha mutaxassis sifatida o'qish vizasi oldi. Shimoliy Reyn-Vestfaliya, Duisburgda ishlamoqda.">
-              Ausbildungsvisum als Steuerfachangestellte im August 2022. Tätig in Duisburg, NRW.</p>
-          </div>
+
+        </div>
+      </section>
+      <!-- RESULTS -->
+      <section class="section" id="results">
+        <div class="section-header">
+          <div class="section-tag" data-i18n="results.tag">ERFOLGSGESCHICHTEN</div>
+          <h2 class="section-title" data-i18n="results.title">Unsere Resultate</h2>
+          <p class="section-subtitle" data-i18n="results.subtitle">Au-pair, Ausbildung, Medizinische Fachangestellte,
+            Studium, Praktikum — real natijalar</p>
         </div>
 
-        <div class="result-card">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Shakhriddin.jpg" alt="Shakhriddin Korakhanov" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Ausbildung" data-uz="O'qish">Ausbildung</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Shakhriddin Korakhanov</h3>
-            <p data-de="Ausbildungsvisum für Hotel Management im September 2022. Ausbildung in Berlin."
-              data-uz="2022-yil sentyabrda mehmonxona menejmentida o'qish vizasi oldi. Berlinda o'qimoqda.">
-              Ausbildungsvisum für Hotel Management im September 2022. Ausbildung in Berlin.</p>
-          </div>
-        </div>
-
-        <div class="result-card">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Marjona.jpg" alt="Marjona Kuvondikova" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Ausbildung" data-uz="O'qish">Ausbildung</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Marjona Kuvondikova</h3>
-            <p data-de="Ausbildungsvisum als Zahnmedizinische Fachangestellte im Oktober 2022. Arbeitet in Jena, Thüringen."
-              data-uz="2022-yil oktyabrda stomatologiya bo'yicha mutaxassis sifatida o'qish vizasi oldi. Tyuringiya, Yenada ishlamoqda.">
-              Ausbildungsvisum als Zahnmedizinische Fachangestellte im Oktober 2022. Arbeitet in Jena, Thüringen.</p>
-          </div>
-        </div>
-
-        <!-- Yana 9 ta kartalar (dastlab yashirin) -->
-        <div class="result-card hidden">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Aziza.jpg" alt="Aziza Rahimova" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Studium" data-uz="Oliy ta'lim">Studium</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Aziza Rahimova</h3>
-            <p data-de="Studienvisum für Medizin im November 2022. Studiert in Heidelberg."
-              data-uz="2022-yil noyabrda tibbiyot bo'yicha o'qish vizasi oldi. Xaydelbergda o'qiydi.">Studienvisum für
-              Medizin im November 2022. Studiert in Heidelberg.</p>
-          </div>
-        </div>
-
-        <div class="result-card hidden">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Farhod.jpg" alt="Farhod Ismailov" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Praktikum" data-uz="Amaliyot">Praktikum</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Farhod Ismailov</h3>
-            <p data-de="Praktikumsvisum im Dezember 2022. Arbeitet bei einem IT-Unternehmen in Hamburg."
-              data-uz="2022-yil dekabrda amaliyot vizasi oldi. Gamburgdagi IT kompaniyasida ishlaydi.">Praktikumsvisum
-              im Dezember 2022. Arbeitet bei einem IT-Unternehmen in Hamburg.</p>
-          </div>
-        </div>
-
-        <div class="result-card hidden">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Sabohat.jpg" alt="Sabohat Xolmatova" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Fachkraft" data-uz="Mutaxassis">Fachkraft</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Sabohat Xolmatova</h3>
-            <p data-de="Arbeitsvisum als IT-Spezialistin im Januar 2023. Tätig in Frankfurt."
-              data-uz="2023-yil yanvarda IT mutaxassisi sifatida ish vizasi oldi. Frankfurtda ishlaydi.">Arbeitsvisum
-              als IT-Spezialistin im Januar 2023. Tätig in Frankfurt.</p>
-          </div>
-        </div>
-
-        <div class="result-card hidden">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Dilshod.jpg" alt="Dilshod Muminov" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Studium" data-uz="Oliy ta'lim">Studium</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Dilshod Muminov</h3>
-            <p data-de="Studienvisum für Ingenieurwissenschaften im Februar 2023. Studiert in Stuttgart."
-              data-uz="2023-yil fevralda injenerlik fanlari bo'yicha o'qish vizasi oldi. Shtutgartda o'qiydi.">
-              Studienvisum für Ingenieurwissenschaften im Februar 2023. Studiert in Stuttgart.</p>
-          </div>
-        </div>
-
-        <div class="result-card hidden">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Nodira.jpg" alt="Nodira Abdullaeva" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Praktikum" data-uz="Amaliyot">Praktikum</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Nodira Abdullaeva</h3>
-            <p data-de="Praktikumsvisum im März 2023. Tätig in einem Krankenhaus in Köln."
-              data-uz="2023-yil martda amaliyot vizasi oldi. Kyolndagi kasalxonada ishlaydi.">Praktikumsvisum im März
-              2023. Tätig in einem Krankenhaus in Köln.</p>
-          </div>
-        </div>
-
-        <div class="result-card hidden">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Rustam.jpg" alt="Rustam Qodirov" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Fachkraft" data-uz="Mutaxassis">Fachkraft</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Rustam Qodirov</h3>
-            <p data-de="Arbeitsvisum als Ingenieur im April 2023. Arbeitet in München."
-              data-uz="2023-yil aprelida injener sifatida ish vizasi oldi. Myunxenda ishlaydi.">Arbeitsvisum als
-              Ingenieur im April 2023. Arbeitet in München.</p>
-          </div>
-        </div>
-
-        <div class="result-card hidden">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Zarina.jpg" alt="Zarina Saidova" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Studium" data-uz="Oliy ta'lim">Studium</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Zarina Saidova</h3>
-            <p data-de="Studienvisum für Wirtschaftswissenschaften im Mai 2023. Studiert in Berlin."
-              data-uz="2023-yil mayda iqtisodiyot fanlari bo'yicha o'qish vizasi oldi. Berlinda o'qiydi.">Studienvisum
-              für Wirtschaftswissenschaften im Mai 2023. Studiert in Berlin.</p>
-          </div>
-        </div>
-
-        <div class="result-card hidden">
-          <div class="result-img-wrapper">
-            <img src="img/germany/Javohir.jpg" alt="Javohir Abdurahmonov" class="result-img">
-            <div class="result-overlay">
-              <span class="result-badge" data-de="Praktikum" data-uz="Amaliyot">Praktikum</span>
-            </div>
-          </div>
-          <div class="result-content">
-            <h3>Javohir Abdurahmonov</h3>
-            <p data-de="Praktikumsvisum im Juni 2023. Tätig in einem Technologieunternehmen in Leipzig."
-              data-uz="2023-yil iyunda amaliyot vizasi oldi. Leyptsigdagi texnologiya kompaniyasida ishlaydi.">
-              Praktikumsvisum im Juni 2023. Tätig in einem Technologieunternehmen in Leipzig.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Ko'proq tugmasi -->
-      <div class="more-button-container" id="moreButtonContainer">
-        <button class="more-button" onclick="loadMoreResults()">Ko‘proq</button>
-      </div>
-    </section>
-    <!-- MODERN FOOTER -->
-    <footer class="modern-footer" id="contact">
-      <div class="footer-container">
-        <!-- Column 1: About -->
-        <div class="footer-col footer-about">
-          <div class="footer-logo">
-            <div class="footer-logo-icon">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <rect width="40" height="40" rx="10" fill="url(#gradient)" />
-                <path d="M12 20h7v-7M28 20h-7v7" stroke="white" stroke-width="3" stroke-linecap="round" />
-                <defs>
-                  <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
-                    <stop offset="0%" stop-color="#4a90e2" />
-                    <stop offset="100%" stop-color="#67b5ff" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div>
-              <h3>EuroLink</h3>
-              <p data-i18n="footer.tagline">Consulting Group</p>
-            </div>
-          </div>
-          <p class="footer-description" data-i18n="footer.description">
-            Yevropa davlatlari, xususan Germaniya, Avstriya va boshqa mamlakatlardan ta'lim olish, ish topish va hayot
-            qurishda professional yordam beramiz.
-          </p>
-          <div class="footer-social">
-            <a href="https://t.me/Eurolink_consulting" target="_blank" class="footer-social-btn" aria-label="Telegram">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.121.099.155.232.171.326.016.094.037.308.021.475z" />
-              </svg>
-            </a>
-            <a href="https://www.instagram.com/eurolink_cg/" target="_blank" class="footer-social-btn"
-              aria-label="Instagram">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-              </svg>
-            </a>
-            <a href="https://www.facebook.com/groups/1586290418418966/" target="_blank" class="footer-social-btn"
-              aria-label="Facebook">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Column 2: Contact -->
-        <div class="footer-col">
-          <h4 data-i18n="footer.contact">Aloqa</h4>
-          <ul class="footer-links">
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <div>
-                <a href="tel:+491629418261">+49 162 9418261</a>
-                <a href="tel:+998977736535">+998 97 773 6535</a>
+        <div class="results-grid" id="resultsGrid">
+          <!-- Boshida 9 ta kartalar -->
+          <div class="result-card">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Sevinchoy.jpg" alt="Yusupova Sevinchoy" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Au-pair" data-uz="Au-pair">Au-pair</span>
               </div>
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              <div>
-                <a href="mailto:eurolink.consulting@gmail.com">eurolink.consulting@gmail.com</a>
+            </div>
+            <div class="result-content">
+              <h3>Yusupova Sevinchoy</h3>
+              <p data-de="Visum für Au-pair Programm im Mai 2022 erhalten. Erfolgreiche Vermittlung nach Dresden, Sachsen."
+                data-uz="2022-yil may oyida Au-pair dasturi uchun viza oldi. Saksoniya, Drezdenga muvaffaqiyatli joylashtirildi.">
+                Visum für Au-pair Programm im Mai 2022 erhalten. Erfolgreiche Vermittlung nach Dresden, Sachsen.</p>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Thi.jpg" alt="Bui Thi Phuong" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Au-pair" data-uz="Au-pair">Au-pair</span>
               </div>
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <div>
-                <span data-i18n="footer.address">Bunyodkor ko'chasi 1, Toshkent, O'zbekiston</span>
+            </div>
+            <div class="result-content">
+              <h3>Bui Thi Phuong</h3>
+              <p data-de="Au-pair Visum im August 2022 bekommen. Erfolgreiche Integration in München, Bayern."
+                data-uz="2022-yil avgustda Au-pair vizasi oldi. Bavariya, Myunxenda muvaffaqiyatli integratsiya qilindi.">
+                Au-pair Visum im August 2022 bekommen. Erfolgreiche Integration in München, Bayern.</p>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Abdullokh.jpg" alt="Akhmadjonov Abdullokh" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Ausbildung" data-uz="O'qish">Ausbildung</span>
               </div>
-            </li>
-          </ul>
+            </div>
+            <div class="result-content">
+              <h3>Akhmadjonov Abdullokh</h3>
+              <p data-de="Visum für Ausbildung als Hotelfachmann im September 2022. Ausbildung in Bayern bei München."
+                data-uz="2022-yil sentyabrda mehmonxona mutaxassisi sifatida o'qish uchun viza oldi. Bavariyada, Myunxen yaqinida o'qimoqda.">
+                Visum für Ausbildung als Hotelfachmann im September 2022. Ausbildung in Bayern bei München.</p>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Charos.jpg" alt="Charos Boltaeva" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Au-pair" data-uz="Au-pair">Au-pair</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Charos Boltaeva</h3>
+              <p data-de="Au-pair Visum im September 2022. Erfolgreiche Platzierung in Bayern."
+                data-uz="2022-yil sentyabrda Au-pair vizasi oldi. Bavariyada muvaffaqiyatli joylashdi.">Au-pair Visum im
+                September 2022. Erfolgreiche Platzierung in Bayern.</p>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Ezoza.jpg" alt="Inomjonova E'zozakhon" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Au-pair" data-uz="Au-pair">Au-pair</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Inomjonova E'zozakhon</h3>
+              <p data-de="Au-pair Visum im August 2022. Tätig in Baden-Württemberg."
+                data-uz="2022-yil avgustda Au-pair vizasi oldi. Baden-Vyurttembergda faoliyat yuritmoqda.">Au-pair Visum
+                im August 2022. Tätig in Baden-Württemberg.</p>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Gulinargiz.jpg" alt="Gulinargiz Khurramova" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Ausbildung" data-uz="O'qish">Ausbildung</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Gulinargiz Khurramova</h3>
+              <p data-de="Ausbildungsvisum als Zahnmedizinische Fachangestellte im August 2022. Arbeitet in Jena, Thüringen."
+                data-uz="2022-yil avgustda stomatologiya bo'yicha mutaxassis sifatida o'qish vizasi oldi. Tyuringiya, Yenada ishlamoqda.">
+                Ausbildungsvisum als Zahnmedizinische Fachangestellte im August 2022. Arbeitet in Jena, Thüringen.</p>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Orzigul.jpg" alt="Orzugul Murodova" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Ausbildung" data-uz="O'qish">Ausbildung</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Orzugul Murodova</h3>
+              <p data-de="Ausbildungsvisum als Steuerfachangestellte im August 2022. Tätig in Duisburg, NRW."
+                data-uz="2022-yil avgustda soliq bo'yicha mutaxassis sifatida o'qish vizasi oldi. Shimoliy Reyn-Vestfaliya, Duisburgda ishlamoqda.">
+                Ausbildungsvisum als Steuerfachangestellte im August 2022. Tätig in Duisburg, NRW.</p>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Shakhriddin.jpg" alt="Shakhriddin Korakhanov" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Ausbildung" data-uz="O'qish">Ausbildung</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Shakhriddin Korakhanov</h3>
+              <p data-de="Ausbildungsvisum für Hotel Management im September 2022. Ausbildung in Berlin."
+                data-uz="2022-yil sentyabrda mehmonxona menejmentida o'qish vizasi oldi. Berlinda o'qimoqda.">
+                Ausbildungsvisum für Hotel Management im September 2022. Ausbildung in Berlin.</p>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Marjona.jpg" alt="Marjona Kuvondikova" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Ausbildung" data-uz="O'qish">Ausbildung</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Marjona Kuvondikova</h3>
+              <p data-de="Ausbildungsvisum als Zahnmedizinische Fachangestellte im Oktober 2022. Arbeitet in Jena, Thüringen."
+                data-uz="2022-yil oktyabrda stomatologiya bo'yicha mutaxassis sifatida o'qish vizasi oldi. Tyuringiya, Yenada ishlamoqda.">
+                Ausbildungsvisum als Zahnmedizinische Fachangestellte im Oktober 2022. Arbeitet in Jena, Thüringen.</p>
+            </div>
+          </div>
+
+          <!-- Yana 9 ta kartalar (dastlab yashirin) -->
+          <div class="result-card hidden">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Aziza.jpg" alt="Aziza Rahimova" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Studium" data-uz="Oliy ta'lim">Studium</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Aziza Rahimova</h3>
+              <p data-de="Studienvisum für Medizin im November 2022. Studiert in Heidelberg."
+                data-uz="2022-yil noyabrda tibbiyot bo'yicha o'qish vizasi oldi. Xaydelbergda o'qiydi.">Studienvisum für
+                Medizin im November 2022. Studiert in Heidelberg.</p>
+            </div>
+          </div>
+
+          <div class="result-card hidden">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Farhod.jpg" alt="Farhod Ismailov" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Praktikum" data-uz="Amaliyot">Praktikum</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Farhod Ismailov</h3>
+              <p data-de="Praktikumsvisum im Dezember 2022. Arbeitet bei einem IT-Unternehmen in Hamburg."
+                data-uz="2022-yil dekabrda amaliyot vizasi oldi. Gamburgdagi IT kompaniyasida ishlaydi.">Praktikumsvisum
+                im Dezember 2022. Arbeitet bei einem IT-Unternehmen in Hamburg.</p>
+            </div>
+          </div>
+
+          <div class="result-card hidden">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Sabohat.jpg" alt="Sabohat Xolmatova" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Fachkraft" data-uz="Mutaxassis">Fachkraft</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Sabohat Xolmatova</h3>
+              <p data-de="Arbeitsvisum als IT-Spezialistin im Januar 2023. Tätig in Frankfurt."
+                data-uz="2023-yil yanvarda IT mutaxassisi sifatida ish vizasi oldi. Frankfurtda ishlaydi.">Arbeitsvisum
+                als IT-Spezialistin im Januar 2023. Tätig in Frankfurt.</p>
+            </div>
+          </div>
+
+          <div class="result-card hidden">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Dilshod.jpg" alt="Dilshod Muminov" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Studium" data-uz="Oliy ta'lim">Studium</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Dilshod Muminov</h3>
+              <p data-de="Studienvisum für Ingenieurwissenschaften im Februar 2023. Studiert in Stuttgart."
+                data-uz="2023-yil fevralda injenerlik fanlari bo'yicha o'qish vizasi oldi. Shtutgartda o'qiydi.">
+                Studienvisum für Ingenieurwissenschaften im Februar 2023. Studiert in Stuttgart.</p>
+            </div>
+          </div>
+
+          <div class="result-card hidden">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Nodira.jpg" alt="Nodira Abdullaeva" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Praktikum" data-uz="Amaliyot">Praktikum</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Nodira Abdullaeva</h3>
+              <p data-de="Praktikumsvisum im März 2023. Tätig in einem Krankenhaus in Köln."
+                data-uz="2023-yil martda amaliyot vizasi oldi. Kyolndagi kasalxonada ishlaydi.">Praktikumsvisum im März
+                2023. Tätig in einem Krankenhaus in Köln.</p>
+            </div>
+          </div>
+
+          <div class="result-card hidden">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Rustam.jpg" alt="Rustam Qodirov" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Fachkraft" data-uz="Mutaxassis">Fachkraft</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Rustam Qodirov</h3>
+              <p data-de="Arbeitsvisum als Ingenieur im April 2023. Arbeitet in München."
+                data-uz="2023-yil aprelida injener sifatida ish vizasi oldi. Myunxenda ishlaydi.">Arbeitsvisum als
+                Ingenieur im April 2023. Arbeitet in München.</p>
+            </div>
+          </div>
+
+          <div class="result-card hidden">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Zarina.jpg" alt="Zarina Saidova" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Studium" data-uz="Oliy ta'lim">Studium</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Zarina Saidova</h3>
+              <p data-de="Studienvisum für Wirtschaftswissenschaften im Mai 2023. Studiert in Berlin."
+                data-uz="2023-yil mayda iqtisodiyot fanlari bo'yicha o'qish vizasi oldi. Berlinda o'qiydi.">Studienvisum
+                für Wirtschaftswissenschaften im Mai 2023. Studiert in Berlin.</p>
+            </div>
+          </div>
+
+          <div class="result-card hidden">
+            <div class="result-img-wrapper">
+              <img src="img/germany/Javohir.jpg" alt="Javohir Abdurahmonov" class="result-img">
+              <div class="result-overlay">
+                <span class="result-badge" data-de="Praktikum" data-uz="Amaliyot">Praktikum</span>
+              </div>
+            </div>
+            <div class="result-content">
+              <h3>Javohir Abdurahmonov</h3>
+              <p data-de="Praktikumsvisum im Juni 2023. Tätig in einem Technologieunternehmen in Leipzig."
+                data-uz="2023-yil iyunda amaliyot vizasi oldi. Leyptsigdagi texnologiya kompaniyasida ishlaydi.">
+                Praktikumsvisum im Juni 2023. Tätig in einem Technologieunternehmen in Leipzig.</p>
+            </div>
+          </div>
         </div>
 
-        <!-- Column 3: Quick Links -->
-        <div class="footer-col">
-          <h4 data-i18n="footer.quick_links">Tezkor havolalar</h4>
-          <ul class="footer-nav">
-            <li><a href="#about" data-i18n="footer.link.about">Biz haqimizda</a></li>
-            <li><a href="#services" data-i18n="footer.link.services">Xizmatlar</a></li>
-            <li><a href="#structure" data-i18n="footer.link.structure">Tuzilma</a></li>
-            <li><a href="#team" data-i18n="footer.link.team">Jamoa</a></li>
-            <li><a href="#results" data-i18n="footer.link.results">Natijalar</a></li>
-            <li><a href="#contact" data-i18n="footer.link.contact">Aloqa</a></li>
-          </ul>
+        <!-- Ko'proq tugmasi -->
+        <div class="more-button-container" id="moreButtonContainer">
+          <button class="more-button" onclick="loadMoreResults()">Ko‘proq</button>
         </div>
-      </div>
-
-      <!-- Footer Bottom -->
-      <div class="footer-bottom">
-        <p data-i18n="footer.copyright">&copy; 2025 EuroLink Consulting Group. Barcha huquqlar himoyalangan.</p>
-        <div class="footer-credits">
-          <span data-i18n="footer.developed">Ishlab chiquvchi:</span>
-          <a href="#" class="footer-dev-link">
-            <span class="footer-dev-icon">⚡</span>
-            <span>Tech Solutions</span>
+      </section>
+  </main>
+  <!-- MODERN FOOTER -->
+  <footer class="modern-footer" id="contact">
+    <div class="footer-container">
+      <!-- Column 1: About -->
+      <div class="footer-col footer-about">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="10" fill="url(#gradient)" />
+              <path d="M12 20h7v-7M28 20h-7v7" stroke="white" stroke-width="3" stroke-linecap="round" />
+              <defs>
+                <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                  <stop offset="0%" stop-color="#4a90e2" />
+                  <stop offset="100%" stop-color="#67b5ff" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div>
+            <h3>EuroLink</h3>
+            <p data-i18n="footer.tagline">Consulting Group</p>
+          </div>
+        </div>
+        <p class="footer-description" data-i18n="footer.description">
+          Yevropa davlatlari, xususan Germaniya, Avstriya va boshqa mamlakatlardan ta'lim olish, ish topish va hayot
+          qurishda professional yordam beramiz.
+        </p>
+        <div class="footer-social">
+          <a href="https://t.me/Eurolink_consulting" target="_blank" class="footer-social-btn" aria-label="Telegram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.121.099.155.232.171.326.016.094.037.308.021.475z" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/eurolink_cg/" target="_blank" class="footer-social-btn"
+            aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/groups/1586290418418966/" target="_blank" class="footer-social-btn"
+            aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
           </a>
         </div>
       </div>
-    </footer>
 
-    <script>
-
-      // Language Toggle
-      const langBtns = document.querySelectorAll('.lang-btn');
-      const translatableElements = document.querySelectorAll('[data-de]');
-
-      // Load saved language
-      const savedLang = localStorage.getItem('language') || 'de';
-      langBtns.forEach(btn => {
-        if (btn.dataset.lang === savedLang) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-
-      if (savedLang === 'uz') {
-        translatableElements.forEach(el => {
-          if (el.dataset.uz) {
-            el.textContent = el.dataset.uz;
-          }
-        });
-      }
-
-      langBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const lang = btn.dataset.lang;
-
-          langBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          localStorage.setItem('language', lang);
-
-          translatableElements.forEach(el => {
-            if (el.dataset[lang]) {
-              el.textContent = el.dataset[lang];
-            }
-          });
-        });
-      });
-
-
-      /* ===== i18n DICTIONARY (DE & UZ) ===== */
-      const I18N = {
-        de: {
-          'meta.title': 'EuroLink Consulting Group - Zukunft beginnt hier',
-          'meta.description': 'Professionelle Beratung für Bildung, Ausbildung, Karriere und Migration nach Europa. Sprachkurse, Au-pair, FSJ/BFD/FÖJ, Ausbildung, Studium und Direkteinstieg für Fachkräfte.',
-          'nav.home': 'Home', 'nav.about': 'Über uns', 'nav.structure': 'Struktur', 'nav.team': 'Team', 'nav.services': 'Unsere Dienstleistungen', 'nav.germany': 'Weg nach Europa', 'nav.results': 'Resultate', 'nav.contact': 'Kontakt',
-          'hero.tag': 'Premium Consulting', 'hero.title': 'EuroLink Consulting Group (ECG)', 'hero.lead': 'Professionelle Beratung für Bildung, Ausbildung, Karriere und Migration nach Europa. Sprachkurse, Au-pair, FSJ/BFD/FÖJ, Ausbildung, Studium und Direkteinstieg für Fachkräfte.',
-          'cta.start': 'Beratung starten', 'cta.learn': 'Mehr erfahren',
-          'about.tag': 'ÜBER UNS', 'about.title': 'EuroLink Consulting Group', 'about.subtitle': 'Seit Mai 2022 begleiten wir ambitionierte Menschen auf ihrem Weg nach Europa',
-          'about.cards.info.title': 'Kurzinfo', 'about.cards.info.text': '„EuroLink CG“ ist seit Mai 2022 in Betrieb. Hauptsitz Taschkent. Online/offline Sprachkurse (Deutsch, Englisch, Russisch, Chinesisch, Koreanisch) und IT Web Developing. Unterstützung bei Stipendien, Karriere, Forschung.',
-          'about.cards.edu.title': 'Bildungsprogramme', 'about.cards.edu.text': 'Sprachkurse (Goethe, telc, TestDaF usw.), Studienkolleg, Bachelor, Master, PhD in Deutschland/Europa.',
-          'about.cards.career.title': 'Karriere & Programme', 'about.cards.career.text': 'Au-pair, FSJ/BFD/FÖJ, Ausbildung, Direkteinstieg (IT, Medizin, Technik, KI u.a.).',
-          'about.cards.full.title': 'Full-Service', 'about.cards.full.text': 'Dokumente, Botschaftstermine, Versicherung, Wohnung, Flug, Transport, Integration & Community.',
-          'structure.tag': 'STRUKTUR', 'structure.title': 'Struktur von EuroLink', 'structure.subtitle': 'Front-Office, Status-Quo-Analyse, Back-Office, Strategie, Coworking (Steuerung & Monitoring)',
-          'structure.cards.company.badge': 'Company', 'structure.cards.company.title': 'ECG Überblick', 'structure.cards.company.text': 'Alle Strukturen wirken je nach Projektumfang mit: Bildungszentrum, Recht, Marketing, Übersetzung, Marktanalyse, Kooperationen, Programmierung/Design, Buchhaltung & Partner.',
-          'structure.cards.team.badge': 'Teamwork', 'structure.cards.team.title': 'Prozess & Qualität', 'structure.cards.team.text': 'Kontrollen & Berichte durch Gründer und Rechtsabteilung. Fokus auf Ergebnis, Qualität und Geschwindigkeit.',
-          'team.tag': 'UNSER TEAM', 'team.title': 'Führung & Expertise', 'team.subtitle': 'Erfahrene Experten mit internationaler Perspektive', 'team.ceo.role': 'Gründer & CEO', 'team.ceo.text': 'Qualitäts- und Strategiemanager, Controller von Automatisierung und Marktanalyse. IT System Manager bei addOn Solution GmbH.',
-          'team.cof1.title': 'Elbek Shomurodov — Gründer', 'team.cof1.text': 'Operations & Digitalisierung, juristische/logistische Prozesse, Hauswirtschaft. IT-Security Student (Osh/Samarkand).',
-          'team.cof2.title': 'Murodjon Shomurodov — Gründer', 'team.cof2.text': 'Strategie & internationale Beziehungen, Audit, HR, Transformation. Junior Analyst BDU; M.Sc Universität Hamburg.',
-          'team.exp1.text': 'IT-Experte & Mentor, Senior Consultant für Interviews & Networking. IT Engineer in Legal Digital Transformation bei POELLATH+ (München).',
-          'team.exp2.text': 'Studienkolleg/Sprachkurse, Integration & Bildung, psychologische Methoden. Biotech/Medizin (Leipzig).',
-          'team.exp3.text': 'Medizin-Experte & Mentor. Zahnarzt bei Pezeshkpour Zahnarztpraxis (Aachen).',
-          'team.exp4.text': 'B2B & FSJ/BFD/FÖJ mentor, 3y Klinikum Stuttgart, Manager „E-Bike Laden Stuttgart“.',
-          'team.t1.text': 'Deutschlehrer & Mentor, Lehrplanungsberater, C1; Erfahrungen in Würzburg, Bremen, Stuttgart. Student der Weltsprachenuni, Taschkent.',
-          'team.t2.text': 'Lehrerin DE/EN/RU, 3y Erfahrung, C1, Koordinatorin Übersetzungstheorie & Stilistik. Studentin der Weltsprachenuni, Taschkent.',
-          'services.tag': 'UNSERE DIENSTLEISTUNGEN', 'services.title': 'Akademische & Beratungs-Leistungen', 'services.subtitle': 'Sprachzertifikate (IELTS, TestDaF, telc, HSK, TOPIK, TRKI), IT-Kurslar, Au-pair, FSJ/BFD/FÖJ, Ausbildung, Studium, Visa & mehr',
-          'services.c1.title': 'Sprach- & IT-Kurse', 'services.c1.text': 'Deutsch/Englisch/Russisch/Chinesisch\n/Koreanisch, IELTS, TestDaF, telc, HSK, TOPIK, TRKI, Full-Stack, Webdesign, Marketing/SMM.',
-          'services.c2.title': 'Au-pair', 'services.c2.text': 'Agentur-Coaching, Familien-Interviews, Botschaftsvorbereitung.',
-          'services.c3.title': 'FSJ/BFD/FÖJ', 'services.c3.text': '6–18 Monate Einsatz, Stipendium, Unterkunft, ÖPNV je nach Träger.',
-          'services.c4.title': 'Ausbildung', 'services.c4.text': 'Mit B1–B2 Studium+Arbeit (2–4 Jahre), Vergütung, Übernahmechancen.',
-          'services.c5.title': 'Studium', 'services.c5.text': 'Uni-Assist, dual, Stipendien: DAAD, Erasmus, KAS, Deutschlandstipendium u.a.',
-          'services.c6.title': 'Fachkräfte', 'services.c6.text': 'Arbeitsvisum mit B2 oder 6 Monate Job-Seeker in IT/Medizin/Tech/AI.',
-          'services.c7.title': 'Visa & Legal', 'services.c7.text': 'Visa (Sprachkurs/Study/Business/Medical/Travel), Botschaftscoaching.',
-          'services.c8.title': 'Support', 'services.c8.text': 'Versicherung, Wohnung, Flug, Transfer, Job, Community.',
-          'services.c9.title': 'B2B/B2C', 'services.c9.text': 'LKW & Logistik, Immobilien (TR/DE), Med-Tourismus Marketing, Export.',
-          'services.c10.title': 'Praktikum & Research', 'services.c10.text': 'Bezahlte Praktika, Grants und Forschungsprojekte für 18+.',
-          'germany.tag': 'WEG NACH EUROPA', 'germany.title': 'Weg nach Europa', 'germany.subtitle': 'Ausbildung | Au-pair | FSJ/BFD/FÖJ | Sprachkurs | Studium | Direkteinstieg',
-          'germany.s1.title': '1) Was ist Ausbildung?', 'germany.s1.text': 'Dualer Weg: 2–3 Tage Betrieb + 1–2 Tage Schule. Vorteile: Vergütung, Übernahmechancen, B1–B2 genügt, 11-Klassen-Abschluss möglich. Start meist Aug/Sept – früh bewerben.',
-          'germany.s2.title': '2) Au-pair Programm', 'germany.s2.text': '18–26 Jahre, Grunddeutsch; Unterkunft, Verpflegung, Taschengeld. 30–35 Std/Woche, 6–12(18) Monate, Sprachkurs & Kultur.',
-          'germany.s3.title': '3) Freiwilligendienste (FSJ/FÖJ/BFD)', 'germany.s3.text': '6–18 Monate; sozial/ökologisch. 300–560€; teils Unterkunft/ÖPNV. FSJ/FÖJ ≤27; BFD ohne Altersgrenze.',
-          'germany.s4.title': '4) Sprachkurs in Deutschland', 'germany.s4.text': 'Mind. 6 Monate intensiv (≥18 Std/Woche), Vertrag, Übersetzungen, Sperrkonto, Versicherung, CV & Motivation. Weiter: Ausbildung/Studium.',
-          'germany.s5.title': '5) Studium (Bachelor/Master/PhD)', 'germany.s5.text': 'uni-assist; DE-Programme meist C1, englisch mit IELTS. Öffentliche Unis oft gebührenfrei; viele Stipendien (DAAD, Erasmus...).',
-          'germany.s6.title': '6) Direkteinstieg als Fachkraft', 'germany.s6.text': 'Mit B2 + Vertrag Arbeitsvisum, sonst Job-Seeker (6 Monate). Bedarf: IT, Medizin, Technik, KI.',
-          'germany.g1.title': 'Ausbildung', 'germany.g1.text': 'Praxis + Theorie, Vergütung, Einstieg in Beruf.',
-          'germany.g2.title': 'Studium', 'germany.g2.text': 'Dual, klassisch, zahlreiche Stipendien.',
-          'germany.g3.title': 'Au-pair', 'germany.g3.text': 'Sprache, Kultur, Erfahrung.',
-          'germany.g4.title': 'FSJ/BFD/FÖJ', 'germany.g4.text': '6–18 Monate Dienst.',
-          'germany.g5.title': 'Fachkräfte', 'germany.g5.text': 'Direktes Arbeitsvisum.',
-          'germany.g6.title': 'Sprachkurs', 'germany.g6.text': 'Intensiv, Sperrkonto, Plan.',
-          'results.tag': 'ERFOLGSGESCHICHTEN', 'results.title': 'Unsere Resultate', 'results.subtitle': 'Au-pair, Ausbildung, Medizinische Fachangestellte — echte Erfolge',
-          'contact.tag': 'KONTAKT', 'contact.title': 'Bereit für den ersten Schritt?', 'contact.subtitle': 'Nehmen Sie jetzt Kontakt mit uns auf', 'contact.email': 'Email', 'contact.phone': 'Telefon', 'contact.telegram': 'Telegram', 'contact.address': 'Adresse', 'contact.address_text': 'Bunyodkorstr 1, 100035 Taschkent, Usbekistan — Orientierung: Ziraatbank, S-Bahn Station Novza.', 'contact.social': 'Social',
-          'footer.copy': 'Eurolink Consulting Group (ECG) © Alle Rechte vorbehalten'
-        },
-        uz: {
-          'meta.title': 'EuroLink Consulting Group - Kelajak shu yerdan boshlanadi',
-          'meta.description': 'Evropaga ta’lim, o‘qish, martaba va migratsiya bo‘yicha professional maslahat. Til kurslari, Au-pair, FSJ/BFD/FÖJ, Ausbildung, oliy ta’lim va mutaxassislar uchun ish.',
-          'nav.home': 'Bosh sahifa', 'nav.about': 'Biz haqimizda', 'nav.structure': 'Tuzilma', 'nav.team': 'Jamoa', 'nav.services': 'Xizmatlar', 'nav.germany': 'Yevropaga yo‘l', 'nav.results': 'Natijalar', 'nav.contact': 'Aloqa',
-          'hero.tag': 'Premium Konsalting', 'hero.title': 'EuroLink Consulting Group (ECG)', 'hero.lead': 'Evropaga ta’lim, o‘qish, martaba va migratsiya bo‘yicha professional maslahat. Til kurslari, Au-pair, FSJ/BFD/FÖJ, Ausbildung, oliy ta’lim va mutaxassislar uchun ishga yo‘naltirish.',
-          'cta.start': 'Maslahat boshlash', 'cta.learn': 'Ko‘proq bilish',
-          'about.tag': 'BIZ HAQIMIZDA', 'about.title': 'EuroLink Consulting Group', 'about.subtitle': '2022-yil maydan beri Evropaga yo‘l olgan yoshlarni qo‘llab-quvvatlaymiz',
-          'about.cards.info.title': 'Qisqacha ma’lumot', 'about.cards.info.text': '"EuroLink CG" 2022-yil maydan beri faol. Bosh ofis Toshkent. Onlayn/oflayn til kurslari (Nemis, Ingliz, Rus, Xitoy, Koreys) va IT Web Dasturlash. Grant, karera va tadqiqotlarda ko‘mak.',
-          'about.cards.edu.title': 'Ta’lim dasturlari', 'about.cards.edu.text': 'Til kurslari (Goethe, telc, TestDaF va b.), Studienkolleg, Bakalavr, Magistr, PhD — Germaniya/Yevropa.',
-          'about.cards.career.title': 'Karera & Dasturlar', 'about.cards.career.text': 'Au-pair, FSJ/BFD/FÖJ, Ausbildung, to‘g‘ridan-to‘g‘ri ish (IT, tibbiyot, texnika, AI).',
-          'about.cards.full.title': 'To‘liq xizmat', 'about.cards.full.text': 'Hujjatlar, elchixona navbati, sug‘urta, uy-joy, parvoz, transfer, integratsiya va community.',
-          'structure.tag': 'TUZILMA', 'structure.title': 'EuroLink tuzilmasi', 'structure.subtitle': 'Front-office, holat tahlili, back-office, strategiya, coworking (boshqaruv & monitoring)',
-          'structure.cards.company.badge': 'Kompaniya', 'structure.cards.company.title': 'ECG umumiy ko‘rinish', 'structure.cards.company.text': 'Loyiha hajmiga qarab bo‘limlar: ta’lim markazi, yuridik, marketing, tarjima, bozor tahlili, hamkorlik, dasturlash/dizayn, buxgalteriya va boshqalar.',
-          'structure.cards.team.badge': 'Jamoa', 'structure.cards.team.title': 'Jarayon & sifat', 'structure.cards.team.text': 'Nazorat va hisobotlar — asoschilar va yuridik bo‘lim orqali. Natija, sifat va tezlik — ustuvor.',
-          'team.tag': 'JAMOAMIZ', 'team.title': 'Raxbariyat & Ekspertiza', 'team.subtitle': 'Xalqaro tajribaga ega mutaxassislar', 'team.ceo.role': 'Founder & CEO', 'team.ceo.text': 'Sifat va strategiya menejeri, avtomatlashtirish va bozor tahlili nazoratchisi. IT System Manager — addOn Solution GmbH.',
-          'team.cof1.title': 'Elbek Shomurodov — Founder', 'team.cof1.text': 'Operatsiyalar & raqamlashtirish, yuridik/logistika jarayonlari. IT-Security talabasi (Osh/Samarqand).',
-          'team.cof2.title': 'Murodjon Shomurodov — Founder', 'team.cof2.text': 'Strategiya & xalqaro aloqalar, audit, HR, transformatsiya. Junior Analyst BDU; M.Sc Hamburg universiteti.',
-          'team.exp1.text': 'IT mutaxassisi & mentor. Intervyu va networking bo‘yicha consultant. POELLATH+ (Myunxen) da Legal Digital Transformation yo‘nalishi.',
-          'team.exp2.text': 'Studienkolleg/til kurslari, integratsiya & ta’lim, psixologik metodlar. Biotex/Med (Leyptsig).',
-          'team.exp3.text': 'Tibbiyot eksperti & mentor. Pezeshkpour stomatologiya klinikasi (Aaxen).',
-          'team.exp4.text': 'B2B & FSJ/BFD/FÖJ mentor, 3 yil Klinikum Stuttgart, “E-Bike Laden Stuttgart” menejeri.',
-          'team.t1.text': 'Nemis tili o‘qituvchisi & mentor, o‘quv reja maslahatchisi, C1; Vürzburg, Bremen, Shtutgart tajribasi. Toshkent Jahon tillari universiteti talabasi.',
-          'team.t2.text': 'DE/EN/RU o‘qituvchisi, 3 yil tajriba, C1, tarjima nazariyasi & uslubiyati koordinatori. Toshkent JTU talabasi.',
-          'services.tag': 'XIZMATLAR', 'services.title': 'Akademik & maslahat xizmatlari', 'services.subtitle': 'Til sertifikatlari (IELTS, TestDaF, telc, HSK, TOPIK, TRKI), IT kurslar, Au-pair, FSJ/BFD/FÖJ, Ausbildung, OTM, viza va boshqalar',
-          'services.c1.title': 'Til & IT kurslari', 'services.c1.text': 'Nemis/Ingliz/Rus/Xitoy/Koreys, IELTS, TestDaF, telc, HSK, TOPIK, TRKI, Full-Stack, Web-dizayn, Marketing/SMM.',
-          'services.c2.title': 'Au-pair', 'services.c2.text': 'Agentlik-trening, oilalar bilan intervyu, elchixona tayyorgarligi.',
-          'services.c3.title': 'FSJ/BFD/FÖJ', 'services.c3.text': '6–18 oy ijtimoiy/ekologik xizmat, stipendiya, yashash va transport imkonlari.',
-          'services.c4.title': 'Ausbildung', 'services.c4.text': 'B1–B2 bilan o‘qish+ish (2–4 yil), oylik to‘lov, ishga qabul ehtimoli yuqori.',
-          'services.c5.title': 'OTM (Studium)', 'services.c5.text': 'Uni-Assist, dual o‘qish, grantlar: DAAD, Erasmus, KAS, Deutschlandstipendium va b.',
-          'services.c6.title': 'Mutaxassislar', 'services.c6.text': 'B2 bilan ish vizasi yoki 6 oylik Job-Seeker (IT/Med/Tech/AI).',
-          'services.c7.title': 'Viza & yuridik', 'services.c7.text': 'Sprachkurs/Study/Business/Medical/Travel vizalar, elchixona intervyusi.',
-          'services.c8.title': 'Qo‘llab-quvvatlash', 'services.c8.text': 'Sug‘urta, uy-joy, parvoz, transfer, ish topish, community.',
-          'services.c9.title': 'B2B/B2C', 'services.c9.text': 'Yuk logistika, ko‘chmas mulk (Turkiya/Germaniya), med-turizm marketingi, eksport.',
-          'services.c10.title': 'Amaliyot & tadqiqot', 'services.c10.text': '18+ uchun pullik stajirovkalar, grantlar va ilmiy loyihalar.',
-          'germany.tag': 'YEVROPAGA YO‘L', 'germany.title': 'Yevropaga yo‘l', 'germany.subtitle': 'Ausbildung | Au-pair | FSJ/BFD/FÖJ | Til kursi | OTM | Ish',
-          'germany.s1.title': '1) Ausbildung nima?', 'germany.s1.text': 'Dual yo‘l: 2–3 kun korxona + 1–2 kun maktab. Afzalliklar: oylik, ishga qabul ehtimoli, B1–B2 yetarli, 11-sinf diplom bilan ham mumkin. Start odatda avg/sen — erta ariza bering.',
-          'germany.s2.title': '2) Au-pair dasturi', 'germany.s2.text': '18–26 yosh, elementar nemis tili; yashash, ovqat, nafaqa. 30–35 soat/hafta, 6–12(18) oy, til kursi va madaniyat almashinuvi.',
-          'germany.s3.title': '3) Ko‘ngillilik xizmatlari (FSJ/FÖJ/BFD)', 'germany.s3.text': '6–18 oy; ijtimoiy/ekologik yo‘nalish. 300–560€, ba’zan turar-joy/transport ta’minlanadi. FSJ/FÖJ ≤27; BFD — yosh cheklovi yo‘q.',
-          'germany.s4.title': '4) Germaniyada til kursi', 'germany.s4.text': 'Kamida 6 oy intensiv (≥18 soat/hafta), shartnoma, tarjimalar, sperrkonto, sug‘urta, CV & motivatsion xat. Keyingi qadam: Ausbildung/OTM.',
-          'germany.s5.title': '5) OTM (Bakalavr/Magistr/PhD)', 'germany.s5.text': 'uni-assist; nemis dasturlari odatda C1 (ba’zida B2), ingliz dasturlari — IELTS. Davlat OTMlari ko‘pincha bepul; ko‘plab grantlar (DAAD, Erasmus...).',
-          'germany.s6.title': '6) Mutaxassis sifatida ish', 'germany.s6.text': 'B2 + mehnat shartnomasi bilan ish vizasi; aks holda 6 oylik Job-Seeker. Talab yuqori: IT, tibbiyot, texnika, AI.',
-          'germany.g1.title': 'Ausbildung', 'germany.g1.text': 'Amaliyot + nazariya, oylik, kasbga kirish.',
-          'germany.g2.title': 'OTM', 'germany.g2.text': 'Dual, an’anaviy, ko‘p grantlar.',
-          'germany.g3.title': 'Au-pair', 'germany.g3.text': 'Til, madaniyat, tajriba.',
-          'germany.g4.title': 'FSJ/BFD/FÖJ', 'germany.g4.text': '6–18 oy xizmat.',
-          'germany.g5.title': 'Mutaxassislar', 'germany.g5.text': 'To‘g‘ridan-to‘g‘ri ish vizasi.',
-          'germany.g6.title': 'Til kursi', 'germany.g6.text': 'Intensiv, sperrkonto, reja.',
-          'results.tag': 'MUVAFFAQIYAT HIKOYALARI', 'results.title': 'Natijalarimiz', 'results.subtitle': 'Au-pair, Ausbildung, tibbiy asistent — real natijalar',
-          'contact.tag': 'ALOQA', 'contact.title': 'Birinchi qadamga tayyormisiz?', 'contact.subtitle': 'Hozir biz bilan bog‘laning', 'contact.email': 'Email', 'contact.phone': 'Telefon', 'contact.telegram': 'Telegram', 'contact.address': 'Manzil', 'contact.address_text': 'Bunyodkor ko‘chasi 1, 100035 Toshkent, O‘zbekiston — Mo‘ljal: Ziraatbank, Novza metro.',
-          'contact.social': 'Ijtimoiy tarmoqlar', 'footer.copy': 'Eurolink Consulting Group (ECG) © Barcha huquqlar himoyalangan'
-        }
-      };
-
-      /* ===== LANGUAGE HANDLER ===== */
-      const qs = new URLSearchParams(location.search);
-      const saved = localStorage.getItem('language');
-      const browser = (navigator.language || 'de').slice(0, 2);
-      const fallback = 'de';
-      const initialLang = ['de', 'uz'].includes(qs.get('lang')) ? qs.get('lang') : (['de', 'uz'].includes(saved) ? saved : (browser === 'uz' ? 'uz' : fallback));
-
-      function switchLanguage(lang) {
-        const elements = document.querySelectorAll('[data-de], [data-uz]');
-        elements.forEach(el => {
-          if (el.dataset.de && el.dataset.uz) {
-            el.textContent = lang === 'de' ? el.dataset.de : el.dataset.uz;
-          }
-        });
-      }
-
-      function loadMoreResults() {
-        const cards = document.querySelectorAll('.result-card.hidden');
-        const loadCount = Math.min(cards.length, 9); // Har safar maksimum 9 ta yuklash
-        for (let i = 0; i < loadCount; i++) {
-          cards[i].classList.remove('hidden');
-        }
-
-        // Qolgan kartalarni tekshirish
-        if (cards.length <= 9) {
-          document.getElementById('moreButtonContainer').style.display = 'none'; // Agar barchasi yuklandi, tugmani yashir
-        } else {
-          // 9 tadan keyin qolganlarni tekshirib, agar qolsa tugmani saqlab qol
-          setTimeout(() => {
-            const remainingCards = document.querySelectorAll('.result-card.hidden');
-            if (remainingCards.length === 0) {
-              document.getElementById('moreButtonContainer').style.display = 'none';
-            }
-          }, 100); // Kichik kechikish uchun
-        }
-      }
-
-      // Boshlang'ich til (masalan, nemis)
-
-      // Service Modal Data
-      const serviceDetailsData = {
-        uz: {
-          1: {
-            title: 'Til va IT Kurslari',
-            content: `
-        <h4>Til Kurslari:</h4>
-        <ul>
-          <li><strong>Nemis tili:</strong> Goethe Zertifikat, TestDaF, telc Deutsch, DSH tayyorgarlik</li>
-          <li><strong>Ingliz tili:</strong> IELTS, SAT, GMAT, GRE tayyorgarlik</li>
-          <li><strong>Xitoy tili:</strong> HSK sertifikati tayyorgarlik</li>
-          <li><strong>Koreys tili:</strong> TOPIK sertifikati tayyorgarlik</li>
-          <li><strong>Rus tili:</strong> TRKI sertifikati tayyorgarlik</li>
+      <!-- Column 2: Contact -->
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Aloqa</h4>
+        <ul class="footer-links">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <div>
+              <a href="tel:+4917622832405">+49 176 22832405</a>
+              <a href="tel:+998955530590">+998 95 5530590</a>
+            </div>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            <div>
+              <a href="mailto:sherdoreshmamatov@gmail.com">sherdoreshmamatov@gmail.com</a>
+            </div>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <div>
+              <span data-i18n="footer.address">Bunyodkor ko'chasi 1, Toshkent, O'zbekiston</span>
+            </div>
+          </li>
         </ul>
-        <h4>IT Kurslari:</h4>
-        <ul>
-          <li>Full-Stack dasturlash (Frontend va Backend)</li>
-          <li>Web dizayn va UI/UX</li>
-          <li>Digital marketing va SMM</li>
-          <li>Nemis va yapon standartlariga mos ta'lim</li>
-        </ul>
-      `
-          },
-          2: {
-            title: 'Au-pair Dasturi',
-            content: `
-        <h4>Xizmatlarimiz:</h4>
-        <ul>
-          <li>Au-pair agentliklar bilan professional ishlash</li>
-          <li>Nemis oilalari bilan intervyuga tayyorgarlik</li>
-          <li>Elchixonaga hujjatlar tayyorlash</li>
-          <li>Vizaga tayyorgarlik va suhbat mashqlari</li>
-          <li>Germaniyada adaptatsiya bo'yicha maslahatlar</li>
-          <li>Nemis tili va madaniyatiga kirish</li>
-        </ul>
-      `
-          },
-          3: {
-            title: 'FSJ/BFD/FÖJ Dasturlari',
-            content: `
-        <h4>Dastur haqida:</h4>
-        <ul>
-          <li><strong>Davomiyligi:</strong> 6-18 oy</li>
-          <li><strong>Yo'nalishlar:</strong> Ijtimoiy xizmat, ekologiya, sport</li>
-          <li><strong>Imkoniyatlar:</strong> Oylik stipendiya (300-450 euro), bepul uy-joy, bepul jamoat transporti, nemis tilini o'rganish, professional tajriba</li>
-          <li>To'liq yuridik yordam va qo'llab-quvvatlash</li>
-        </ul>
-      `
-          },
-          4: {
-            title: 'Ausbildung - Kasbiy Ta\'lim',
-            content: `
-        <h4>Dastur haqida:</h4>
-        <ul>
-          <li><strong>Til darajasi:</strong> B1-B2 nemis tili</li>
-          <li><strong>Davomiyligi:</strong> 2-4 yil</li>
-          <li><strong>Oylik to'lov:</strong> 800-1200 euro</li>
-          <li><strong>Mashhur yo'nalishlar:</strong> Tibbiyot, texnika va mexanika, IT va dasturlash, mehmonxona biznesi, moliya va buxgalteriya</li>
-          <li>Diplom Yevropa davlatlarida tan olinadi</li>
-          <li>Ta'limdan keyin doimiy ish kafolati</li>
-        </ul>
-      `
-          },
-          5: {
-            title: 'Oliy Ta\'lim (Studium)',
-            content: `
-        <h4>Xizmatlarimiz:</h4>
-        <ul>
-          <li><strong>Universitet tanlash:</strong> Uni-Assist orqali ariza topshirish</li>
-          <li><strong>Ta'lim turlari:</strong> Normales Studium, Duales Studium, Fernstudium</li>
-          <li><strong>Grantlar:</strong> DAAD, Erasmus+, Deutschlandstipendium, KAS</li>
-          <li>Sperrkonto ochishda yordam</li>
-          <li>To'liq hujjat tayyorlash xizmati</li>
-        </ul>
-      `
-          },
-          6: {
-            title: 'Malakali Kadrlar',
-            content: `
-        <h4>Kimlar uchun:</h4>
-        <ul>
-          <li>Oliy ma'lumotli mutaxassislar</li>
-          <li>2+ yil ish tajribasi</li>
-          <li>B2 nemis tili (ba'zi holatlarda ingliz)</li>
-        </ul>
-        <h4>Yo'nalishlar:</h4>
-        <ul>
-          <li>IT va dasturlash</li>
-          <li>Tibbiyot va farmatsevtika</li>
-          <li>Injeneriya va texnika</li>
-          <li>Sun'iy intellekt va data science</li>
-        </ul>
-      `
-          },
-          7: {
-            title: 'Visa va Yuridik Xizmatlar',
-            content: `
-        <h4>Visa turlari:</h4>
-        <ul>
-          <li><strong>Til kursi vizasi:</strong> Nemis tilini o'rganish uchun</li>
-          <li><strong>Ta'lim vizasi:</strong> Universitet va Ausbildung</li>
-          <li><strong>Ish vizasi:</strong> Malakali kadrlar uchun</li>
-          <li><strong>Biznes vizasi:</strong> Tadbirkorlar uchun</li>
-        </ul>
-        <h4>Xizmatlar:</h4>
-        <ul>
-          <li>To'liq hujjat tayyorlash</li>
-          <li>Elchixona suhbatiga professional tayyorgarlik</li>
-          <li>Yuridik maslahatlar</li>
-        </ul>
-      `
-          },
-          8: {
-            title: 'Qo\'shimcha Xizmatlar',
-            content: `
-        <h4>To'liq qo'llab-quvvatlash:</h4>
-        <ul>
-          <li>Tibbiy va sayohat sug'urtasi</li>
-          <li>Uy-joy qidirish va ijara shartnomasi</li>
-          <li>Arzon aviachiptalar xarid qilish</li>
-          <li>Aeroportdan kutib olish va transfer</li>
-          <li>Germaniyada ish topish</li>
-          <li>O'zbek community'ga qo'shilish</li>
-        </ul>
-      `
-          }
-        },
-        de: {
-          1: {
-            title: 'Sprach- & IT-Kurse',
-            content: `
-        <h4>Sprachkurse:</h4>
-        <ul>
-          <li><strong>Deutsch:</strong> Goethe Zertifikat, TestDaF, telc Deutsch, DSH Vorbereitung</li>
-          <li><strong>Englisch:</strong> IELTS, SAT, GMAT, GRE Vorbereitung</li>
-          <li><strong>Chinesisch:</strong> HSK Zertifikat Vorbereitung</li>
-          <li><strong>Koreanisch:</strong> TOPIK Zertifikat Vorbereitung</li>
-          <li><strong>Russisch:</strong> TRKI Zertifikat Vorbereitung</li>
-        </ul>
-        <h4>IT-Kurse:</h4>
-        <ul>
-          <li>Full-Stack Programmierung (Frontend & Backend)</li>
-          <li>Webdesign und UI/UX</li>
-          <li>Digital Marketing und SMM</li>
-          <li>Nach deutschen und japanischen Standards</li>
-        </ul>
-      `
-          },
-          2: {
-            title: 'Au-pair Programm',
-            content: `
-        <h4>Unsere Dienstleistungen:</h4>
-        <ul>
-          <li>Professionelle Zusammenarbeit mit Au-pair Agenturen</li>
-          <li>Vorbereitung auf Interviews mit deutschen Familien</li>
-          <li>Dokumentenvorbereitung für Botschaft</li>
-          <li>Visa-Vorbereitung und Gesprächstraining</li>
-          <li>Beratung zur Integration in Deutschland</li>
-          <li>Einführung in deutsche Sprache und Kultur</li>
-        </ul>
-      `
-          },
-          3: {
-            title: 'FSJ/BFD/FÖJ Programme',
-            content: `
-        <h4>Über das Programm:</h4>
-        <ul>
-          <li><strong>Dauer:</strong> 6-18 Monate</li>
-          <li><strong>Bereiche:</strong> Sozialdienst, Ökologie, Sport</li>
-          <li><strong>Leistungen:</strong> Monatliches Stipendium (300-450 Euro), kostenlose Unterkunft, kostenloses ÖPNV-Ticket, Deutschlernen, Berufserfahrung</li>
-          <li>Vollständige rechtliche Unterstützung</li>
-        </ul>
-      `
-          },
-          4: {
-            title: 'Ausbildung - Berufsausbildung',
-            content: `
-        <h4>Über das Programm:</h4>
-        <ul>
-          <li><strong>Sprachniveau:</strong> B1-B2 Deutsch</li>
-          <li><strong>Dauer:</strong> 2-4 Jahre</li>
-          <li><strong>Vergütung:</strong> 800-1200 Euro monatlich</li>
-          <li><strong>Beliebte Bereiche:</strong> Medizin, Technik und Mechanik, IT und Programmierung, Hotellerie, Finanzen und Buchhaltung</li>
-          <li>Diplom wird in ganz Europa anerkannt</li>
-          <li>Jobangebot nach Abschluss garantiert</li>
-        </ul>
-      `
-          },
-          5: {
-            title: 'Studium (Hochschulbildung)',
-            content: `
-        <h4>Unsere Dienstleistungen:</h4>
-        <ul>
-          <li><strong>Universitätswahl:</strong> Bewerbung über Uni-Assist</li>
-          <li><strong>Studienformen:</strong> Normales Studium, Duales Studium, Fernstudium</li>
-          <li><strong>Stipendien:</strong> DAAD, Erasmus+, Deutschlandstipendium, KAS</li>
-          <li>Hilfe bei Sperrkonto-Eröffnung</li>
-          <li>Vollständige Dokumentenvorbereitung</li>
-        </ul>
-      `
-          },
-          6: {
-            title: 'Fachkräfte',
-            content: `
-        <h4>Für wen:</h4>
-        <ul>
-          <li>Fachkräfte mit Hochschulabschluss</li>
-          <li>2+ Jahre Berufserfahrung</li>
-          <li>B2 Deutsch (teilweise Englisch)</li>
-        </ul>
-        <h4>Bereiche:</h4>
-        <ul>
-          <li>IT und Programmierung</li>
-          <li>Medizin und Pharmazie</li>
-          <li>Ingenieurwesen und Technik</li>
-          <li>KI und Data Science</li>
-        </ul>
-      `
-          },
-          7: {
-            title: 'Visa & Rechtsdienste',
-            content: `
-        <h4>Visa-Arten:</h4>
-        <ul>
-          <li><strong>Sprachkursvisum:</strong> Zum Deutschlernen</li>
-          <li><strong>Studienvisum:</strong> Für Universität und Ausbildung</li>
-          <li><strong>Arbeitsvisum:</strong> Für Fachkräfte</li>
-          <li><strong>Geschäftsvisum:</strong> Für Unternehmer</li>
-        </ul>
-        <h4>Dienstleistungen:</h4>
-        <ul>
-          <li>Vollständige Dokumentenvorbereitung</li>
-          <li>Professionelle Vorbereitung auf Botschaftsgespräch</li>
-          <li>Rechtsberatung</li>
-        </ul>
-      `
-          },
-          8: {
-            title: 'Zusätzliche Services',
-            content: `
-        <h4>Vollständige Unterstützung:</h4>
-        <ul>
-          <li>Kranken- und Reiseversicherung</li>
-          <li>Wohnungssuche und Mietvertrag</li>
-          <li>Günstige Flugtickets</li>
-          <li>Abholung vom Flughafen und Transfer</li>
-          <li>Jobsuche in Deutschland</li>
-          <li>Integration in usbekische Community</li>
-        </ul>
-      `
-          }
-        }
-      };
-
-      // Modal Functions
-      function openServiceModal(serviceId) {
-        const modal = document.getElementById('serviceModal');
-        const currentLang = localStorage.getItem('language') || 'de';
-        const service = serviceDetailsData[currentLang][serviceId];
-
-        if (service) {
-          document.getElementById('modalTitle').textContent = service.title;
-          document.getElementById('modalBody').innerHTML = service.content;
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        }
-      }
-
-      function closeServiceModal(event) {
-        if (!event || event.target === event.currentTarget) {
-          const modal = document.getElementById('serviceModal');
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      }
-
-      // ESC tugmasi bilan yopish
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          closeServiceModal();
-        }
-      });
-
-
-      function setOrgLang(lang) { document.getElementById('orgStructure').setAttribute('data-lang', lang === 'de' ? 'de' : 'uz'); }
-      // Organization Structure Data
-      const orgData = {
-        uz: {
-          departments: [
-            {
-              name: "Old ofis",
-              label: "Bo'limlar:",
-              items: ["Administratsiya", "O'quv markazi", "Marketing va Dizayn", "SMM va Targeting", "Raqamlashtirish", "Juridik", "Status tahlili", "Xo'jalik", "Logistika"]
-            },
-            {
-              name: "Ort ofis",
-              label: "Bo'limlar:",
-              items: ["Co-working", "Monitoring", "Ekspertlar", "Murabbiylar", "Tarjimonlik markazi", "Notariat", "Tashqi hamkorlar", "Psixologiya", "Coaching"]
-            },
-            {
-              name: "Maqbullashtirish",
-              label: "Bo'limlar:",
-              items: ["Strategik boshqaruv", "Sifat boshqaruvi", "Bozor tadqiqotlari", "Bugalteriya va Audit", "Xalqaro aloqalar", "Avtomatlashtirish", "Kadrlar bo'limi", "Bozorga moslashtirish"]
-            }
-          ]
-        },
-        de: {
-          departments: [
-            {
-              name: "Front Office",
-              label: "Abteilungen:",
-              items: ["Administration", "IT- und Sprachschule", "Marketing & Design", "SMM & Targeting", "Digitalisierung", "Juristik", "Status Quo-Analyse", "Hauswirtschaft", "Logistik"]
-            },
-            {
-              name: "Back Office",
-              label: "Abteilungen:",
-              items: ["Co-working", "Monitoring", "Experten", "Mentoren", "Übersetzungszentrum", "Notariat", "Externe Partner", "Psychologie", "Coaching"]
-            },
-            {
-              name: "Optimierung",
-              label: "Abteilungen:",
-              items: ["Strategiemanagement", "Qualitätsmanagement", "Marktforschung", "Buchhaltung & Audit", "Internationale Beziehungen", "Automatisierung", "HR & Recruiting", "Transformation"]
-            }
-          ]
-        }
-      };
-
-      // Render organization structure
-      function renderOrgStructure(lang) {
-        const container = document.getElementById('departments');
-        if (!container) return;
-
-        const orgStructure = document.getElementById('orgStructure');
-        if (orgStructure) orgStructure.setAttribute('data-lang', lang);
-
-        container.innerHTML = '';
-
-        orgData[lang].departments.forEach((dept, index) => {
-          const card = document.createElement('div');
-          card.className = 'department-card';
-          card.style.animationDelay = `${0.1 + index * 0.1}s`;
-
-          const itemsHTML = dept.items.map(item => `<li>${item}</li>`).join('');
-
-          card.innerHTML = `
-      <div class="dept-header">
-        <div class="dept-title">${dept.name}</div>
       </div>
-      <div class="dept-body">
-        <div class="dept-label">${dept.label}</div>
-        <ul class="dept-list">${itemsHTML}</ul>
+
+      <!-- Column 3: Quick Links -->
+      <div class="footer-col">
+        <h4 data-i18n="footer.quick_links">Tezkor havolalar</h4>
+        <ul class="footer-nav">
+          <li><a href="#about" data-i18n="footer.link.about">Biz haqimizda</a></li>
+          <li><a href="#services" data-i18n="footer.link.services">Xizmatlar</a></li>
+          <li><a href="#structure" data-i18n="footer.link.structure">Tuzilma</a></li>
+          <li><a href="#team" data-i18n="footer.link.team">Jamoa</a></li>
+          <li><a href="#results" data-i18n="footer.link.results">Natijalar</a></li>
+          <li><a href="#contact" data-i18n="footer.link.contact">Aloqa</a></li>
+        </ul>
       </div>
-    `;
+    </div>
 
-          container.appendChild(card);
-        });
-      }
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p data-i18n="footer.copyright">&copy; 2025 EuroLink Consulting Group. Barcha huquqlar himoyalangan.</p>
+      <div class="footer-credits">
+        <span data-i18n="footer.developed">Ishlab chiquvchi:</span>
+        <a href="https://t.me/mohirbek_erkinov" class="footer-dev-link">
+          <span class="footer-dev-icon">⚡</span>
+          <span>Tech-ME Solutions</span>
+        </a>
+      </div>
+    </div>
+  </footer>
 
-      // Call this when language changes
-      window.setOrgLang = function (lang) {
-        renderOrgStructure(lang === 'de' ? 'de' : 'uz');
-      };
-
-      // Initialize on page load
-      renderOrgStructure('uz');
-
-      function applyLang(lang) {
-        const dict = I18N[lang] || I18N[fallback];
-        document.documentElement.lang = lang;
-        // Buttons state
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-          const active = btn.dataset.lang === lang; btn.classList.toggle('active', active); btn.setAttribute('aria-pressed', active);
-        });
-        // Swap all elements with data-i18n
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          if (dict[key] !== undefined) {
-            if (el.tagName === 'META') {
-              if (el.getAttribute('name') === 'description') el.setAttribute('content', dict[key]);
-            } else if (el.tagName === 'TITLE') {
-              document.title = dict[key];
-            } else {
-              el.textContent = dict[key];
-            }
-          }
-          if (window.setOrgLang) window.setOrgLang(lang);
-          setOrgLang(lang);
-        });
-        // Update URL (without reload)
-        const url = new URL(location.href); url.searchParams.set('lang', lang); history.replaceState(null, '', url.toString());
-        localStorage.setItem('language', lang);
-      }
-
-      // Theme toggle
-      const themeToggle = document.getElementById('themeToggle');
-      const body = document.body; const savedTheme = localStorage.getItem('theme') || 'dark';
-      body.setAttribute('data-theme', savedTheme); updateThemeIcon(savedTheme);
-      themeToggle.addEventListener('click', () => { const t = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; body.setAttribute('data-theme', t); localStorage.setItem('theme', t); updateThemeIcon(t); });
-      function updateThemeIcon(t) { themeToggle.textContent = t === 'dark' ? '🌙' : '☀️'; themeToggle.title = t === 'dark' ? 'Light Mode' : 'Dark Mode' }
-
-      // Mobile menu
-      const menuBtn = document.getElementById('menuBtn'), menu = document.getElementById('menu');
-      menuBtn.addEventListener('click', () => {
-        const isOpen = getComputedStyle(menu).display !== 'none';
-        menu.style.display = isOpen ? 'none' : 'flex';
-        menu.style.flexDirection = 'column'; menu.style.gap = '1rem';
-        menuBtn.setAttribute('aria-expanded', String(!isOpen));
-      });
-
-      // Smooth scrolling
-      document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); if (window.innerWidth <= 1100) menu.style.display = 'none'; });
-      });
-
-      // Reveal on view
-      const io = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: .12, rootMargin: '0px 0px -80px 0px' });
-      document.querySelectorAll('.reveal, .feature-card, .result-card, .service-card, .team-card').forEach(el => io.observe(el));
-
-      // Language buttons
-      document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
-
-      // INIT
-      applyLang(initialLang);
-    </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
