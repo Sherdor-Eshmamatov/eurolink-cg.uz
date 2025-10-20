@@ -151,6 +151,26 @@ const browser = (navigator.language || 'de').slice(0, 2);
 const fallback = 'de';
 const initialLang = ['de', 'uz'].includes(qs.get('lang')) ? qs.get('lang') : (['de', 'uz'].includes(saved) ? saved : (browser === 'uz' ? 'uz' : fallback));
 
+function showGermanyTab(tabNumber) {
+  // Barcha tab contentlarni yashirish
+  const contents = document.querySelectorAll('.germany-tab-content');
+  contents.forEach(content => content.classList.remove('active'));
+  
+  // Barcha buttonlarni deactivate qilish
+  const buttons = document.querySelectorAll('.germany-tab-btn');
+  buttons.forEach(btn => btn.classList.remove('active'));
+  
+  // Tanlangan tabni ko'rsatish
+  document.getElementById('germanyTab' + tabNumber).classList.add('active');
+  buttons[tabNumber - 1].classList.add('active');
+  
+  // Smooth scroll to content
+  document.getElementById('germanyTab' + tabNumber).scrollIntoView({ 
+    behavior: 'smooth', 
+    block: 'nearest' 
+  });
+}
+
 function switchLanguage(lang) {
     const elements = document.querySelectorAll('[data-de], [data-uz]');
     elements.forEach(el => {
