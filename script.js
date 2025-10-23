@@ -182,13 +182,13 @@ function switchLanguage(lang) {
 
 function loadMoreResults() {
     const cards = document.querySelectorAll('.result-card.hidden');
-    const loadCount = Math.min(cards.length, 9); // Har safar maksimum 9 ta yuklash
+    const loadCount = Math.min(cards.length, 3); // Har safar maksimum 9 ta yuklash
     for (let i = 0; i < loadCount; i++) {
         cards[i].classList.remove('hidden');
     }
 
     // Qolgan kartalarni tekshirish
-    if (cards.length <= 9) {
+    if (cards.length <= 3) {
         document.getElementById('moreButtonContainer').style.display = 'none'; // Agar barchasi yuklandi, tugmani yashir
     } else {
         // 9 tadan keyin qolganlarni tekshirib, agar qolsa tugmani saqlab qol
